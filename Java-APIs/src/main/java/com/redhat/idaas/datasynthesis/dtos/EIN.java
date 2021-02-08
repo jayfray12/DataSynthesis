@@ -3,15 +3,10 @@ package com.redhat.idaas.datasynthesis.dtos;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 public class EIN {
-    public String EinNumber;
+    public String einNumber;
 
-    //Getters and Setters
-    public String getEinNumber() {
-        return EinNumber;
-    }
-
-    public void setEinNumber(String einNumber) {
-        EinNumber = einNumber;
+    public EIN(String einNumber) {
+        this.einNumber = einNumber;
     }
 
     //toString

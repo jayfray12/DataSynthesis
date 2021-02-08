@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,8 +23,16 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
     private String registeredApp;
     private RefDataStatusEntity refdataStatus;
 
+    public DataGeneratedSocialSecurityNumberEntity() {
+    }
+
+    public DataGeneratedSocialSecurityNumberEntity(String ssn) {
+        socialSecurityNumberValue = ssn;
+    }
+
     @Id
     @Column(name = "SocialSecurityNumberID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getSocialSecurityNumberId() {
         return socialSecurityNumberId;
     }
@@ -113,5 +123,15 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
 
     public static List<DataGeneratedSocialSecurityNumberEntity> findByStatusId(Short statusId) {
         return find("refdataStatus", new RefDataStatusEntity(statusId)).list();
+    }
+
+    public static DataGeneratedSocialSecurityNumberEntity findBySSN(String ssn) {
+        return find("socialSecurityNumberValue", ssn).firstResult();
+    }
+
+    public static void persist(DataGeneratedSocialSecurityNumberEntity entity) {
+        if (null != entity) {
+            entity.persist();
+        }
     }
 }

@@ -3,15 +3,10 @@ package com.redhat.idaas.datasynthesis.dtos;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 public class SSN {
-    public String SocialSecurityNumberValue;
+    public String socialSecurityNumber;
 
-    //Getters and Setters
-    public String getSocialSecurityNumberValue() {
-        return SocialSecurityNumberValue;
-    }
-
-    public void setSocialSecurityNumberValue(SSN socialSecurityNumber) {
-        SocialSecurityNumberValue = socialSecurityNumber;
+    public SSN(String socialSecurityNumberValue) {
+        this.socialSecurityNumber = socialSecurityNumberValue;
     }
 
     //toString
