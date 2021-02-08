@@ -2727,7 +2727,7 @@ databaseChangeLog:
             name: StatusID
         - column:
             name: RegisteredApp
-        indexName: IDX_databuilt_completeaddress
+        indexName: IDX_databuilt_corp_completeaddress
         tableName: databuilt_corporations
 - changeSet:
     id: 1601314759068-144
