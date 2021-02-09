@@ -18,10 +18,10 @@ can use the dump file). We have used both ways.
 
 ### Install and Configuration
 We have worked with 8.0.x on Windows, Linux and Mac and we do not require any
-custom configurations or add-ons.
+custom configurations or add-ons. So any resource for your environment we would consider accurate and adequate.
+Also, we will leave securing the RDBMS layer to your liking and requirements!!!
 
 ### Setup DataSynthesis
-
 1. Get the latest DDL, it is easy to read as they are organized by year and dated as well>
 Use whatever technology you are comfortable with to import the DDL.
 2. Restore the Dump file or Use the Data Load files to update the database with data.
