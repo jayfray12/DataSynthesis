@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedAccountNumbersEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 

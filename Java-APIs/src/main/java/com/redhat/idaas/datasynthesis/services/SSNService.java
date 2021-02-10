@@ -10,7 +10,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.SSN;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedSocialSecurityNumberEntity;
 
 import org.apache.commons.lang3.StringUtils;
 

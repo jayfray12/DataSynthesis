@@ -8,8 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.redhat.idaas.datasynthesis.models.PlatformDataGenConfigEntity;
-
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 @Path("/platformdatagenconfig")
