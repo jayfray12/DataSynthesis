@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedUserIdentitiesEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 

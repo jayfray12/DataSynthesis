@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedCreditCardEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 

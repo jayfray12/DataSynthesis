@@ -20,13 +20,22 @@ As we looked to refocus we wanted to ensure the first thing we did as we revampe
 model was try and have clarity and ease of understanding. This is very important as it is the  
 foundation for all efforts.
 
+We also are now leveraging [Luqibase](https://www.liquibase.org/) for all database operations. While this  
+is a learning effort this will help us long term version and track all database changes, enhancements  
+and also enable us to migrate between different RDBMs technologies as we look to the future without manual maintenance.
+
 ### Naming Convention: DataPurpose
 We wanted to have a reusable pattern for use of reading and understand *{datapurpose_}tablepurpose*
 
 | Data Purpose | Details    |
 |:---|:---|
-|    |    |
-|||
+|auditing|Auditing data for platform|
+|databuilt|Data built from existing and/or generated sources. Intended to be more structured data|
+|dataexisting|Data from existing public sources|
+|datagenerated|Data generated from code and managed through data generation configuration|
+|platform|Any platform attributes or metadata|
+|refdata|Platform reference data|
+|termsdata|Terminology centric data for industry standards or persisting specific field level application level data |
 
 ### Naming Convention: TableName
 We wanted to make sure that the table names were easy to understand their purpose. While
