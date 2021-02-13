@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.EIN;
+import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class EINService extends RandomizerService {
+public class EINService extends RandomizerService<DataGeneratedEinEntity> {
 
     @Override
     protected long count() {

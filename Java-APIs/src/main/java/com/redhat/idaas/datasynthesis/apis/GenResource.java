@@ -1,7 +1,5 @@
 package com.redhat.idaas.datasynthesis.apis;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -9,13 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
-import com.redhat.idaas.datasynthesis.dtos.BirthDate;
-import com.redhat.idaas.datasynthesis.dtos.CreditCard;
-import com.redhat.idaas.datasynthesis.dtos.EIN;
-import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
-import com.redhat.idaas.datasynthesis.dtos.SSN;
-import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
 import com.redhat.idaas.datasynthesis.services.CreditCardService;

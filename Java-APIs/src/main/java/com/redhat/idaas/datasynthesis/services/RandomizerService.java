@@ -10,13 +10,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public abstract class RandomizerService {
+public abstract class RandomizerService<T extends PanacheEntityBase> {
 
     protected abstract long count();
 
-    protected abstract <T extends PanacheEntityBase> PanacheQuery<T> findAll();
+    protected abstract PanacheQuery<T> findAll();
 
-    public <T extends PanacheEntityBase> Set<T> findRandomRows(int count) {
+    public Set<T> findRandomRows(int count) {
         long recordCount = count();
         Random rand = new Random();
         int totalCount = Math.min(count, 5000);

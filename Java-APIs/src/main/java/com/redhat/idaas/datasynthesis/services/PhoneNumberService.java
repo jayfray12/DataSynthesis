@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
+import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class PhoneNumberService extends RandomizerService {
+public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
 
     @Override
     protected long count() {

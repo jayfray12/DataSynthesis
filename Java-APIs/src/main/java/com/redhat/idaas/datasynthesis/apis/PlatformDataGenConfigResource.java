@@ -8,22 +8,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.redhat.idaas.datasynthesis.models.PlatformConfigDataGenEntity;
+
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
-@Path("/platformdatagenconfig")
+@Path("/platformconfigdatagen")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PlatformDataGenConfigResource {
 
     @GET
     @Path("all")
-    public List<PlatformDataGenConfigEntity> get() {
-        return PlatformDataGenConfigEntity.listAll();
+    public List<PlatformConfigDataGenEntity> get() {
+        return PlatformConfigDataGenEntity.listAll();
     }
 
     @GET
     @Path("{status}")
-    public List<PlatformDataGenConfigEntity> getByStatus(@PathParam Short status) {
-        return PlatformDataGenConfigEntity.findByStatusId(status);
+    public List<PlatformConfigDataGenEntity> getByStatus(@PathParam Short status) {
+        return PlatformConfigDataGenEntity.findByStatusId(status);
     }
 }
