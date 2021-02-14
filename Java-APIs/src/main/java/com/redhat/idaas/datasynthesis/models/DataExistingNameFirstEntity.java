@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = " ", schema = "datasynthesis", catalog = "")
+@Table(name = "dataexisting_namefirst", schema = "datasynthesis", catalog = "")
 public class DataExistingNameFirstEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
     private long firstNameId;
     private String firstName;

@@ -19,8 +19,6 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
     private String applicationDesc;
     private String createdUser;
     private Timestamp createdDate;
-    private Short statusId;
-    private Integer vendorId;
     private RefDataStatusEntity status;
     private RefDataVendorEntity vendor;
 
@@ -74,26 +72,6 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "StatusID", nullable = true)
-    public Short getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(Short statusId) {
-        this.statusId = statusId;
-    }
-
-    @Basic
-    @Column(name = "VendorID", nullable = true)
-    public Integer getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Integer vendorId) {
-        this.vendorId = vendorId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,8 +86,8 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
             return false;
         if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
         if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (statusId != null ? !statusId.equals(that.statusId) : that.statusId != null) return false;
-        if (vendorId != null ? !vendorId.equals(that.vendorId) : that.vendorId != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (vendor != null ? !vendor.equals(that.vendor) : that.vendor != null) return false;
 
         return true;
     }
@@ -121,8 +99,8 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
         result = 31 * result + (applicationDesc != null ? applicationDesc.hashCode() : 0);
         result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (statusId != null ? statusId.hashCode() : 0);
-        result = 31 * result + (vendorId != null ? vendorId.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (vendor != null ? vendor.hashCode() : 0);
         return result;
     }
 
