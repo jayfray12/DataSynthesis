@@ -11,10 +11,11 @@ In order to enable resources to have independence we have included several direc
 underneath the DataTier/MySQL directory as follows:
 
 - MySQL-DataLoad: We have published all the files needed to load the database (or you
-can use the dump file). We have used both ways.
+can use the dump file). We have used both ways. This directory contains all the SQL files and a
+configured source load script.
 - MySQL-DDL: We publish all every export of the database we do as a complete DDL
-- MySQL-DumpFiles: Single dump files that can be restored to help with setting up the
-- database with all the data.
+- MySQL-DBDumps: Single dump files that can be restored to help with setting up the
+database with all the data.
 
 ### Install and Configuration
 We have worked with 8.0.x on Windows, Linux and Mac and we do not require any
