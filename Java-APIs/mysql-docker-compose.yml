@@ -11,8 +11,8 @@ services:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: datasynthesis
     # volumes:
-    #   - MySQL-DDL/datasynthesis-2020-0924.sql:/docker-entrypoint-initdb.d/001.sql:Z,delegated
-    #   - MySQL-DumpFiles/complete-datasynthesis-08222020.sql:/docker-entrypoint-initdb.d/002.sql:Z,delegated
+    #   - ../DataTier/MySQL/MySQL-DDL/2021/datasynthesis-2021-0207.sql:/docker-entrypoint-initdb.d/001.sql:Z,delegated
+    #   - ../DataTier/MySQL/MySQL-DumpFiles/complete-datasynthesis-08222020.sql:/docker-entrypoint-initdb.d/002.sql:Z,delegated
   quarkus:
     image: maven
     environment:
@@ -28,4 +28,6 @@ services:
     working_dir: /app
     command: "mvn quarkus:dev"
     links:
+      - datasynthesisdb
+    depends_on:
       - datasynthesisdb

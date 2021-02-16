@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.inject.Inject;
 
 import com.redhat.idaas.datasynthesis.dtos.SSN;
+import com.redhat.idaas.datasynthesis.models.DataGeneratedSocialSecurityNumberEntity;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

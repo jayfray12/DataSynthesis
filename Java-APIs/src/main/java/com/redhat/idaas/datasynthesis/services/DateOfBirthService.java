@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
+import com.redhat.idaas.datasynthesis.models.DataGeneratedDateOfBirthEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class DateOfBirthService extends RandomizerService {
+public class DateOfBirthService extends RandomizerService<DataGeneratedDateOfBirthEntity> {
 
     @Override
     protected long count() {

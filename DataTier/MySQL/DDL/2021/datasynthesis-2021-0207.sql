@@ -700,7 +700,7 @@ create table if not exists datagenerated_accountnumbers
 		foreign key (RegisteredApp) references refdata_application (AppGUID)
 );
 
-create index FK_datagenerated_accountnumbers_status
+create index IX_datagenerated_accountnumbers_status
 	on datagenerated_accountnumbers (StatusID);
 
 create index IX_AccountNumbers
@@ -970,15 +970,15 @@ create table if not exists platform_config_datagen
 	StatusID smallint default 1 null,
 	CreatedUser varchar(20) null,
 	ApplicationID varchar(38) null,
-	constraint FK_platform_datagenconfig_dataattributes
+	constraint FK_platform_config_datagen_dataattributes
 		foreign key (DataAttributeID) references platform_dataattributes (PlatformDataAttributesID),
-	constraint FK_platform_datagenconfig_registeredapp
+	constraint FK_platform_config_datagen_registeredapp
 		foreign key (ApplicationID) references refdata_application (AppGUID),
-	constraint FK_platform_datagenconfig_status
+	constraint FK_platform_config_datagen_status
 		foreign key (StatusID) references refdata_status (StatusID)
 );
 
-create index IX_PlatformDataGenConfig
+create index IX_PlatformConfigDataGen
 	on platform_config_datagen (DataGenConfigID, DataAttributeID, DataTypeGenConfigName, RunQuantity, MinuteInterval, SpecialInstructions, CreatedDate, CreatedUser, StatusID, ApplicationID);
 
 create index IX_PlatformDataAttributes
