@@ -28,7 +28,7 @@ public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNum
 	protected PanacheQuery<DataGeneratedSocialSecurityNumberEntity> findAll() {
 		return DataGeneratedSocialSecurityNumberEntity.findAll();
 	}
-
+    // Generate Data
     @Transactional
     public List<DataGeneratedSocialSecurityNumberEntity> generateSSN(long generationCounter) {
         List<DataGeneratedSocialSecurityNumberEntity> ssnList = new ArrayList<DataGeneratedSocialSecurityNumberEntity>(
@@ -62,6 +62,7 @@ public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNum
         return ssnList;
     }
 
+    //Persist Data
     public List<SSN> retrieveRandomSSNs(int count) {
         Set<DataGeneratedSocialSecurityNumberEntity> entities = findRandomRows(count);
         return entities.stream().map(e -> new SSN(e.getSocialSecurityNumberValue())).collect(Collectors.toList());

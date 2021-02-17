@@ -42,7 +42,7 @@ We wanted to make sure that the table names were easy to understand their purpos
 there is no easy pattern to leverage we tried to make the tablenames detailed enough to explain
 their purpose
 
-### Catch All
+### Describing the Tables Purpose and Meaning
 We added a means to explain anything to the datamodel within the data itself. This
 was our catch all to ensure that even if interpretation was wrong we would define the
 tables and all other datamodel aspects. Look at the datamodel_ tables and all the details
