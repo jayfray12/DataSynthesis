@@ -12,7 +12,7 @@ source C:\Data\ReferenceData\refdata_operationtype.sql
 source C:\Data\ReferenceData\refdata_sensitivityflag.sql
 
 source C:\Data\Other\datasynthesis_datamodel_datatables.sql
-source C:\Data\Other\platform_datagenconfig.sql
+source C:\Data\Other\datasynthesis_platform_config_datagen.sql
 
 source C:\Data\DataExisting\datasynthesis_dataexisting_ababanking.sql
 source C:\Data\DataExisting\datasynthesis_dataexisting_areacode.sql

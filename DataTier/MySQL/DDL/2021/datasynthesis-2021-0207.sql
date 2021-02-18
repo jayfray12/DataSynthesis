@@ -969,7 +969,7 @@ create table if not exists platform_config_datagen
 	CreatedDate datetime default CURRENT_TIMESTAMP null,
 	StatusID smallint default 1 null,
 	CreatedUser varchar(20) null,
-	ApplicationID varchar(38) null,
+	ApplicationID char(38) null,
 	constraint FK_platform_config_datagen_dataattributes
 		foreign key (DataAttributeID) references platform_dataattributes (PlatformDataAttributesID),
 	constraint FK_platform_config_datagen_registeredapp

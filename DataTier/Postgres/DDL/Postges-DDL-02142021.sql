@@ -1083,7 +1083,7 @@ CREATE TABLE public.platform_config_datagen (
     "CreatedDate" timestamp without time zone DEFAULT now(),
     "StatusID" smallint DEFAULT 1,
     "CreatedUser" character varying(20),
-    "ApplicationID" character varying(38)
+    "ApplicationID" character(38)
 );
 
 
