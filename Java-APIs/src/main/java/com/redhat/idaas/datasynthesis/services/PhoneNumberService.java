@@ -1,15 +1,19 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import org.apache.commons.lang3.StringUtils;
 
 @ApplicationScoped
 public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
@@ -38,14 +42,14 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
             // Create the first 3 phone number digits
             phonenumber.append(StringUtils.leftPad(String.valueOf(phoneNumberRandomizer.nextInt(upperBound1)), 3, "0")).append('-')
                     // Create thelast four name and make sure length is correct
-                    .append(StringUtils.leftPad(String.valueOf(phoneNumberRandomizer.nextInt(upperBound2)), 4, "0"))
+                    .append(StringUtils.leftPad(String.valueOf(phoneNumberRandomizer.nextInt(upperBound2)), 4, "0"));
 
             DataGeneratedPhoneNumberEntity phoneNumberEntity = DataGeneratedPhoneNumberEntity
                     .findByPhoneNumber(phonenumber.toString());
             if (phoneNumberEntity == null) {
-                phonenumberEntity = new DataGeneratedPhoneNumberEntity();
+                phoneNumberEntity = new DataGeneratedPhoneNumberEntity();
                 phoneNumberEntity.setPhoneNumberValue(phonenumber.toString());
-                DataGeneratedSocialSecurityNumberEntity.persist(phoneNumberEntity);
+                DataGeneratedPhoneNumberEntity.persist(phoneNumberEntity);
             }
 
             phonenumberList.add(phoneNumberEntity);
@@ -60,4 +64,6 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
         Set<DataGeneratedPhoneNumberEntity> entities = findRandomRows(count);
         return entities.stream().map(e -> new PhoneNumber(e.getPhoneNumberValue())).collect(Collectors.toList());
     }
+
+
 }

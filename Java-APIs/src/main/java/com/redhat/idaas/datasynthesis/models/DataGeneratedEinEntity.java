@@ -115,4 +115,8 @@ public class DataGeneratedEinEntity extends io.quarkus.hibernate.orm.panache.Pan
     public static List<DataGeneratedEinEntity> findByStatusId(Short statusId) {
         return find("status", new RefDataStatusEntity(statusId)).list();
     }
+
+    public static DataGeneratedEinEntity findByEinNumber(String einValue) {
+        return find("einValue", einValue).firstResult();
+    }
 }

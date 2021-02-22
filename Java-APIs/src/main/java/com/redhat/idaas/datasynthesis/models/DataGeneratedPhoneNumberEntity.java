@@ -116,4 +116,8 @@ public class DataGeneratedPhoneNumberEntity extends io.quarkus.hibernate.orm.pan
     public static List<DataGeneratedPhoneNumberEntity> findByStatusId(Short statusId) {
         return find("status", new RefDataStatusEntity(statusId)).list();
     }
+
+    public static DataGeneratedPhoneNumberEntity findByPhoneNumber(String phoneNumberValue) {
+        return find("phoneNumberValue", phoneNumberValue).firstResult();
+    }
 }
