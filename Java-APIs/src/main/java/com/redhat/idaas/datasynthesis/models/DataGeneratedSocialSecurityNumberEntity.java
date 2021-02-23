@@ -2,6 +2,8 @@ package com.redhat.idaas.datasynthesis.models;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,10 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "datagenerated_socialsecuritynumber", schema = "datasynthesis", catalog = "")
 public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
-    private long socialSecurityNumberId;
+    private UUID socialSecurityNumberId;
     private String socialSecurityNumberValue;
     private Timestamp createdDate;
     private String createdUser;
@@ -30,13 +34,14 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "SocialSecurityNumberID", nullable = false)
-    public long getSocialSecurityNumberId() {
+    public UUID getSocialSecurityNumberId() {
         return socialSecurityNumberId;
     }
 
-    public void setSocialSecurityNumberId(long socialSecurityNumberId) {
+    public void setSocialSecurityNumberId(UUID socialSecurityNumberId) {
         this.socialSecurityNumberId = socialSecurityNumberId;
     }
 
@@ -91,13 +96,7 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
 
     @Override
     public int hashCode() {
-        int result = (int) (socialSecurityNumberId ^ (socialSecurityNumberId >>> 32));
-        result = 31 * result + (socialSecurityNumberValue != null ? socialSecurityNumberValue.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
+        return Objects.hash(socialSecurityNumberId, socialSecurityNumberValue, createdDate, createdUser, status, registeredApp);
     }
 
     @ManyToOne

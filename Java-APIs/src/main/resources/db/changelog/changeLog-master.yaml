@@ -925,12 +925,11 @@ databaseChangeLog:
     - createTable:
         columns:
         - column:
-            autoIncrement: true
             constraints:
               nullable: false
               primaryKey: true
             name: SocialSecurityNumberID
-            type: BIGINT
+            type: UUID
         - column:
             name: SocialSecurityNumberValue
             type: VARCHAR(11)

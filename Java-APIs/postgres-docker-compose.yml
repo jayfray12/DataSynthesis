@@ -1,0 +1,32 @@
+---
+version: "3.8"
+services:
+  datasynthesisdb:
+    image: docker.io/postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: idaas
+      POSTGRES_PASSWORD: letmein
+      POSTGRES_DB: datasynthesis
+    volumes:
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/001.sql:Z,delegated
+  # quarkus:
+  #   image: maven
+  #   environment:
+  #     DATABASE_HOST: datasynthesisdb
+  #   volumes:
+  #     - "./:/app:Z,delegated"
+  #     # Mounting user's local .m2-directory,
+  #     # for custom settings.xml and for caching dependencies.
+  #     - "~/.m2:/root/.m2:Z,delegated"
+  #   ports:
+  #     - 5005:5005 # Debug port
+  #     - 8080:8080 # Backend HTTP server port
+  #   working_dir: /app
+  #   command: "mvn quarkus:dev"
+  #   links:
+  #     - datasynthesisdb
+  #   depends_on:
+  #     - datasynthesisdb
