@@ -25,5 +25,6 @@ jobs:
         restore-keys: ${{ runner.os }}-sonar
     - name: Build and Analyze
       env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: cd Java-APIs && ./mvnw -B clean verify sonar:sonar --fae --file pom.xml
