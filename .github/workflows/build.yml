@@ -27,4 +27,4 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: cd Java-APIs && ./mvnw -B clean verify sonar:sonar --fae --file pom.xml
+      run: cd Java-APIs && ./mvnw -B clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN --fae --file pom.xml
