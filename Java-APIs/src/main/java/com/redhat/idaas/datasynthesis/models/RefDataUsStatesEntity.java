@@ -86,32 +86,23 @@ public class RefDataUsStatesEntity extends io.quarkus.hibernate.orm.panache.Pana
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataUsStatesEntity that = (RefDataUsStatesEntity) o;
-
-        if (stateId != null ? !stateId.equals(that.stateId) : that.stateId != null) return false;
-        if (stateDescription != null ? !stateDescription.equals(that.stateDescription) : that.stateDescription != null)
-            return false;
-        if (lattitude != null ? !lattitude.equals(that.lattitude) : that.lattitude != null) return false;
-        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataUsStatesEntity other = (RefDataUsStatesEntity) o;
+		return java.util.Objects.equals(stateId, other.stateId) && java.util.Objects.equals(stateDescription, other.stateDescription) && java.util.Objects.equals(lattitude, other.lattitude) && 
+			java.util.Objects.equals(longitude, other.longitude) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = stateId != null ? stateId.hashCode() : 0;
-        result = 31 * result + (stateDescription != null ? stateDescription.hashCode() : 0);
-        result = 31 * result + (lattitude != null ? lattitude.hashCode() : 0);
-        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(stateId, stateDescription, lattitude, longitude, createdDate,
+					createdUser, status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

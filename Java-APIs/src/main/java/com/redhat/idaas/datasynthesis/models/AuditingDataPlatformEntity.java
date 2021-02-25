@@ -132,48 +132,28 @@ public class AuditingDataPlatformEntity extends io.quarkus.hibernate.orm.panache
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AuditingDataPlatformEntity that = (AuditingDataPlatformEntity) o;
-
-        if (dataPlatformId != that.dataPlatformId) return false;
-        if (dataProcessingDate != null ? !dataProcessingDate.equals(that.dataProcessingDate) : that.dataProcessingDate != null)
-            return false;
-        if (createdByUser != null ? !createdByUser.equals(that.createdByUser) : that.createdByUser != null)
-            return false;
-        if (organizaton != null ? !organizaton.equals(that.organizaton) : that.organizaton != null) return false;
-        if (application != null ? !application.equals(that.application) : that.application != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (recCount != null ? !recCount.equals(that.recCount) : that.recCount != null) return false;
-        if (component != null ? !component.equals(that.component) : that.component != null) return false;
-        if (actionName != null ? !actionName.equals(that.actionName) : that.actionName != null) return false;
-        if (durationToRun != null ? !durationToRun.equals(that.durationToRun) : that.durationToRun != null)
-            return false;
-        if (activityDetail != null ? !activityDetail.equals(that.activityDetail) : that.activityDetail != null)
-            return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
-    }
+    public int hashCode() {
+		return java.util.Objects.hash(dataPlatformId, dataProcessingDate, createdByUser, organizaton, application,
+					createdDate, recCount, component, actionName,
+					durationToRun, activityDetail, status);
+	}
 
     @Override
-    public int hashCode() {
-        int result = (int) (dataPlatformId ^ (dataPlatformId >>> 32));
-        result = 31 * result + (dataProcessingDate != null ? dataProcessingDate.hashCode() : 0);
-        result = 31 * result + (createdByUser != null ? createdByUser.hashCode() : 0);
-        result = 31 * result + (organizaton != null ? organizaton.hashCode() : 0);
-        result = 31 * result + (application != null ? application.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (recCount != null ? recCount.hashCode() : 0);
-        result = 31 * result + (component != null ? component.hashCode() : 0);
-        result = 31 * result + (actionName != null ? actionName.hashCode() : 0);
-        result = 31 * result + (durationToRun != null ? durationToRun.hashCode() : 0);
-        result = 31 * result + (activityDetail != null ? activityDetail.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
+    public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		AuditingDataPlatformEntity other = (AuditingDataPlatformEntity) o;
+		return java.util.Objects.equals(dataPlatformId, other.dataPlatformId) && java.util.Objects.equals(dataProcessingDate, other.dataProcessingDate) && java.util.Objects.equals(createdByUser, other.createdByUser) && 
+			java.util.Objects.equals(organizaton, other.organizaton) && java.util.Objects.equals(application, other.application) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(recCount, other.recCount) && 
+			java.util.Objects.equals(component, other.component) && java.util.Objects.equals(actionName, other.actionName) && 
+			java.util.Objects.equals(durationToRun, other.durationToRun) && java.util.Objects.equals(activityDetail, other.activityDetail) && 
+			java.util.Objects.equals(status, other.status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

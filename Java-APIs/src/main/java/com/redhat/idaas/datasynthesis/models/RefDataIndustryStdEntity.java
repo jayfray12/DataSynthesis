@@ -53,28 +53,21 @@ public class RefDataIndustryStdEntity extends io.quarkus.hibernate.orm.panache.P
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataIndustryStdEntity that = (RefDataIndustryStdEntity) o;
-
-        if (industryStd != null ? !industryStd.equals(that.industryStd) : that.industryStd != null) return false;
-        if (industryStdDesc != null ? !industryStdDesc.equals(that.industryStdDesc) : that.industryStdDesc != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataIndustryStdEntity other = (RefDataIndustryStdEntity) o;
+		return java.util.Objects.equals(industryStd, other.industryStd) && java.util.Objects.equals(industryStdDesc, other.industryStdDesc) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = industryStd != null ? industryStd.hashCode() : 0;
-        result = 31 * result + (industryStdDesc != null ? industryStdDesc.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(industryStd, industryStdDesc, createdDate, status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

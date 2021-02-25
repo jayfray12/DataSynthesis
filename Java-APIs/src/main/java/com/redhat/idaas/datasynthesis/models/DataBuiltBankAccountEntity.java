@@ -76,36 +76,23 @@ public class DataBuiltBankAccountEntity extends io.quarkus.hibernate.orm.panache
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataBuiltBankAccountEntity that = (DataBuiltBankAccountEntity) o;
-
-        if (dataBuiltBankAccountsId != that.dataBuiltBankAccountsId) return false;
-        if (bankAccountNumber != null ? !bankAccountNumber.equals(that.bankAccountNumber) : that.bankAccountNumber != null)
-            return false;
-        if (bankAccountName != null ? !bankAccountName.equals(that.bankAccountName) : that.bankAccountName != null)
-            return false;
-        if (bankRoutingId != null ? !bankRoutingId.equals(that.bankRoutingId) : that.bankRoutingId != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataBuiltBankAccountEntity other = (DataBuiltBankAccountEntity) o;
+		return java.util.Objects.equals(dataBuiltBankAccountsId, other.dataBuiltBankAccountsId) && java.util.Objects.equals(bankAccountNumber, other.bankAccountNumber) && java.util.Objects.equals(bankAccountName, other.bankAccountName) && 
+			java.util.Objects.equals(bankRoutingId, other.bankRoutingId) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (dataBuiltBankAccountsId ^ (dataBuiltBankAccountsId >>> 32));
-        result = 31 * result + (bankAccountNumber != null ? bankAccountNumber.hashCode() : 0);
-        result = 31 * result + (bankAccountName != null ? bankAccountName.hashCode() : 0);
-        result = 31 * result + (bankRoutingId != null ? bankRoutingId.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(dataBuiltBankAccountsId, bankAccountNumber, bankAccountName, bankRoutingId, createdDate,
+					status, registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

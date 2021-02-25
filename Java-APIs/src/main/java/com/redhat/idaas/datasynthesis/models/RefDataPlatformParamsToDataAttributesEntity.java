@@ -45,34 +45,23 @@ public class RefDataPlatformParamsToDataAttributesEntity extends io.quarkus.hibe
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataPlatformParamsToDataAttributesEntity that = (RefDataPlatformParamsToDataAttributesEntity) o;
-
-        if (platformParamsToDataAttributeId != that.platformParamsToDataAttributeId) return false;
-        if (platformParams != null ? !platformParams.equals(that.platformParams) : that.platformParams != null)
-            return false;
-        if (dataAttribute != null ? !dataAttribute.equals(that.dataAttribute) : that.dataAttribute != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataPlatformParamsToDataAttributesEntity other = (RefDataPlatformParamsToDataAttributesEntity) o;
+		return java.util.Objects.equals(platformParamsToDataAttributeId, other.platformParamsToDataAttributeId) && java.util.Objects.equals(platformParams, other.platformParams) && java.util.Objects.equals(dataAttribute, other.dataAttribute) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (platformParamsToDataAttributeId ^ (platformParamsToDataAttributeId >>> 32));
-        result = 31 * result + (platformParams != null ? platformParams.hashCode() : 0);
-        result = 31 * result + (dataAttribute != null ? dataAttribute.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(platformParamsToDataAttributeId, platformParams, dataAttribute, createdDate, status,
+					registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "PlatformParamsID", referencedColumnName = "PlatformParamsID")

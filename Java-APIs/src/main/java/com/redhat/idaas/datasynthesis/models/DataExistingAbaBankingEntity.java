@@ -120,43 +120,26 @@ public class DataExistingAbaBankingEntity extends io.quarkus.hibernate.orm.panac
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataExistingAbaBankingEntity that = (DataExistingAbaBankingEntity) o;
-
-        if (abaBankingId != that.abaBankingId) return false;
-        if (routingNumber != null ? !routingNumber.equals(that.routingNumber) : that.routingNumber != null)
-            return false;
-        if (telegraphicName != null ? !telegraphicName.equals(that.telegraphicName) : that.telegraphicName != null)
-            return false;
-        if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (state != null ? !state.equals(that.state) : that.state != null) return false;
-        if (zipCode != null ? !zipCode.equals(that.zipCode) : that.zipCode != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataExistingAbaBankingEntity other = (DataExistingAbaBankingEntity) o;
+		return java.util.Objects.equals(abaBankingId, other.abaBankingId) && java.util.Objects.equals(routingNumber, other.routingNumber) && java.util.Objects.equals(telegraphicName, other.telegraphicName) && 
+			java.util.Objects.equals(customerName, other.customerName) && java.util.Objects.equals(city, other.city) && 
+			java.util.Objects.equals(state, other.state) && java.util.Objects.equals(zipCode, other.zipCode) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(createdUser, other.createdUser) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (abaBankingId ^ (abaBankingId >>> 32));
-        result = 31 * result + (routingNumber != null ? routingNumber.hashCode() : 0);
-        result = 31 * result + (telegraphicName != null ? telegraphicName.hashCode() : 0);
-        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (zipCode != null ? zipCode.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(abaBankingId, routingNumber, telegraphicName, customerName, city,
+					state, zipCode, createdDate, createdUser,
+					status, registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

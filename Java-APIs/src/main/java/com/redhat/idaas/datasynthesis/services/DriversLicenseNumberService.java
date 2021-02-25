@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDriversLicensesEntity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
@@ -11,11 +12,11 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
 
     @Override
     protected long count() {
-        return DataGeneratedDriversLicensesEntity.count();
+        return PanacheEntityBase.count();
     }
 
     @Override
     protected PanacheQuery<DataGeneratedDriversLicensesEntity> findAll() {
-        return DataGeneratedDriversLicensesEntity.findAll();
+        return PanacheEntityBase.findAll();
     }
 }

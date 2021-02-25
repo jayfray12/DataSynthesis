@@ -77,39 +77,24 @@ public class PlatformDataAttributesEntity extends io.quarkus.hibernate.orm.panac
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformDataAttributesEntity that = (PlatformDataAttributesEntity) o;
-
-        if (platformDataAttributesId != that.platformDataAttributesId) return false;
-        if (dataAttributeName != null ? !dataAttributeName.equals(that.dataAttributeName) : that.dataAttributeName != null)
-            return false;
-        if (sensitivityFlag != null ? !sensitivityFlag.equals(that.sensitivityFlag) : that.sensitivityFlag != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (platformDataAttributeGuid != null ? !platformDataAttributeGuid.equals(that.platformDataAttributeGuid) : that.platformDataAttributeGuid != null)
-            return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformDataAttributesEntity other = (PlatformDataAttributesEntity) o;
+		return java.util.Objects.equals(platformDataAttributesId, other.platformDataAttributesId) && java.util.Objects.equals(dataAttributeName, other.dataAttributeName) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(platformDataAttributeGuid, other.platformDataAttributeGuid) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp) && 
+			java.util.Objects.equals(sensitivityFlag, other.sensitivityFlag);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) platformDataAttributesId;
-        result = 31 * result + (dataAttributeName != null ? dataAttributeName.hashCode() : 0);
-        result = 31 * result + (sensitivityFlag != null ? sensitivityFlag.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (platformDataAttributeGuid != null ? platformDataAttributeGuid.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(platformDataAttributesId, dataAttributeName, createdDate, createdUser, platformDataAttributeGuid,
+					status, registeredApp, sensitivityFlag);
+	}
 
     @ManyToOne
     @JoinColumn(name = "SensitivityFlagID", referencedColumnName = "SensitiveFlagID")

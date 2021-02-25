@@ -37,7 +37,13 @@ public class DataResource {
     SSNService ssnService;
 
     @Inject
+    UserIdentityService userIdentityService;
+
+    @Inject
     AccountNumberService accountNumberService;
+
+    @Inject
+    DateOfBirthService dobService;
 
     @Inject
     AddressService addressService;
@@ -46,19 +52,13 @@ public class DataResource {
     CreditCardService creditCardService;
 
     @Inject
-    DateOfBirthService dobService;
-
-    @Inject
     DriversLicenseNumberService dlnService;
-
-    @Inject
-    EINService einService;
 
     @Inject
     PhoneNumberService phoneNumberService;
 
     @Inject
-    UserIdentityService userIdentityService;
+    EINService einService;
 
     @GET
     @Path("ssn/{count}")
@@ -69,7 +69,7 @@ public class DataResource {
     @GET
     @Path("accountnumber/{count}")
     public List<AccountNumber> getAccountNumbers(@PathParam int count) {
-        return accountNumberService.retrieveRandomAccountNumbers(count);
+       return accountNumberService.retrieveRandomAccountNumbers(count);
     }
 
     @GET

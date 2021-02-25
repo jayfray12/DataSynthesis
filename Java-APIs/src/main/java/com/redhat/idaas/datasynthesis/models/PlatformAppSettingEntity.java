@@ -66,36 +66,23 @@ public class PlatformAppSettingEntity extends io.quarkus.hibernate.orm.panache.P
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformAppSettingEntity that = (PlatformAppSettingEntity) o;
-
-        if (appSettingsId != that.appSettingsId) return false;
-        if (appSettingName != null ? !appSettingName.equals(that.appSettingName) : that.appSettingName != null)
-            return false;
-        if (appSettingValue != null ? !appSettingValue.equals(that.appSettingValue) : that.appSettingValue != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-        if (defaultDataGenerationApp != null ? !defaultDataGenerationApp.equals(that.defaultDataGenerationApp) : that.defaultDataGenerationApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformAppSettingEntity other = (PlatformAppSettingEntity) o;
+		return java.util.Objects.equals(appSettingsId, other.appSettingsId) && java.util.Objects.equals(appSettingName, other.appSettingName) && java.util.Objects.equals(appSettingValue, other.appSettingValue) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp) && java.util.Objects.equals(defaultDataGenerationApp, other.defaultDataGenerationApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) appSettingsId;
-        result = 31 * result + (appSettingName != null ? appSettingName.hashCode() : 0);
-        result = 31 * result + (appSettingValue != null ? appSettingValue.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        result = 31 * result + (defaultDataGenerationApp != null ? defaultDataGenerationApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(appSettingsId, appSettingName, appSettingValue, createdDate, status,
+					registeredApp, defaultDataGenerationApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "DefaultDataGenerationApp", referencedColumnName = "AppGUID")

@@ -120,43 +120,26 @@ public class RefDataLegalEntityEntity extends io.quarkus.hibernate.orm.panache.P
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataLegalEntityEntity that = (RefDataLegalEntityEntity) o;
-
-        if (legalEntityGuid != null ? !legalEntityGuid.equals(that.legalEntityGuid) : that.legalEntityGuid != null)
-            return false;
-        if (locationName != null ? !locationName.equals(that.locationName) : that.locationName != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (state != null ? !state.equals(that.state) : that.state != null) return false;
-        if (zipCode != null ? !zipCode.equals(that.zipCode) : that.zipCode != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (locationUrl != null ? !locationUrl.equals(that.locationUrl) : that.locationUrl != null) return false;
-        if (locationPhone != null ? !locationPhone.equals(that.locationPhone) : that.locationPhone != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataLegalEntityEntity other = (RefDataLegalEntityEntity) o;
+		return java.util.Objects.equals(legalEntityGuid, other.legalEntityGuid) && java.util.Objects.equals(locationName, other.locationName) && java.util.Objects.equals(address, other.address) && 
+			java.util.Objects.equals(city, other.city) && java.util.Objects.equals(state, other.state) && 
+			java.util.Objects.equals(zipCode, other.zipCode) && java.util.Objects.equals(createdUser, other.createdUser) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(locationUrl, other.locationUrl) && java.util.Objects.equals(locationPhone, other.locationPhone);
+	}
 
     @Override
     public int hashCode() {
-        int result = legalEntityGuid != null ? legalEntityGuid.hashCode() : 0;
-        result = 31 * result + (locationName != null ? locationName.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (zipCode != null ? zipCode.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (locationUrl != null ? locationUrl.hashCode() : 0);
-        result = 31 * result + (locationPhone != null ? locationPhone.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(legalEntityGuid, locationName, address, city, state,
+					zipCode, createdUser, status, createdDate,
+					locationUrl, locationPhone);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StateID", referencedColumnName = "StateID")

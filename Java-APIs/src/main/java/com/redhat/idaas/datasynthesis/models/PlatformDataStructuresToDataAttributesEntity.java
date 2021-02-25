@@ -79,45 +79,26 @@ public class PlatformDataStructuresToDataAttributesEntity extends io.quarkus.hib
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformDataStructuresToDataAttributesEntity that = (PlatformDataStructuresToDataAttributesEntity) o;
-
-        if (platformDataStructuresToDataAttributesId != that.platformDataStructuresToDataAttributesId) return false;
-        if (platformDataStructures != null ? !platformDataStructures.equals(that.platformDataStructures) : that.platformDataStructures != null)
-            return false;
-        if (compositeDataStructureName != null ? !compositeDataStructureName.equals(that.compositeDataStructureName) : that.compositeDataStructureName != null)
-            return false;
-        if (sensitivityFlag != null ? !sensitivityFlag.equals(that.sensitivityFlag) : that.sensitivityFlag != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (platformDataStructuresToDataAttributesGuid != null ? !platformDataStructuresToDataAttributesGuid.equals(that.platformDataStructuresToDataAttributesGuid) : that.platformDataStructuresToDataAttributesGuid != null)
-            return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-        if (platformDataAttributes != null ? !platformDataAttributes.equals(that.platformDataAttributes) : that.platformDataAttributes != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformDataStructuresToDataAttributesEntity other = (PlatformDataStructuresToDataAttributesEntity) o;
+		return java.util.Objects.equals(platformDataStructuresToDataAttributesId, other.platformDataStructuresToDataAttributesId) && java.util.Objects.equals(compositeDataStructureName, other.compositeDataStructureName) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(platformDataStructuresToDataAttributesGuid, other.platformDataStructuresToDataAttributesGuid) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp) && 
+			java.util.Objects.equals(sensitivityFlag, other.sensitivityFlag) && java.util.Objects.equals(platformDataAttributes, other.platformDataAttributes) && 
+			java.util.Objects.equals(platformDataStructures, other.platformDataStructures);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) platformDataStructuresToDataAttributesId;
-        result = 31 * result + (platformDataStructures != null ? platformDataStructures.hashCode() : 0);
-        result = 31 * result + (compositeDataStructureName != null ? compositeDataStructureName.hashCode() : 0);
-        result = 31 * result + (sensitivityFlag != null ? sensitivityFlag.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (platformDataStructuresToDataAttributesGuid != null ? platformDataStructuresToDataAttributesGuid.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        result = 31 * result + (platformDataAttributes != null ? platformDataAttributes.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(platformDataStructuresToDataAttributesId, compositeDataStructureName, createdDate, createdUser, platformDataStructuresToDataAttributesGuid,
+					status, registeredApp, sensitivityFlag, platformDataAttributes,
+					platformDataStructures);
+	}
 
     @ManyToOne
     @JoinColumn(name = "PlatformDataStructuresID", referencedColumnName = "PlatformDataStructuresID")

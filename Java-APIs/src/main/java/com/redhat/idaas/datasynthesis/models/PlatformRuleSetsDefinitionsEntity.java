@@ -101,50 +101,27 @@ public class PlatformRuleSetsDefinitionsEntity extends io.quarkus.hibernate.orm.
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformRuleSetsDefinitionsEntity that = (PlatformRuleSetsDefinitionsEntity) o;
-
-        if (rulesetDefinitionsId != null ? !rulesetDefinitionsId.equals(that.rulesetDefinitionsId) : that.rulesetDefinitionsId != null)
-            return false;
-        if (rulesetDefinitionName != null ? !rulesetDefinitionName.equals(that.rulesetDefinitionName) : that.rulesetDefinitionName != null)
-            return false;
-        if (ruleSet != null ? !ruleSet.equals(that.ruleSet) : that.ruleSet != null) return false;
-        if (stepOrderId != null ? !stepOrderId.equals(that.stepOrderId) : that.stepOrderId != null) return false;
-        if (operationType != null ? !operationType.equals(that.operationType) : that.operationType != null)
-            return false;
-        if (rulesetDefValue != null ? !rulesetDefValue.equals(that.rulesetDefValue) : that.rulesetDefValue != null)
-            return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (effectiveDate != null ? !effectiveDate.equals(that.effectiveDate) : that.effectiveDate != null)
-            return false;
-        if (application != null ? !application.equals(that.application) : that.application != null)
-            return false;
-        if (termDate != null ? !termDate.equals(that.termDate) : that.termDate != null) return false;
-        if (dataAttribute != null ? !dataAttribute.equals(that.dataAttribute) : that.dataAttribute != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformRuleSetsDefinitionsEntity other = (PlatformRuleSetsDefinitionsEntity) o;
+		return java.util.Objects.equals(rulesetDefinitionsId, other.rulesetDefinitionsId) && java.util.Objects.equals(rulesetDefinitionName, other.rulesetDefinitionName) && java.util.Objects.equals(ruleSet, other.ruleSet) && 
+			java.util.Objects.equals(stepOrderId, other.stepOrderId) && java.util.Objects.equals(operationType, other.operationType) && 
+			java.util.Objects.equals(rulesetDefValue, other.rulesetDefValue) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(effectiveDate, other.effectiveDate) && java.util.Objects.equals(termDate, other.termDate) && 
+			java.util.Objects.equals(dataAttribute, other.dataAttribute) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(application, other.application);
+	}
 
     @Override
     public int hashCode() {
-        int result = rulesetDefinitionsId != null ? rulesetDefinitionsId.hashCode() : 0;
-        result = 31 * result + (rulesetDefinitionName != null ? rulesetDefinitionName.hashCode() : 0);
-        result = 31 * result + (ruleSet != null ? ruleSet.hashCode() : 0);
-        result = 31 * result + (stepOrderId != null ? stepOrderId.hashCode() : 0);
-        result = 31 * result + (operationType != null ? operationType.hashCode() : 0);
-        result = 31 * result + (rulesetDefValue != null ? rulesetDefValue.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (effectiveDate != null ? effectiveDate.hashCode() : 0);
-        result = 31 * result + (application != null ? application.hashCode() : 0);
-        result = 31 * result + (termDate != null ? termDate.hashCode() : 0);
-        result = 31 * result + (dataAttribute != null ? dataAttribute.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(rulesetDefinitionsId, rulesetDefinitionName, ruleSet, stepOrderId, operationType,
+					rulesetDefValue, createdDate, effectiveDate, termDate,
+					dataAttribute, status, application);
+	}
 
     @ManyToOne
     @JoinColumn(name = "OperationTypeID", referencedColumnName = "OperationTypeID")

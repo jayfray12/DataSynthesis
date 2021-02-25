@@ -74,35 +74,23 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataApplicationEntity that = (RefDataApplicationEntity) o;
-
-        if (appGuid != null ? !appGuid.equals(that.appGuid) : that.appGuid != null) return false;
-        if (applicationCustomCode != null ? !applicationCustomCode.equals(that.applicationCustomCode) : that.applicationCustomCode != null)
-            return false;
-        if (applicationDesc != null ? !applicationDesc.equals(that.applicationDesc) : that.applicationDesc != null)
-            return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (vendor != null ? !vendor.equals(that.vendor) : that.vendor != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataApplicationEntity other = (RefDataApplicationEntity) o;
+		return java.util.Objects.equals(appGuid, other.appGuid) && java.util.Objects.equals(applicationCustomCode, other.applicationCustomCode) && java.util.Objects.equals(applicationDesc, other.applicationDesc) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(vendor, other.vendor);
+	}
 
     @Override
     public int hashCode() {
-        int result = appGuid != null ? appGuid.hashCode() : 0;
-        result = 31 * result + (applicationCustomCode != null ? applicationCustomCode.hashCode() : 0);
-        result = 31 * result + (applicationDesc != null ? applicationDesc.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (vendor != null ? vendor.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(appGuid, applicationCustomCode, applicationDesc, createdUser, createdDate,
+					status, vendor);
+	}
 
     @ManyToOne
     @JoinColumn(name = "VendorID", referencedColumnName = "VendorID")

@@ -177,58 +177,32 @@ public class RefDataCodeSetStructuresEntity extends io.quarkus.hibernate.orm.pan
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataCodeSetStructuresEntity that = (RefDataCodeSetStructuresEntity) o;
-
-        if (codeSetStructuresId != that.codeSetStructuresId) return false;
-        if (codeSetStructureName != null ? !codeSetStructureName.equals(that.codeSetStructureName) : that.codeSetStructureName != null)
-            return false;
-        if (industryStd != null ? !industryStd.equals(that.industryStd) : that.industryStd != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (codesetStructureGuid != null ? !codesetStructureGuid.equals(that.codesetStructureGuid) : that.codesetStructureGuid != null)
-            return false;
-        if (field1Value != null ? !field1Value.equals(that.field1Value) : that.field1Value != null) return false;
-        if (field2Value != null ? !field2Value.equals(that.field2Value) : that.field2Value != null) return false;
-        if (field3Value != null ? !field3Value.equals(that.field3Value) : that.field3Value != null) return false;
-        if (field4Value != null ? !field4Value.equals(that.field4Value) : that.field4Value != null) return false;
-        if (field5Value != null ? !field5Value.equals(that.field5Value) : that.field5Value != null) return false;
-        if (field6Value != null ? !field6Value.equals(that.field6Value) : that.field6Value != null) return false;
-        if (field7Value != null ? !field7Value.equals(that.field7Value) : that.field7Value != null) return false;
-        if (field8Value != null ? !field8Value.equals(that.field8Value) : that.field8Value != null) return false;
-        if (field9Value != null ? !field9Value.equals(that.field9Value) : that.field9Value != null) return false;
-        if (sensitivityFlag != null ? !sensitivityFlag.equals(that.sensitivityFlag) : that.sensitivityFlag != null)
-            return false;
-        if (codeSet != null ? !codeSet.equals(that.codeSet) : that.codeSet != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataCodeSetStructuresEntity other = (RefDataCodeSetStructuresEntity) o;
+		return java.util.Objects.equals(codeSetStructuresId, other.codeSetStructuresId) && java.util.Objects.equals(codeSetStructureName, other.codeSetStructureName) && java.util.Objects.equals(industryStd, other.industryStd) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(codesetStructureGuid, other.codesetStructureGuid) && 
+			java.util.Objects.equals(field1Value, other.field1Value) && java.util.Objects.equals(field2Value, other.field2Value) && 
+			java.util.Objects.equals(field3Value, other.field3Value) && java.util.Objects.equals(field4Value, other.field4Value) && 
+			java.util.Objects.equals(field5Value, other.field5Value) && java.util.Objects.equals(field6Value, other.field6Value) && 
+			java.util.Objects.equals(field7Value, other.field7Value) && java.util.Objects.equals(field8Value, other.field8Value) && 
+			java.util.Objects.equals(field9Value, other.field9Value) && java.util.Objects.equals(sensitivityFlag, other.sensitivityFlag) && 
+			java.util.Objects.equals(codeSet, other.codeSet);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (codeSetStructuresId ^ (codeSetStructuresId >>> 32));
-        result = 31 * result + (codeSetStructureName != null ? codeSetStructureName.hashCode() : 0);
-        result = 31 * result + (industryStd != null ? industryStd.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (codesetStructureGuid != null ? codesetStructureGuid.hashCode() : 0);
-        result = 31 * result + (field1Value != null ? field1Value.hashCode() : 0);
-        result = 31 * result + (field2Value != null ? field2Value.hashCode() : 0);
-        result = 31 * result + (field3Value != null ? field3Value.hashCode() : 0);
-        result = 31 * result + (field4Value != null ? field4Value.hashCode() : 0);
-        result = 31 * result + (field5Value != null ? field5Value.hashCode() : 0);
-        result = 31 * result + (field6Value != null ? field6Value.hashCode() : 0);
-        result = 31 * result + (field7Value != null ? field7Value.hashCode() : 0);
-        result = 31 * result + (field8Value != null ? field8Value.hashCode() : 0);
-        result = 31 * result + (field9Value != null ? field9Value.hashCode() : 0);
-        result = 31 * result + (sensitivityFlag != null ? sensitivityFlag.hashCode() : 0);
-        result = 31 * result + (codeSet != null ? codeSet.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(codeSetStructuresId, codeSetStructureName, industryStd, status, createdDate,
+					createdUser, codesetStructureGuid, field1Value, field2Value,
+					field3Value, field4Value, field5Value, field6Value,
+					field7Value, field8Value, field9Value, sensitivityFlag,
+					codeSet);
+	}
 
     @ManyToOne
     @JoinColumn(name = "CodesetsID", referencedColumnName = "CodeSetsID")

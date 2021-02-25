@@ -64,31 +64,21 @@ public class RefDataPlatformParamsEntity extends io.quarkus.hibernate.orm.panach
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataPlatformParamsEntity that = (RefDataPlatformParamsEntity) o;
-
-        if (platformParamsId != that.platformParamsId) return false;
-        if (platformParamValues != null ? !platformParamValues.equals(that.platformParamValues) : that.platformParamValues != null)
-            return false;
-        if (platformParamDesc != null ? !platformParamDesc.equals(that.platformParamDesc) : that.platformParamDesc != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataPlatformParamsEntity other = (RefDataPlatformParamsEntity) o;
+		return java.util.Objects.equals(platformParamsId, other.platformParamsId) && java.util.Objects.equals(platformParamValues, other.platformParamValues) && java.util.Objects.equals(platformParamDesc, other.platformParamDesc) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) platformParamsId;
-        result = 31 * result + (platformParamValues != null ? platformParamValues.hashCode() : 0);
-        result = 31 * result + (platformParamDesc != null ? platformParamDesc.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(platformParamsId, platformParamValues, platformParamDesc, createdDate, status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

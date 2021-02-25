@@ -1,13 +1,16 @@
 package com.redhat.idaas.datasynthesis.dtos;
 
+import javax.json.bind.annotation.JsonbProperty;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 public class BankAccount {
 
-    public String bankAccount;
+    @JsonbProperty(value = "bankAccount")
+    public String accountNumber;
 
-    public BankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
+    public BankAccount(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     //toString

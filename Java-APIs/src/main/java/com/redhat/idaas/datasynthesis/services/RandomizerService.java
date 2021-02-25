@@ -16,9 +16,10 @@ public abstract class RandomizerService<T extends PanacheEntityBase> {
 
     protected abstract PanacheQuery<T> findAll();
 
+    private Random rand = new Random();
+
     public Set<T> findRandomRows(int count) {
         long recordCount = count();
-        Random rand = new Random();
         int totalCount = Math.min(count, 5000);
         if (recordCount < totalCount) {
             totalCount = (int) recordCount;

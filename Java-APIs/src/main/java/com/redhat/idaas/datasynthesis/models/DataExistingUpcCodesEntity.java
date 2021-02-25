@@ -65,33 +65,23 @@ public class DataExistingUpcCodesEntity extends io.quarkus.hibernate.orm.panache
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataExistingUpcCodesEntity that = (DataExistingUpcCodesEntity) o;
-
-        if (upcCodeId != that.upcCodeId) return false;
-        if (upcCodeName != null ? !upcCodeName.equals(that.upcCodeName) : that.upcCodeName != null) return false;
-        if (upcProductName != null ? !upcProductName.equals(that.upcProductName) : that.upcProductName != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataExistingUpcCodesEntity other = (DataExistingUpcCodesEntity) o;
+		return java.util.Objects.equals(upcCodeId, other.upcCodeId) && java.util.Objects.equals(upcCodeName, other.upcCodeName) && java.util.Objects.equals(upcProductName, other.upcProductName) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (upcCodeId ^ (upcCodeId >>> 32));
-        result = 31 * result + (upcCodeName != null ? upcCodeName.hashCode() : 0);
-        result = 31 * result + (upcProductName != null ? upcProductName.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(upcCodeId, upcCodeName, upcProductName, createdDate, status,
+					registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")
