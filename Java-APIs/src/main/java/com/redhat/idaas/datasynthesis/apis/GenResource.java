@@ -60,30 +60,36 @@ public class GenResource {
     @GET
     @Path("accountnumber/{count}")
     public void generateAccountNumbers(@PathParam int count) {
+        throw new UnsupportedOperationException("generateAccountNumbers Not yet implemented");
     }
 
     @GET
     @Path("creditcard/{count}")
     public void generateCreditCards(@PathParam int count) {
+        throw new UnsupportedOperationException("generateCreditCards Not yet implemented");
     }
 
     @GET
     @Path("birthdate/{count}")
     public void generateBirthDates(@PathParam int count) {
+        throw new UnsupportedOperationException("generateBirthDates Not yet implemented");
     }
 
     @GET
     @Path("ein/{count}")
     public void generateEINs(@PathParam int count) {
+        throw new UnsupportedOperationException("generateEINs Not yet implemented");
     }
 
     @GET
     @Path("phonenumber/{count}")
     public void generatePhoneNumbers(@PathParam int count) {
+        throw new UnsupportedOperationException("generatePhoneNumbers Not yet implemented");
     }
 
     @GET
     @Path("useridentity/{count}")
     public void generateUserIdentities(@PathParam int count) {
+        throw new UnsupportedOperationException("generateUserIdentities Not yet implemented");
     }
 }

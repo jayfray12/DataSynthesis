@@ -68,26 +68,19 @@ public class RefDataStatusEntity extends io.quarkus.hibernate.orm.panache.Panach
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataStatusEntity that = (RefDataStatusEntity) o;
-
-        if (statusId != that.statusId) return false;
-        if (statusDescription != null ? !statusDescription.equals(that.statusDescription) : that.statusDescription != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataStatusEntity other = (RefDataStatusEntity) o;
+		return java.util.Objects.equals(statusId, other.statusId) && java.util.Objects.equals(statusDescription, other.statusDescription) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) statusId;
-        result = 31 * result + (statusDescription != null ? statusDescription.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(statusId, statusDescription, createdDate, createdUser);
+	}
 }

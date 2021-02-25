@@ -19,6 +19,8 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNumberEntity> {
 
+    private Random ssnRandomizer = new Random();
+
     @Override
 	protected long count() {
 		return DataGeneratedSocialSecurityNumberEntity.count();
@@ -33,7 +35,6 @@ public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNum
     public List<DataGeneratedSocialSecurityNumberEntity> generateSSN(long generationCounter) {
         List<DataGeneratedSocialSecurityNumberEntity> ssnList = new ArrayList<DataGeneratedSocialSecurityNumberEntity>(
                 (int) generationCounter);
-        Random ssnRandomizer = new Random();
         int upperBound1 = 999;
         int upperBound2 = 99;
         int upperBound3 = 9999;

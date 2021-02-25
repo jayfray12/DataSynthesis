@@ -1,8 +1,5 @@
 package com.redhat.idaas.datasynthesis.services;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,11 +12,14 @@ import javax.transaction.Transactional;
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
 
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.apache.commons.lang3.StringUtils;
+
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class EINService extends RandomizerService<DataGeneratedEinEntity> {
+
+    private Random einRandomizer = new Random();
 
     @Override
     protected long count() {
@@ -36,7 +36,6 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
     public List<DataGeneratedEinEntity> generateEinNumber(long generationCounter) {
         List<DataGeneratedEinEntity> einnumberList = new ArrayList<DataGeneratedEinEntity>(
                 (int) generationCounter);
-        Random einRandomizer = new Random();
         int upperBound1 = 99;
         int upperBound2 = 9999999;
 

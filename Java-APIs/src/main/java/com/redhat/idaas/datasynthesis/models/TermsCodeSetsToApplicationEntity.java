@@ -103,51 +103,29 @@ public class TermsCodeSetsToApplicationEntity extends io.quarkus.hibernate.orm.p
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TermsCodeSetsToApplicationEntity that = (TermsCodeSetsToApplicationEntity) o;
-
-        if (codeSetToApplicationId != that.codeSetToApplicationId) return false;
-        if (codeSets != null ? !codeSets.equals(that.codeSets) : that.codeSets != null) return false;
-        if (domain != null ? !domain.equals(that.domain) : that.domain != null) return false;
-        if (industryStd != null ? !industryStd.equals(that.industryStd) : that.industryStd != null) return false;
-        if (specificDetails != null ? !specificDetails.equals(that.specificDetails) : that.specificDetails != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (organization != null ? !organization.equals(that.organization) : that.organization != null)
-            return false;
-        if (application != null ? !application.equals(that.application) : that.application != null)
-            return false;
-        if (vendor != null ? !vendor.equals(that.vendor) : that.vendor != null) return false;
-        if (codeValue != null ? !codeValue.equals(that.codeValue) : that.codeValue != null) return false;
-        if (codeDesc != null ? !codeDesc.equals(that.codeDesc) : that.codeDesc != null) return false;
-        if (sensitiveFlag != null ? !sensitiveFlag.equals(that.sensitiveFlag) : that.sensitiveFlag != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		TermsCodeSetsToApplicationEntity other = (TermsCodeSetsToApplicationEntity) o;
+		return java.util.Objects.equals(codeSetToApplicationId, other.codeSetToApplicationId) && java.util.Objects.equals(codeSets, other.codeSets) && java.util.Objects.equals(domain, other.domain) && 
+			java.util.Objects.equals(industryStd, other.industryStd) && java.util.Objects.equals(specificDetails, other.specificDetails) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(organization, other.organization) && 
+			java.util.Objects.equals(application, other.application) && java.util.Objects.equals(vendor, other.vendor) && 
+			java.util.Objects.equals(codeValue, other.codeValue) && java.util.Objects.equals(codeDesc, other.codeDesc) && 
+			java.util.Objects.equals(sensitiveFlag, other.sensitiveFlag);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (codeSetToApplicationId ^ (codeSetToApplicationId >>> 32));
-        result = 31 * result + (codeSets != null ? codeSets.hashCode() : 0);
-        result = 31 * result + (domain != null ? domain.hashCode() : 0);
-        result = 31 * result + (industryStd != null ? industryStd.hashCode() : 0);
-        result = 31 * result + (specificDetails != null ? specificDetails.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (organization != null ? organization.hashCode() : 0);
-        result = 31 * result + (application != null ? application.hashCode() : 0);
-        result = 31 * result + (vendor != null ? vendor.hashCode() : 0);
-        result = 31 * result + (codeValue != null ? codeValue.hashCode() : 0);
-        result = 31 * result + (codeDesc != null ? codeDesc.hashCode() : 0);
-        result = 31 * result + (sensitiveFlag != null ? sensitiveFlag.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(codeSetToApplicationId, codeSets, domain, industryStd, specificDetails,
+					createdDate, status, createdUser, organization,
+					application, vendor, codeValue, codeDesc,
+					sensitiveFlag);
+	}
 
     @ManyToOne
     @JoinColumn(name = "SensitivityFlagID", referencedColumnName = "SensitiveFlagID")

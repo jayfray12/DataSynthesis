@@ -64,29 +64,21 @@ public class RefDataCountriesEntity extends io.quarkus.hibernate.orm.panache.Pan
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataCountriesEntity that = (RefDataCountriesEntity) o;
-
-        if (countryId != that.countryId) return false;
-        if (idd != null ? !idd.equals(that.idd) : that.idd != null) return false;
-        if (countryName != null ? !countryName.equals(that.countryName) : that.countryName != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataCountriesEntity other = (RefDataCountriesEntity) o;
+		return java.util.Objects.equals(countryId, other.countryId) && java.util.Objects.equals(idd, other.idd) && java.util.Objects.equals(countryName, other.countryName) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) countryId;
-        result = 31 * result + (idd != null ? idd.hashCode() : 0);
-        result = 31 * result + (countryName != null ? countryName.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(countryId, idd, countryName, createdDate, status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

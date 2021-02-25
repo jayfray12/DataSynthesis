@@ -88,38 +88,24 @@ public class RefDataCodeSetEntity extends io.quarkus.hibernate.orm.panache.Panac
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RefDataCodeSetEntity that = (RefDataCodeSetEntity) o;
-
-        if (codeSetsId != that.codeSetsId) return false;
-        if (codeSetName != null ? !codeSetName.equals(that.codeSetName) : that.codeSetName != null) return false;
-        if (industryStd != null ? !industryStd.equals(that.industryStd) : that.industryStd != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (codesetGuid != null ? !codesetGuid.equals(that.codesetGuid) : that.codesetGuid != null) return false;
-        if (fieldMapping != null ? !fieldMapping.equals(that.fieldMapping) : that.fieldMapping != null) return false;
-        if (sensitivityFlag != null ? !sensitivityFlag.equals(that.sensitivityFlag) : that.sensitivityFlag != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		RefDataCodeSetEntity other = (RefDataCodeSetEntity) o;
+		return java.util.Objects.equals(codeSetsId, other.codeSetsId) && java.util.Objects.equals(codeSetName, other.codeSetName) && java.util.Objects.equals(industryStd, other.industryStd) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(createdUser, other.createdUser) && 
+			java.util.Objects.equals(codesetGuid, other.codesetGuid) && java.util.Objects.equals(fieldMapping, other.fieldMapping) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(sensitivityFlag, other.sensitivityFlag);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (codeSetsId ^ (codeSetsId >>> 32));
-        result = 31 * result + (codeSetName != null ? codeSetName.hashCode() : 0);
-        result = 31 * result + (industryStd != null ? industryStd.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (codesetGuid != null ? codesetGuid.hashCode() : 0);
-        result = 31 * result + (fieldMapping != null ? fieldMapping.hashCode() : 0);
-        result = 31 * result + (sensitivityFlag != null ? sensitivityFlag.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(codeSetsId, codeSetName, industryStd, createdDate, createdUser,
+					codesetGuid, fieldMapping, status, sensitivityFlag);
+	}
 
     @ManyToOne
     @JoinColumn(name = "IndustryStd", referencedColumnName = "IndustryStd")

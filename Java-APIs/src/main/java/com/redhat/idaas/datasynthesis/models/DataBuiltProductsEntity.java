@@ -65,31 +65,23 @@ public class DataBuiltProductsEntity extends io.quarkus.hibernate.orm.panache.Pa
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataBuiltProductsEntity that = (DataBuiltProductsEntity) o;
-
-        if (databuiltProductsId != that.databuiltProductsId) return false;
-        if (productId != null ? !productId.equals(that.productId) : that.productId != null) return false;
-        if (productName != null ? !productName.equals(that.productName) : that.productName != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataBuiltProductsEntity other = (DataBuiltProductsEntity) o;
+		return java.util.Objects.equals(databuiltProductsId, other.databuiltProductsId) && java.util.Objects.equals(productId, other.productId) && java.util.Objects.equals(productName, other.productName) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (databuiltProductsId ^ (databuiltProductsId >>> 32));
-        result = 31 * result + (productId != null ? productId.hashCode() : 0);
-        result = 31 * result + (productName != null ? productName.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(databuiltProductsId, productId, productName, createdDate, status,
+					registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

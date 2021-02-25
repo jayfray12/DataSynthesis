@@ -88,39 +88,24 @@ public class TermsCodeSetsToApplicationValuesEntity extends io.quarkus.hibernate
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TermsCodeSetsToApplicationValuesEntity that = (TermsCodeSetsToApplicationValuesEntity) o;
-
-        if (codeSetToApplicationValuesId != that.codeSetToApplicationValuesId) return false;
-        if (codeSets != null ? !codeSets.equals(that.codeSets) : that.codeSets != null) return false;
-        if (codeSetToApplication != null ? !codeSetToApplication.equals(that.codeSetToApplication) : that.codeSetToApplication != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (termValue != null ? !termValue.equals(that.termValue) : that.termValue != null) return false;
-        if (termValueLow != null ? !termValueLow.equals(that.termValueLow) : that.termValueLow != null) return false;
-        if (termValueHigh != null ? !termValueHigh.equals(that.termValueHigh) : that.termValueHigh != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		TermsCodeSetsToApplicationValuesEntity other = (TermsCodeSetsToApplicationValuesEntity) o;
+		return java.util.Objects.equals(codeSetToApplicationValuesId, other.codeSetToApplicationValuesId) && java.util.Objects.equals(codeSetToApplication, other.codeSetToApplication) && java.util.Objects.equals(codeSets, other.codeSets) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(termValue, other.termValue) && 
+			java.util.Objects.equals(termValueLow, other.termValueLow) && java.util.Objects.equals(termValueHigh, other.termValueHigh);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (codeSetToApplicationValuesId ^ (codeSetToApplicationValuesId >>> 32));
-        result = 31 * result + (codeSetToApplication != null ? codeSetToApplication.hashCode() : 0);
-        result = 31 * result + (codeSets != null ? codeSets.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (termValue != null ? termValue.hashCode() : 0);
-        result = 31 * result + (termValueLow != null ? termValueLow.hashCode() : 0);
-        result = 31 * result + (termValueHigh != null ? termValueHigh.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(codeSetToApplicationValuesId, codeSetToApplication, codeSets, createdDate, status,
+					createdUser, termValue, termValueLow, termValueHigh);
+	}
 
     @ManyToOne
     @JoinColumn(name = "CodeSetsID", referencedColumnName = "CodeSetsID")

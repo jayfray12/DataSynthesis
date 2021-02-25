@@ -99,44 +99,26 @@ public class PlatformConfigDataGenEntity extends io.quarkus.hibernate.orm.panach
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformConfigDataGenEntity that = (PlatformConfigDataGenEntity) o;
-
-        if (dataGenConfigId != that.dataGenConfigId) return false;
-        if (dataTypeGenConfigName != null ? !dataTypeGenConfigName.equals(that.dataTypeGenConfigName) : that.dataTypeGenConfigName != null)
-            return false;
-        if (dataAttribute != null ? !dataAttribute.equals(that.dataAttribute) : that.dataAttribute != null)
-            return false;
-        if (specialInstructions != null ? !specialInstructions.equals(that.specialInstructions) : that.specialInstructions != null)
-            return false;
-        if (runQuantity != null ? !runQuantity.equals(that.runQuantity) : that.runQuantity != null) return false;
-        if (minuteInterval != null ? !minuteInterval.equals(that.minuteInterval) : that.minuteInterval != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (application != null ? !application.equals(that.application) : that.application != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformConfigDataGenEntity other = (PlatformConfigDataGenEntity) o;
+		return java.util.Objects.equals(dataGenConfigId, other.dataGenConfigId) && java.util.Objects.equals(dataTypeGenConfigName, other.dataTypeGenConfigName) && java.util.Objects.equals(specialInstructions, other.specialInstructions) && 
+			java.util.Objects.equals(runQuantity, other.runQuantity) && java.util.Objects.equals(minuteInterval, other.minuteInterval) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(createdUser, other.createdUser) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(application, other.application) && 
+			java.util.Objects.equals(dataAttribute, other.dataAttribute);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) dataGenConfigId;
-        result = 31 * result + (dataTypeGenConfigName != null ? dataTypeGenConfigName.hashCode() : 0);
-        result = 31 * result + (dataAttribute != null ? dataAttribute.hashCode() : 0);
-        result = 31 * result + (specialInstructions != null ? specialInstructions.hashCode() : 0);
-        result = 31 * result + (runQuantity != null ? runQuantity.hashCode() : 0);
-        result = 31 * result + (minuteInterval != null ? minuteInterval.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (application != null ? application.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(dataGenConfigId, dataTypeGenConfigName, specialInstructions, runQuantity, minuteInterval,
+					createdDate, createdUser, status, application,
+					dataAttribute);
+	}
 
     @ManyToOne
     @JoinColumn(name = "DataAttributeID", referencedColumnName = "PlatformDataAttributesID")

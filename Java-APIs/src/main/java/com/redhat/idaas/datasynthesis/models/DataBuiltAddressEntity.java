@@ -87,35 +87,24 @@ public class DataBuiltAddressEntity extends io.quarkus.hibernate.orm.panache.Pan
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataBuiltAddressEntity that = (DataBuiltAddressEntity) o;
-
-        if (completeAddressId != that.completeAddressId) return false;
-        if (address1 != null ? !address1.equals(that.address1) : that.address1 != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (stateId != null ? !stateId.equals(that.stateId) : that.stateId != null) return false;
-        if (zipCode != null ? !zipCode.equals(that.zipCode) : that.zipCode != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataBuiltAddressEntity other = (DataBuiltAddressEntity) o;
+		return java.util.Objects.equals(completeAddressId, other.completeAddressId) && java.util.Objects.equals(address1, other.address1) && java.util.Objects.equals(city, other.city) && 
+			java.util.Objects.equals(stateId, other.stateId) && java.util.Objects.equals(zipCode, other.zipCode) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (completeAddressId ^ (completeAddressId >>> 32));
-        result = 31 * result + (address1 != null ? address1.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (stateId != null ? stateId.hashCode() : 0);
-        result = 31 * result + (zipCode != null ? zipCode.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(completeAddressId, address1, city, stateId, zipCode,
+					createdDate, status, registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

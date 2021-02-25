@@ -75,32 +75,23 @@ public class PlatformRuleSetsEntity extends io.quarkus.hibernate.orm.panache.Pan
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlatformRuleSetsEntity that = (PlatformRuleSetsEntity) o;
-
-        if (ruleId != that.ruleId) return false;
-        if (ruleName != null ? !ruleName.equals(that.ruleName) : that.ruleName != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (expirationDate != null ? !expirationDate.equals(that.expirationDate) : that.expirationDate != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		PlatformRuleSetsEntity other = (PlatformRuleSetsEntity) o;
+		return java.util.Objects.equals(ruleId, other.ruleId) && java.util.Objects.equals(ruleName, other.ruleName) && java.util.Objects.equals(createdUser, other.createdUser) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(expirationDate, other.expirationDate) && 
+			java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (ruleId ^ (ruleId >>> 32));
-        result = 31 * result + (ruleName != null ? ruleName.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(ruleId, ruleName, createdUser, createdDate, expirationDate,
+					status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

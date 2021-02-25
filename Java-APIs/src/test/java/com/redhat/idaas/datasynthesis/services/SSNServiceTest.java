@@ -46,44 +46,22 @@ public class SSNServiceTest {
 
     @Test
     public void testSSNRandomizerHappyPath() throws Exception {
-        PanacheMock.mock(DataGeneratedSocialSecurityNumberEntity.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.count()).thenReturn(500000l);
-        PanacheQuery allQuery = Mockito.mock(PanacheQuery.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.findAll()).thenReturn(allQuery);
-        Mockito.when(allQuery.page(Mockito.anyInt(), Mockito.anyInt())).thenReturn(allQuery);
-        Mockito.when(allQuery.firstResult()).thenAnswer(invocation -> {
-            Random r = new Random();
-            DataGeneratedSocialSecurityNumberEntity entity = new DataGeneratedSocialSecurityNumberEntity();
-            entity.setSocialSecurityNumberId(r.nextLong());
-            return entity;
-        });
-        
-        List<SSN> randomSSNs = service.retrieveRandomSSNs(1534);
-        Assertions.assertEquals(1534, randomSSNs.size());
+        testRandomizer(500000l, 1534, 1534);
     }
 
     @Test
     public void testSSNRandomizerMaxOut() throws Exception {
-        PanacheMock.mock(DataGeneratedSocialSecurityNumberEntity.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.count()).thenReturn(500000l);
-        PanacheQuery allQuery = Mockito.mock(PanacheQuery.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.findAll()).thenReturn(allQuery);
-        Mockito.when(allQuery.page(Mockito.anyInt(), Mockito.anyInt())).thenReturn(allQuery);
-        Mockito.when(allQuery.firstResult()).thenAnswer(invocation -> {
-            Random r = new Random();
-            DataGeneratedSocialSecurityNumberEntity entity = new DataGeneratedSocialSecurityNumberEntity();
-            entity.setSocialSecurityNumberId(r.nextLong());
-            return entity;
-        });
-        
-        List<SSN> randomSSNs = service.retrieveRandomSSNs(10000);
-        Assertions.assertEquals(5000, randomSSNs.size());
+        testRandomizer(500000l, 10000, 5000);
     }
 
     @Test
     public void testSSNRandomizerLowRecordCount() throws Exception {
+        testRandomizer(50L, 4321, 50);
+    }
+
+    private void testRandomizer(long databaseCount, int retrieveCount, int returnedCount) throws Exception {
         PanacheMock.mock(DataGeneratedSocialSecurityNumberEntity.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.count()).thenReturn(50L);
+        Mockito.when(DataGeneratedSocialSecurityNumberEntity.count()).thenReturn(databaseCount);
         PanacheQuery allQuery = Mockito.mock(PanacheQuery.class);
         Mockito.when(DataGeneratedSocialSecurityNumberEntity.findAll()).thenReturn(allQuery);
         Mockito.when(allQuery.page(Mockito.anyInt(), Mockito.anyInt())).thenReturn(allQuery);
@@ -94,7 +72,7 @@ public class SSNServiceTest {
             return entity;
         });
         
-        List<SSN> randomSSNs = service.retrieveRandomSSNs(4321);
-        Assertions.assertEquals(50, randomSSNs.size());
+        List<SSN> randomSSNs = service.retrieveRandomSSNs(retrieveCount);
+        Assertions.assertEquals(returnedCount, randomSSNs.size());
     }
 }

@@ -12,11 +12,15 @@ import javax.transaction.Transactional;
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.apache.commons.lang3.StringUtils;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
+
+    private Random phoneNumberRandomizer = new Random();
 
     @Override
     protected long count() {
@@ -32,7 +36,6 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
     public List<DataGeneratedPhoneNumberEntity> generatePhoneNumber(long generationCounter) {
         List<DataGeneratedPhoneNumberEntity> phonenumberList = new ArrayList<DataGeneratedPhoneNumberEntity>(
                 (int) generationCounter);
-        Random phoneNumberRandomizer = new Random();
         int upperBound1 = 999;
         int upperBound2 = 9999;
 

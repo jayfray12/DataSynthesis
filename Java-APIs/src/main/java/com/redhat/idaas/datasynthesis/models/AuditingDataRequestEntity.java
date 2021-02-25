@@ -108,40 +108,24 @@ public class AuditingDataRequestEntity extends io.quarkus.hibernate.orm.panache.
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AuditingDataRequestEntity that = (AuditingDataRequestEntity) o;
-
-        if (dataRequestId != that.dataRequestId) return false;
-        if (dataRequestDate != null ? !dataRequestDate.equals(that.dataRequestDate) : that.dataRequestDate != null)
-            return false;
-        if (createdByUser != null ? !createdByUser.equals(that.createdByUser) : that.createdByUser != null)
-            return false;
-        if (organizaton != null ? !organizaton.equals(that.organizaton) : that.organizaton != null) return false;
-        if (application != null ? !application.equals(that.application) : that.application != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (recCount != null ? !recCount.equals(that.recCount) : that.recCount != null) return false;
-        if (recordDataRequest != null ? !recordDataRequest.equals(that.recordDataRequest) : that.recordDataRequest != null)
-            return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		AuditingDataRequestEntity other = (AuditingDataRequestEntity) o;
+		return java.util.Objects.equals(dataRequestId, other.dataRequestId) && java.util.Objects.equals(dataRequestDate, other.dataRequestDate) && java.util.Objects.equals(createdByUser, other.createdByUser) && 
+			java.util.Objects.equals(organizaton, other.organizaton) && java.util.Objects.equals(application, other.application) && 
+			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(recCount, other.recCount) && 
+			java.util.Objects.equals(recordDataRequest, other.recordDataRequest) && java.util.Objects.equals(status, other.status);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (dataRequestId ^ (dataRequestId >>> 32));
-        result = 31 * result + (dataRequestDate != null ? dataRequestDate.hashCode() : 0);
-        result = 31 * result + (createdByUser != null ? createdByUser.hashCode() : 0);
-        result = 31 * result + (organizaton != null ? organizaton.hashCode() : 0);
-        result = 31 * result + (application != null ? application.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (recCount != null ? recCount.hashCode() : 0);
-        result = 31 * result + (recordDataRequest != null ? recordDataRequest.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(dataRequestId, dataRequestDate, createdByUser, organizaton, application,
+					createdDate, recCount, recordDataRequest, status);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

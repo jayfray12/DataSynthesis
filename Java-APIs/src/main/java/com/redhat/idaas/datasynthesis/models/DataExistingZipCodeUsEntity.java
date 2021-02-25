@@ -131,44 +131,27 @@ public class DataExistingZipCodeUsEntity extends io.quarkus.hibernate.orm.panach
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataExistingZipCodeUsEntity that = (DataExistingZipCodeUsEntity) o;
-
-        if (zipCodeId != that.zipCodeId) return false;
-        if (zipCode != null ? !zipCode.equals(that.zipCode) : that.zipCode != null) return false;
-        if (zipCodeType != null ? !zipCodeType.equals(that.zipCodeType) : that.zipCodeType != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (state != null ? !state.equals(that.state) : that.state != null) return false;
-        if (lattitude != null ? !lattitude.equals(that.lattitude) : that.lattitude != null) return false;
-        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
-        if (location != null ? !location.equals(that.location) : that.location != null) return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataExistingZipCodeUsEntity other = (DataExistingZipCodeUsEntity) o;
+		return java.util.Objects.equals(zipCodeId, other.zipCodeId) && java.util.Objects.equals(zipCode, other.zipCode) && java.util.Objects.equals(zipCodeType, other.zipCodeType) && 
+			java.util.Objects.equals(city, other.city) && java.util.Objects.equals(state, other.state) && 
+			java.util.Objects.equals(lattitude, other.lattitude) && java.util.Objects.equals(longitude, other.longitude) && 
+			java.util.Objects.equals(location, other.location) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (zipCodeId ^ (zipCodeId >>> 32));
-        result = 31 * result + (zipCode != null ? zipCode.hashCode() : 0);
-        result = 31 * result + (zipCodeType != null ? zipCodeType.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (lattitude != null ? lattitude.hashCode() : 0);
-        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(zipCodeId, zipCode, zipCodeType, city, state,
+					lattitude, longitude, location, createdDate,
+					createdUser, status, registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

@@ -72,33 +72,23 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataGeneratedSocialSecurityNumberEntity that = (DataGeneratedSocialSecurityNumberEntity) o;
-
-        if (socialSecurityNumberId != that.socialSecurityNumberId) return false;
-        if (socialSecurityNumberValue != null ? !socialSecurityNumberValue.equals(that.socialSecurityNumberValue) : that.socialSecurityNumberValue != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (createdUser != null ? !createdUser.equals(that.createdUser) : that.createdUser != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null)
-            return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataGeneratedSocialSecurityNumberEntity other = (DataGeneratedSocialSecurityNumberEntity) o;
+		return java.util.Objects.equals(socialSecurityNumberId, other.socialSecurityNumberId) && java.util.Objects.equals(socialSecurityNumberValue, other.socialSecurityNumberValue) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(createdUser, other.createdUser) && java.util.Objects.equals(status, other.status) && 
+			java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (socialSecurityNumberId ^ (socialSecurityNumberId >>> 32));
-        result = 31 * result + (socialSecurityNumberValue != null ? socialSecurityNumberValue.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (createdUser != null ? createdUser.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(socialSecurityNumberId, socialSecurityNumberValue, createdDate, createdUser, status,
+					registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")

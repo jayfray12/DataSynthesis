@@ -76,34 +76,23 @@ public class DataBuiltPhoneNumbersEntity extends io.quarkus.hibernate.orm.panach
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DataBuiltPhoneNumbersEntity that = (DataBuiltPhoneNumbersEntity) o;
-
-        if (dataBuiltPhoneNumbersId != that.dataBuiltPhoneNumbersId) return false;
-        if (areaCode != null ? !areaCode.equals(that.areaCode) : that.areaCode != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
-        if (completePhoneNumber != null ? !completePhoneNumber.equals(that.completePhoneNumber) : that.completePhoneNumber != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(that.createdDate) : that.createdDate != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        if (registeredApp != null ? !registeredApp.equals(that.registeredApp) : that.registeredApp != null) return false;
-
-        return true;
-    }
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (getClass() != o.getClass())
+			return false;
+		DataBuiltPhoneNumbersEntity other = (DataBuiltPhoneNumbersEntity) o;
+		return java.util.Objects.equals(dataBuiltPhoneNumbersId, other.dataBuiltPhoneNumbersId) && java.util.Objects.equals(areaCode, other.areaCode) && java.util.Objects.equals(phoneNumber, other.phoneNumber) && 
+			java.util.Objects.equals(completePhoneNumber, other.completePhoneNumber) && java.util.Objects.equals(createdDate, other.createdDate) && 
+			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp);
+	}
 
     @Override
     public int hashCode() {
-        int result = (int) (dataBuiltPhoneNumbersId ^ (dataBuiltPhoneNumbersId >>> 32));
-        result = 31 * result + (areaCode != null ? areaCode.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (completePhoneNumber != null ? completePhoneNumber.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (registeredApp != null ? registeredApp.hashCode() : 0);
-        return result;
-    }
+		return java.util.Objects.hash(dataBuiltPhoneNumbersId, areaCode, phoneNumber, completePhoneNumber, createdDate,
+					status, registeredApp);
+	}
 
     @ManyToOne
     @JoinColumn(name = "StatusID", referencedColumnName = "StatusID")
