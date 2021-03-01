@@ -18,7 +18,7 @@ public class RefDataStatusResource {
     @GET
     @Path("all")
     public List<RefDataStatusEntity> get() {
-        // TESTING
+        // TESTING 2
         return RefDataStatusEntity.listAll();
     }
 }
