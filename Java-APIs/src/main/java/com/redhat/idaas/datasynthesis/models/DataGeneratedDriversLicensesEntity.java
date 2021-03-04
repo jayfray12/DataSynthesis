@@ -25,7 +25,7 @@ public class DataGeneratedDriversLicensesEntity extends io.quarkus.hibernate.orm
     private RefDataUsStatesEntity state;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DriversLicensesID", nullable = false)
     public long getDriversLicensesId() {
         return driversLicensesId;

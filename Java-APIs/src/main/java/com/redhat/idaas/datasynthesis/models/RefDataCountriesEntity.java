@@ -22,7 +22,7 @@ public class RefDataCountriesEntity extends io.quarkus.hibernate.orm.panache.Pan
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CountryID", nullable = false)
     public short getCountryId() {
         return countryId;

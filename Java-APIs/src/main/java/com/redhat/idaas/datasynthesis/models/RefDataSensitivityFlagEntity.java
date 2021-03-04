@@ -21,7 +21,7 @@ public class RefDataSensitivityFlagEntity extends io.quarkus.hibernate.orm.panac
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SensitiveFlagID", nullable = false)
     public short getSensitiveFlagId() {
         return sensitiveFlagId;

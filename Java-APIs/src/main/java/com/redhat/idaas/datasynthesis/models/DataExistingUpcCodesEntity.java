@@ -23,7 +23,7 @@ public class DataExistingUpcCodesEntity extends io.quarkus.hibernate.orm.panache
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UPCCodeID", nullable = false)
     public long getUpcCodeId() {
         return upcCodeId;

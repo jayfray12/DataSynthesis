@@ -30,7 +30,7 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SocialSecurityNumberID", nullable = false)
     public long getSocialSecurityNumberId() {
         return socialSecurityNumberId;

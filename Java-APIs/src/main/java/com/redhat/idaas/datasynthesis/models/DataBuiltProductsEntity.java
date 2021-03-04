@@ -23,7 +23,7 @@ public class DataBuiltProductsEntity extends io.quarkus.hibernate.orm.panache.Pa
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DatabuiltProductsID", nullable = false)
     public long getDatabuiltProductsId() {
         return databuiltProductsId;

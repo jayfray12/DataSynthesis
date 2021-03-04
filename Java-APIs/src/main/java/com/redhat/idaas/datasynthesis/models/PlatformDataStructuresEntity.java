@@ -25,7 +25,7 @@ public class PlatformDataStructuresEntity extends io.quarkus.hibernate.orm.panac
     private RefDataSensitivityFlagEntity sensitivityFlag;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlatformDataStructuresID", nullable = false)
     public short getPlatformDataStructuresId() {
         return platformDataStructuresId;

@@ -26,7 +26,7 @@ public class RefDataCodeSetEntity extends io.quarkus.hibernate.orm.panache.Panac
     private RefDataSensitivityFlagEntity sensitivityFlag;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodeSetsID", nullable = false)
     public long getCodeSetsId() {
         return codeSetsId;

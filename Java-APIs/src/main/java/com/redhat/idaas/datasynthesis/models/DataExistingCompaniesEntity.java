@@ -23,7 +23,7 @@ public class DataExistingCompaniesEntity extends io.quarkus.hibernate.orm.panach
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CompaniesID", nullable = false)
     public long getCompaniesId() {
         return companiesId;

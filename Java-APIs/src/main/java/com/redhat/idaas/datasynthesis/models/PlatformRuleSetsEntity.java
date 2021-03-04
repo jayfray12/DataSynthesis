@@ -23,7 +23,7 @@ public class PlatformRuleSetsEntity extends io.quarkus.hibernate.orm.panache.Pan
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RuleID", nullable = false)
     public long getRuleId() {
         return ruleId;

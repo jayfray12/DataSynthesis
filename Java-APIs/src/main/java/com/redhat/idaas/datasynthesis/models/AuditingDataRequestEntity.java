@@ -26,7 +26,7 @@ public class AuditingDataRequestEntity extends io.quarkus.hibernate.orm.panache.
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataRequestID", nullable = false)
     public long getDataRequestId() {
         return dataRequestId;

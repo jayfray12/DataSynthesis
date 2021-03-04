@@ -25,7 +25,54 @@ public class DateOfBirthService extends RandomizerService<DataGeneratedDateOfBir
     }
     // Create Generated Data
 
+    // Existing Code
 
+    /* // Create List for return
+            List<DataSynthesis.Data.Business.Models.genRefData.BirthDates> birthDateList = new List<DataSynthesis.Data.Business.Models.genRefData.BirthDates>();
+            // Create age limit variable
+            int maximumage = 100;
+            // ArrayList
+            ArrayList dobArray = new ArrayList();
+
+            var birthdateRandomizer = new Random();
+            for (int i = 0; i <= generationCount; i++)
+            {
+
+                // Create a general Birthdate randomizer
+
+                var birthdateRandomizer2 = new Random();
+                var birthdateRandomizer3 = new Random();
+                int year = System.DateTime.Today.Year;
+                // Calculate Maximum Age years
+                int maximumageCalc = year - maximumage;
+                var birthYear = birthdateRandomizer.Next(maximumageCalc, year);
+                // Create the month
+                var birthMonth = birthdateRandomizer.Next(1, 13);
+                // Create the day
+                int daysInMonth = System.DateTime.DaysInMonth(birthYear, birthMonth);
+                var birthDay = birthdateRandomizer.Next(1, daysInMonth);
+                // Ensure value isnt in array
+                if (!dobArray.Contains(birthMonth + "/" + birthDay + "/" + birthYear))
+                {
+                    dobArray.Add(birthMonth + "/" + birthDay + "/" + birthYear);
+                }
+
+            }
+            // loop thru and populate liST and populate Date Of Borth  Structure
+            foreach (var item in dobArray)
+            {
+                string dobStringValue = item.ToString();
+                dobStringValue = dobStringValue.Replace('/', '');
+                birthDateList.Add(new DataSynthesis.Data.Business.Models.genRefData.BirthDates()
+                {
+                    DateOfBirth = dobStringValue,
+                    DateOfBirthDate = Convert.ToDateTime(item.ToString())
+                });
+            }
+
+            return birthDateList;
+        }
+        */
 
     // Persist to Data Tier
     public List<BirthDate> retrieveRandomBirthDates(int count) {

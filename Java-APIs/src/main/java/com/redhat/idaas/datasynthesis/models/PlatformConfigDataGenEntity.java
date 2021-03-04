@@ -27,7 +27,7 @@ public class PlatformConfigDataGenEntity extends io.quarkus.hibernate.orm.panach
     private PlatformDataAttributesEntity dataAttribute;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataGenConfigID", nullable = false)
     public short getDataGenConfigId() {
         return dataGenConfigId;

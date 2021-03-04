@@ -23,7 +23,7 @@ public class DataGeneratedBankAccountEntity extends io.quarkus.hibernate.orm.pan
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BankAccountsID", nullable = false)
     public long getBankAccountsId() {
         return bankAccountsId;

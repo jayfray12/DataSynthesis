@@ -24,7 +24,7 @@ public class DataBuiltPhoneNumbersEntity extends io.quarkus.hibernate.orm.panach
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataBuiltPhoneNumbersID", nullable = false)
     public long getDataBuiltPhoneNumbersId() {
         return dataBuiltPhoneNumbersId;

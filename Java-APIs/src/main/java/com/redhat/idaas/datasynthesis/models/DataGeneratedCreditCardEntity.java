@@ -24,7 +24,7 @@ public class DataGeneratedCreditCardEntity extends io.quarkus.hibernate.orm.pana
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CreditCardID", nullable = false)
     public long getCreditCardId() {
         return creditCardId;

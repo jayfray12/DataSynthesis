@@ -24,7 +24,7 @@ public class DataExistingNameFirstEntity extends io.quarkus.hibernate.orm.panach
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FirstNameID", nullable = false)
     public long getFirstNameId() {
         return firstNameId;

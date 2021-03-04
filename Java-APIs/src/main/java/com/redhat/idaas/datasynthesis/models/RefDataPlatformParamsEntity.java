@@ -22,7 +22,7 @@ public class RefDataPlatformParamsEntity extends io.quarkus.hibernate.orm.panach
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlatformParamsID", nullable = false)
     public short getPlatformParamsId() {
         return platformParamsId;

@@ -24,7 +24,7 @@ public class PlatformAppSettingEntity extends io.quarkus.hibernate.orm.panache.P
     private RefDataApplicationEntity defaultDataGenerationApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AppSettingsID", nullable = false)
     public short getAppSettingsId() {
         return appSettingsId;
