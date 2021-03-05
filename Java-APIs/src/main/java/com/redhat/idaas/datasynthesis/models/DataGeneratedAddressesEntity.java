@@ -25,7 +25,8 @@ public class DataGeneratedAddressesEntity extends io.quarkus.hibernate.orm.panac
     private RefDataAddressFormatTypeEntity addressFormatType;
 
     @Id
-    @GeneratedValue
+    //@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AddressID", nullable = false)
     public long getAddressId() {
         return addressId;

@@ -28,7 +28,7 @@ public class DataBuiltPersonDemographicsEntity extends io.quarkus.hibernate.orm.
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PersonDemographicsID", nullable = false)
     public long getPersonDemographicsId() {
         return personDemographicsId;

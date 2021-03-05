@@ -25,7 +25,7 @@ public class DataBuiltAddressEntity extends io.quarkus.hibernate.orm.panache.Pan
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CompleteAddressID", nullable = false)
     public long getCompleteAddressId() {
         return completeAddressId;

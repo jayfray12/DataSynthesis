@@ -25,7 +25,7 @@ public class DataExistingAreaCodeEntity extends io.quarkus.hibernate.orm.panache
     private RefDataUsStatesEntity state;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AreaCodeID", nullable = false)
     public long getAreaCodeId() {
         return areaCodeId;

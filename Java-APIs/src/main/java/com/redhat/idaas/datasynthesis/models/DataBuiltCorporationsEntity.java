@@ -26,7 +26,7 @@ public class DataBuiltCorporationsEntity extends io.quarkus.hibernate.orm.panach
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataBuiltCorporationID", nullable = false)
     public long getDataBuiltCorporationId() {
         return dataBuiltCorporationId;

@@ -21,7 +21,7 @@ public class AuditingDataPlatformEntity extends io.quarkus.hibernate.orm.panache
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataPlatformID", nullable = false)
     public long getDataPlatformId() {
         return dataPlatformId;

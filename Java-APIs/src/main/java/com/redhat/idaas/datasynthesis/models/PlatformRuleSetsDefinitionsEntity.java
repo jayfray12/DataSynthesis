@@ -29,7 +29,7 @@ public class PlatformRuleSetsDefinitionsEntity extends io.quarkus.hibernate.orm.
     private RefDataApplicationEntity application;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RulesetDefinitionsID", nullable = false, length = 38)
     public String getRulesetDefinitionsId() {
         return rulesetDefinitionsId;

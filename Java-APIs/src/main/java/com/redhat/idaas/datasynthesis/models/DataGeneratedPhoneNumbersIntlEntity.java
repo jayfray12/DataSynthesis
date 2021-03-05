@@ -24,7 +24,7 @@ public class DataGeneratedPhoneNumbersIntlEntity extends io.quarkus.hibernate.or
     private RefDataCountriesEntity country;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PhoneNumberIntlID", nullable = false)
     public long getPhoneNumberIntlId() {
         return phoneNumberIntlId;

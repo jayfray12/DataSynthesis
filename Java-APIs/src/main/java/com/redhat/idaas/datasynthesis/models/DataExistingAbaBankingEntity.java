@@ -28,7 +28,7 @@ public class DataExistingAbaBankingEntity extends io.quarkus.hibernate.orm.panac
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ABABankingID", nullable = false)
     public long getAbaBankingId() {
         return abaBankingId;

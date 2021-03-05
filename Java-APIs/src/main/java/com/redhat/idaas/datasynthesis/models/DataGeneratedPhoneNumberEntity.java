@@ -30,7 +30,7 @@ public class DataGeneratedPhoneNumberEntity extends io.quarkus.hibernate.orm.pan
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PhoneNumberID", nullable = false)
     public long getPhoneNumberId() {
         return phoneNumberId;

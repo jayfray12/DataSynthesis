@@ -29,7 +29,7 @@ public class DataExistingZipCodeIntlEntity extends io.quarkus.hibernate.orm.pana
     private RefDataCountriesEntity country;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ZipCodeIntnlID", nullable = false)
     public int getZipCodeIntnlId() {
         return zipCodeIntnlId;

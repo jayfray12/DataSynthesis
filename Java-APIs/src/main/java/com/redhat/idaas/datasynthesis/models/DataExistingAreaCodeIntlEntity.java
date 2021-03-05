@@ -22,7 +22,7 @@ public class DataExistingAreaCodeIntlEntity extends io.quarkus.hibernate.orm.pan
     private RefDataCountriesEntity country;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDDCode", nullable = false, length = 5)
     public String getIddCode() {
         return iddCode;

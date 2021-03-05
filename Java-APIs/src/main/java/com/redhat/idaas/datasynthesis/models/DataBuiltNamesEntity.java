@@ -22,7 +22,7 @@ public class DataBuiltNamesEntity extends io.quarkus.hibernate.orm.panache.Panac
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataBuiltNamesID", nullable = false)
     public long getDataBuiltNamesId() {
         return dataBuiltNamesId;

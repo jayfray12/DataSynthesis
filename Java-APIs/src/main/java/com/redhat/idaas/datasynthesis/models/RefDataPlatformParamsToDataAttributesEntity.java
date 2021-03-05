@@ -23,7 +23,7 @@ public class RefDataPlatformParamsToDataAttributesEntity extends io.quarkus.hibe
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlatformParamsToDataAttributeID", nullable = false)
     public long getPlatformParamsToDataAttributeId() {
         return platformParamsToDataAttributeId;

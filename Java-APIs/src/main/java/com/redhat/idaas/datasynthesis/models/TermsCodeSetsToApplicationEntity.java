@@ -31,7 +31,7 @@ public class TermsCodeSetsToApplicationEntity extends io.quarkus.hibernate.orm.p
     private RefDataSensitivityFlagEntity sensitiveFlag;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodeSetToApplicationID", nullable = false)
     public long getCodeSetToApplicationId() {
         return codeSetToApplicationId;

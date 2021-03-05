@@ -24,7 +24,7 @@ public class DataBuiltBankAccountEntity extends io.quarkus.hibernate.orm.panache
     private RefDataApplicationEntity registeredApp;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataBuiltBankAccountsID", nullable = false)
     public long getDataBuiltBankAccountsId() {
         return dataBuiltBankAccountsId;

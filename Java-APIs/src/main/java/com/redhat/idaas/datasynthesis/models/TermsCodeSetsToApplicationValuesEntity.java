@@ -26,7 +26,7 @@ public class TermsCodeSetsToApplicationValuesEntity extends io.quarkus.hibernate
     private String termValueHigh;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodeSetToApplicationValuesID", nullable = false)
     public long getCodeSetToApplicationValuesId() {
         return codeSetToApplicationValuesId;

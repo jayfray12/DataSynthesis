@@ -35,7 +35,7 @@ public class RefDataCodeSetStructuresEntity extends io.quarkus.hibernate.orm.pan
     private RefDataCodeSetEntity codeSet;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodeSetStructuresID", nullable = false)
     public long getCodeSetStructuresId() {
         return codeSetStructuresId;

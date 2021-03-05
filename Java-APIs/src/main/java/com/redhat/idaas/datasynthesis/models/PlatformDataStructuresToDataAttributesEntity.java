@@ -27,7 +27,7 @@ public class PlatformDataStructuresToDataAttributesEntity extends io.quarkus.hib
     private PlatformDataStructuresEntity platformDataStructures;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlatformDataStructuresToDataAttributesID", nullable = false)
     public short getPlatformDataStructuresToDataAttributesId() {
         return platformDataStructuresToDataAttributesId;

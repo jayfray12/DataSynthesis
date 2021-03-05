@@ -21,7 +21,7 @@ public class RefDataIndustryStdEntity extends io.quarkus.hibernate.orm.panache.P
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IndustryStd", nullable = false, length = 6)
     public String getIndustryStd() {
         return industryStd;

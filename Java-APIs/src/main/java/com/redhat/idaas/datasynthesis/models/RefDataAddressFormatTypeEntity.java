@@ -21,7 +21,7 @@ public class RefDataAddressFormatTypeEntity extends io.quarkus.hibernate.orm.pan
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AddressFormatTypeID", nullable = false)
     public short getAddressFormatTypeId() {
         return addressFormatTypeId;
