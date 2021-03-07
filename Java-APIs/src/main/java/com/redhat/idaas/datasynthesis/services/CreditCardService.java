@@ -1,10 +1,12 @@
 package com.redhat.idaas.datasynthesis.services;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedCreditCardEntity;
@@ -29,6 +31,7 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
         return entities.stream().map(e -> new CreditCard(e.getCreditCardNumber(), e.getCreditCardName())).collect(Collectors.toList());
     }
     // Generate Data
+    /*
     @Transactional
     public List<DataGeneratedCreditCardEntity> generatedCCNumber(long generationCounter) {
         List<DataGeneratedCreditCardEntity> ccnnumberList = new ArrayList<DataGeneratedCreditCardEntity>(
@@ -42,7 +45,7 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
             // Credit Cards selection need to be randomized
 
             // Create the first 16 phone number digits
-            ccnumber.append(StringUtils.leftPad(String.valueOf(einRandomizer.nextInt(upperBound1)), 16, "0"));
+            // ccnumber.append(StringUtils.leftPad(String.valueOf(einRandomizer.nextInt(upperBound1)), 16, "0"));
 
             //Existing Code from .Net Core
             /*
