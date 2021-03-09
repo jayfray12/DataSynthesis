@@ -48,7 +48,7 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
             // ccnumber.append(StringUtils.leftPad(String.valueOf(einRandomizer.nextInt(upperBound1)), 16, "0"));
 
             //Existing Code from .Net Core
-            /*
+            
                // Create List for return
                 List<DataSynthesis.Data.Business.Models.genRefData.CreditCard> creditcardList = new List<DataSynthesis.Data.Business.Models.genRefData.CreditCard>();
                 //Create list object to store data in
@@ -105,10 +105,10 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
                     }
                 }
 
-             */
+             
 
 
-            /*
+            
             DataGeneratedEinEntity einNumberEntity = DataGeneratedEinEntity
                     .findByEinNumber(einnumber.toString());
             if (einNumberEntity == null) {
