@@ -13,7 +13,7 @@ public class Randomization{
 
     public String GeneratedRandomLetter(int numberValue)
     {
-        String strValue;
+        String strValue = "";
         // Take the integer and convert it to a specific letter to be returned
 
         return strValue;
