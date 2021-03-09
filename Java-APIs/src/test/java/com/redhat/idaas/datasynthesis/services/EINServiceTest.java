@@ -4,10 +4,15 @@ import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
 
+import org.apache.http.util.Asserts;
+import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -19,9 +24,40 @@ import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 public class EINServiceTest {
+    @Inject
+    EntityManager em;
 
     @Inject
     EINService service;
+
+    @Test
+    @Transactional
+    public void testUnique() {
+        RefDataApplicationEntity app = new RefDataApplicationEntity();
+        app.setAppGuid("common");
+        app.persist();
+
+        DataGeneratedEinEntity ein = new DataGeneratedEinEntity();
+        ein.setRegisteredApp(app);
+        ein.setEinValue("einval");
+        ein.persist();
+
+        try {
+            DataGeneratedEinEntity ein2 = new DataGeneratedEinEntity();
+            ein2.setRegisteredApp(app);
+            ein2.setEinValue("einval");
+            ein2.persist();
+        } catch (javax.persistence.PersistenceException ex) {
+            if (!(ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)) {
+                throw ex;
+            } else {
+                Session session = em.unwrap(Session.class);
+                session.clear();
+            }
+        }
+
+        Assertions.assertEquals(2, DataGeneratedEinEntity.count());
+    }
 
     @Test
     public void testEINGenerationHappyPath() throws InvokeRealMethodException {
