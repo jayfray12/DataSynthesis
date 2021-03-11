@@ -26,7 +26,7 @@ public class RefDataStatusEntity extends io.quarkus.hibernate.orm.panache.Panach
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "StatusID", nullable = false)
     public short getStatusId() {
         return statusId;

@@ -1,6 +1,14 @@
 package com.redhat.idaas.datasynthesis.models;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -21,7 +29,7 @@ public class AuditingDataPlatformEntity extends io.quarkus.hibernate.orm.panache
     private RefDataStatusEntity status;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DataPlatformID", nullable = false)
     public long getDataPlatformId() {
         return dataPlatformId;

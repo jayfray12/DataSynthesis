@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +30,7 @@ public class DataExistingZipCodeIntlEntity extends io.quarkus.hibernate.orm.pana
     private RefDataCountriesEntity country;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ZipCodeIntnlID", nullable = false)
     public int getZipCodeIntnlId() {
         return zipCodeIntnlId;
