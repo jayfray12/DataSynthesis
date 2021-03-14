@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: datasynthesis
     # volumes:
-    #   - ../DataTier/MySQL/MySQL-DDL/2021/datasynthesis-2021-0207.sql:/docker-entrypoint-initdb.d/001.sql:Z,delegated
+    #   - ../DataTier/MySQL/DDL/2021/datasynthesis-2021-0312.sql:/docker-entrypoint-initdb.d/001.sql:Z,delegated
     #   - ../DataTier/MySQL/MySQL-DumpFiles/complete-datasynthesis-08222020.sql:/docker-entrypoint-initdb.d/002.sql:Z,delegated
   quarkus:
     image: maven
