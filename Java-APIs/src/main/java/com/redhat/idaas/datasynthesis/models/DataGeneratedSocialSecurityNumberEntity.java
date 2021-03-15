@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_socialsecuritynumber", schema = "datasynthesis", catalog = "")
-public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedSocialSecurityNumberEntity extends BaseEntity {
     private long socialSecurityNumberId;
     private String socialSecurityNumberValue;
     private Timestamp createdDate;
@@ -117,11 +117,5 @@ public class DataGeneratedSocialSecurityNumberEntity extends io.quarkus.hibernat
 
     public static DataGeneratedSocialSecurityNumberEntity findBySSN(String ssn) {
         return find("socialSecurityNumberValue", ssn).firstResult();
-    }
-
-    public static void persist(DataGeneratedSocialSecurityNumberEntity entity) {
-        if (null != entity) {
-            entity.persist();
-        }
     }
 }

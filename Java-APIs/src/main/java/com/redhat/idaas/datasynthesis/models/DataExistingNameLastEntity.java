@@ -15,13 +15,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dataexisting_namelast", schema = "datasynthesis", catalog = "")
-public class DataExistingNameLastEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataExistingNameLastEntity extends BaseEntity {
     private long lastNameId;
     private String lastName;
     private Timestamp createdDate;
     private String createdUser;
     private RefDataStatusEntity status;
     private RefDataApplicationEntity registeredApp;
+
+    public DataExistingNameLastEntity(){
+    }
+
+    public DataExistingNameLastEntity(String lastName) {
+        this.lastName = lastName;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

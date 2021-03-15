@@ -4,15 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
-import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
 
-import org.apache.http.util.Asserts;
-import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,65 +16,41 @@ import org.mockito.Mockito;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
 import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
+@TestTransaction
 public class EINServiceTest {
-    @Inject
-    EntityManager em;
-
     @Inject
     EINService service;
 
     @Test
     @Transactional
-    public void testUnique() {
-        RefDataApplicationEntity app = new RefDataApplicationEntity();
-        app.setAppGuid("common");
-        app.persist();
+    public void testUnique() throws Exception {
+        DefaultApplication.seed();
 
         DataGeneratedEinEntity ein = new DataGeneratedEinEntity();
-        ein.setRegisteredApp(app);
+        ein.setRegisteredApp(service.getRegisteredApp());
         ein.setEinValue("einval");
-        ein.persist();
+        Assertions.assertTrue(BaseService.safePersist(ein));
 
-        try {
-            DataGeneratedEinEntity ein2 = new DataGeneratedEinEntity();
-            ein2.setRegisteredApp(app);
-            ein2.setEinValue("einval");
-            ein2.persist();
-        } catch (javax.persistence.PersistenceException ex) {
-            if (!(ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)) {
-                throw ex;
-            } else {
-                Session session = em.unwrap(Session.class);
-                session.clear();
-            }
-        }
+        DataGeneratedEinEntity ein2 = new DataGeneratedEinEntity();
+        ein2.setRegisteredApp(service.getRegisteredApp());
+        ein2.setEinValue("einval");
+        Assertions.assertFalse(BaseService.safePersist(ein2));
 
-        Assertions.assertEquals(2, DataGeneratedEinEntity.count());
+        Assertions.assertEquals(1, DataGeneratedEinEntity.count());
     }
 
     @Test
-    public void testEINGenerationHappyPath() throws InvokeRealMethodException {
-        PanacheMock.mock(DataGeneratedEinEntity.class);
-        Mockito.when(DataGeneratedEinEntity.findByEinNumber(Mockito.anyString())).thenReturn(null);
-
+    @Transactional
+    public void testEINGeneration() throws InvokeRealMethodException, Exception {
+        DefaultApplication.seed();
         List<DataGeneratedEinEntity> list = service.generateEinNumber(10);
         Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedEinEntity.class, Mockito.times(10)).persist(Mockito.any(DataGeneratedEinEntity.class));
-        PanacheMock.verify(DataGeneratedEinEntity.class, Mockito.times(10)).findByEinNumber(Mockito.anyString());
-    }
 
-    @Test
-    public void testEINGenerationWithExisting() {
-        PanacheMock.mock(DataGeneratedEinEntity.class);
-        Mockito.when(DataGeneratedEinEntity.findByEinNumber(Mockito.anyString())).thenAnswer(invocation -> new DataGeneratedEinEntity(invocation.getArgument(0)));
-
-        List<DataGeneratedEinEntity> list = service.generateEinNumber(10);
-        Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedEinEntity.class, Mockito.times(0)).persist(Mockito.any(DataGeneratedEinEntity.class));
-        PanacheMock.verify(DataGeneratedEinEntity.class, Mockito.times(10)).findByEinNumber(Mockito.anyString());
+        Assertions.assertEquals(10, DataGeneratedEinEntity.count());
     }
 
     @Test

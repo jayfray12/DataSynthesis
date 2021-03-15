@@ -83,4 +83,8 @@ public class RefDataStatusEntity extends io.quarkus.hibernate.orm.panache.Panach
     public int hashCode() {
 		return java.util.Objects.hash(statusId, statusDescription, createdDate, createdUser);
 	}
+
+    public static RefDataStatusEntity findByStatusDescription(String desc) {
+        return find("StatusDescription", desc).firstResult();
+    }
 }

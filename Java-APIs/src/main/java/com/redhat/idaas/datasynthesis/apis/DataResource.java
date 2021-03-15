@@ -13,6 +13,8 @@ import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.dtos.EIN;
+import com.redhat.idaas.datasynthesis.dtos.NameFirst;
+import com.redhat.idaas.datasynthesis.dtos.NameLast;
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.dtos.SSN;
 import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
@@ -22,6 +24,8 @@ import com.redhat.idaas.datasynthesis.services.CreditCardService;
 import com.redhat.idaas.datasynthesis.services.DateOfBirthService;
 import com.redhat.idaas.datasynthesis.services.DriversLicenseNumberService;
 import com.redhat.idaas.datasynthesis.services.EINService;
+import com.redhat.idaas.datasynthesis.services.NameFirstService;
+import com.redhat.idaas.datasynthesis.services.NameLastService;
 import com.redhat.idaas.datasynthesis.services.PhoneNumberService;
 import com.redhat.idaas.datasynthesis.services.SSNService;
 import com.redhat.idaas.datasynthesis.services.UserIdentityService;
@@ -59,6 +63,12 @@ public class DataResource {
 
     @Inject
     EINService einService;
+
+    @Inject
+    NameLastService nameLastService;
+
+    @Inject
+    NameFirstService nameFirstService;
 
     @GET
     @Path("ssn/{count}")
@@ -100,5 +110,17 @@ public class DataResource {
     @Path("useridentity/{count}")
     public List<UserIdentity> getUserIdentities(@PathParam int count) {
         return userIdentityService.retrieveRandomUserIdentities(count);
+    }
+
+    @GET
+    @Path("lastname/{count}")
+    public List<NameLast> getLastNames(@PathParam int count) {
+        return nameLastService.retrieveNameLasts(count);
+    }
+
+    @GET
+    @Path("lastname/{count}")
+    public List<NameFirst> getFirstNames(@PathParam int count) {
+        return nameFirstService.retrieveNameFirsts(count);
     }
 }

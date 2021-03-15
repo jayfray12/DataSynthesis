@@ -18,9 +18,6 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNumberEntity> {
-
-    private Random ssnRandomizer = new Random();
-
     @Override
 	protected long count() {
 		return DataGeneratedSocialSecurityNumberEntity.count();
@@ -33,31 +30,27 @@ public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNum
     // Generate Data
     @Transactional
     public List<DataGeneratedSocialSecurityNumberEntity> generateSSN(long generationCounter) {
-        List<DataGeneratedSocialSecurityNumberEntity> ssnList = new ArrayList<DataGeneratedSocialSecurityNumberEntity>(
-                (int) generationCounter);
+        List<DataGeneratedSocialSecurityNumberEntity> ssnList = new ArrayList<DataGeneratedSocialSecurityNumberEntity>((int) generationCounter);
         int upperBound1 = 999;
         int upperBound2 = 99;
         int upperBound3 = 9999;
 
-        for (int i = 0; i < generationCounter; i++)
+        for (int i = 0; i < generationCounter;)
         {
             StringBuilder ssn = new StringBuilder();
             // Create the first 3 random SSN numbers while padding to the correct length
-            ssn.append(StringUtils.leftPad(String.valueOf(ssnRandomizer.nextInt(upperBound1)), 3, "0")).append('-')
+            ssn.append(StringUtils.leftPad(String.valueOf(rand.nextInt(upperBound1 + 1)), 3, "0")).append('-')
                     // Create the middle 2 random SSN numbers while padding to the correct length
-                    .append(StringUtils.leftPad(String.valueOf(ssnRandomizer.nextInt(upperBound2)), 2, "0")).append('-')
+                    .append(StringUtils.leftPad(String.valueOf(rand.nextInt(upperBound2 + 1)), 2, "0")).append('-')
                     // Create the ending 4 random SSN numbers while padding to the correct length
-                    .append(StringUtils.leftPad(String.valueOf(ssnRandomizer.nextInt(upperBound3)), 4, "0"));
+                    .append(StringUtils.leftPad(String.valueOf(rand.nextInt(upperBound3 + 1)), 4, "0"));
 
-            DataGeneratedSocialSecurityNumberEntity ssnEntity = DataGeneratedSocialSecurityNumberEntity
-                    .findBySSN(ssn.toString());
-            if (ssnEntity == null) {
-                ssnEntity = new DataGeneratedSocialSecurityNumberEntity();
-                ssnEntity.setSocialSecurityNumberValue(ssn.toString());
-                DataGeneratedSocialSecurityNumberEntity.persist(ssnEntity);
+            DataGeneratedSocialSecurityNumberEntity ssnEntity = new DataGeneratedSocialSecurityNumberEntity(ssn.toString());
+            ssnEntity.setRegisteredApp(getRegisteredApp());
+            if (ssnEntity.safePersist()) {
+                ssnList.add(ssnEntity);
+                i++;
             }
-
-            ssnList.add(ssnEntity);
         }
 
         return ssnList;

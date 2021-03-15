@@ -2,7 +2,6 @@ package com.redhat.idaas.datasynthesis.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,14 +13,10 @@ import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
 import org.apache.commons.lang3.StringUtils;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
-
-    private Random phoneNumberRandomizer = new Random();
-
     @Override
     protected long count() {
         return DataGeneratedPhoneNumberEntity.count();
@@ -31,42 +26,36 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
     protected PanacheQuery<DataGeneratedPhoneNumberEntity> findAll() {
         return DataGeneratedPhoneNumberEntity.findAll();
     }
+
     // Generate Data
     @Transactional
     public List<DataGeneratedPhoneNumberEntity> generatePhoneNumber(long generationCounter) {
-        List<DataGeneratedPhoneNumberEntity> phonenumberList = new ArrayList<DataGeneratedPhoneNumberEntity>(
-                (int) generationCounter);
+        List<DataGeneratedPhoneNumberEntity> phoneNumberList = new ArrayList<DataGeneratedPhoneNumberEntity>((int) generationCounter);
         int upperBound1 = 999;
         int upperBound2 = 9999;
 
-        for (int i = 0; i < generationCounter; i++)
+        for (int i = 0; i < generationCounter;)
         {
-            StringBuilder phonenumber = new StringBuilder();
+            StringBuilder phoneNumber = new StringBuilder();
             // Create the first 3 phone number digits
-            phonenumber.append(StringUtils.leftPad(String.valueOf(phoneNumberRandomizer.nextInt(upperBound1)), 3, "0")).append('-')
-                    // Create thelast four name and make sure length is correct
-                    .append(StringUtils.leftPad(String.valueOf(phoneNumberRandomizer.nextInt(upperBound2)), 4, "0"));
+            phoneNumber.append(StringUtils.leftPad(String.valueOf(rand.nextInt(upperBound1 + 1)), 3, "0")).append('-')
+                    // Create the last four name and make sure length is correct
+                    .append(StringUtils.leftPad(String.valueOf(rand.nextInt(upperBound2 + 1)), 4, "0"));
 
-            DataGeneratedPhoneNumberEntity phoneNumberEntity = DataGeneratedPhoneNumberEntity
-                    .findByPhoneNumber(phonenumber.toString());
-            if (phoneNumberEntity == null) {
-                phoneNumberEntity = new DataGeneratedPhoneNumberEntity();
-                phoneNumberEntity.setPhoneNumberValue(phonenumber.toString());
-                DataGeneratedPhoneNumberEntity.persist(phoneNumberEntity);
+            DataGeneratedPhoneNumberEntity phoneNumberEntity = new DataGeneratedPhoneNumberEntity(phoneNumber.toString());
+            phoneNumberEntity.setRegisteredApp(getRegisteredApp());
+            if (phoneNumberEntity.safePersist()) {
+                phoneNumberList.add(phoneNumberEntity);
+                i++;
             }
-
-            phonenumberList.add(phoneNumberEntity);
         }
 
-        return phonenumberList;
+        return phoneNumberList;
     }
-
 
     // Persist to Data Tier
     public List<PhoneNumber> retrieveRandomPhoneNumbers(int count) {
         Set<DataGeneratedPhoneNumberEntity> entities = findRandomRows(count);
         return entities.stream().map(e -> new PhoneNumber(e.getPhoneNumberValue())).collect(Collectors.toList());
     }
-
-
 }
