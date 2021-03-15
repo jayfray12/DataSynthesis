@@ -13,11 +13,28 @@ The intent of the Data Seeeding is to support both a very large data tier DataSe
 <br/>
 As with everything we do we keep the complete history so everyone can see the work that has been done.
 
+Linux (CentOS/RHEL/Mac)
+-----------------------
+[Base-DataLoader-DataSynthesis-<LatestVersion>-Linux.sql](MySQL/DataSeeding/DataSynthesis-Load-Full/Base-DataLoader-DataSynthesis-v9-Linux.sql)
+
+Steps to Run The Scripts:
+1. Open Terminal Window
+2. Make sure all the scripts into a specific defined directory that aligns with what is defined for the
+shell being used, for simplicity I put everything into the subdirectory DataSeeding. Then make sure the
+directories have correct permissions, I used chmod 777 to ensure correct permissions (it is understood that
+that these are very open permissions and system admins might not allow this level.
+3. From the command prompt run the mysql cli with the complete path to the scripts:
+/Applications/MySQLWorkbench.app/Contents/MacOS/mysql -u root -p
+< /Users/mac-beast/Development/DataLoads/DataSeeding/DataSynthesis-Load-Full/Base-DataLoader-DataSynthesis-v9-Linux.sql
+
+Windows
+-------
 [Base-DataLoader-DataSynthesis-<LatestVersion>.sql](MySQL/DataSeeding/DataSynthesis-Load-Full/Base-DataLoader-DataSynthesis-v9.sql)
 
 Steps to Run The Scripts:
 1. Start MySQL Command Line Client
 2. Establish a connect to mysql typically with something like mysql -u root -p
 3. source <MySQLLoadScript>.sql
+
 
 Happy coding!!!
