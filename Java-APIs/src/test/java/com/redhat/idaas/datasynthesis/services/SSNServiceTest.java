@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.SSN;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedSocialSecurityNumberEntity;
@@ -15,34 +16,24 @@ import org.mockito.Mockito;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
 import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
+@TestTransaction
 public class SSNServiceTest {
 
     @Inject
     SSNService service;
 
     @Test
-    public void testSSNGenerationHappyPath() throws InvokeRealMethodException {
-        PanacheMock.mock(DataGeneratedSocialSecurityNumberEntity.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.findBySSN(Mockito.anyString())).thenReturn(null);
-
+    @Transactional
+    public void testSSNGeneration() throws InvokeRealMethodException {
+        DefaultApplication.seed();
         List<DataGeneratedSocialSecurityNumberEntity> list = service.generateSSN(10);
         Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedSocialSecurityNumberEntity.class, Mockito.times(10)).persist(Mockito.any(DataGeneratedSocialSecurityNumberEntity.class));
-        PanacheMock.verify(DataGeneratedSocialSecurityNumberEntity.class, Mockito.times(10)).findBySSN(Mockito.anyString());
-    }
 
-    @Test
-    public void testSSNGenerationWithExisting() {
-        PanacheMock.mock(DataGeneratedSocialSecurityNumberEntity.class);
-        Mockito.when(DataGeneratedSocialSecurityNumberEntity.findBySSN(Mockito.anyString())).thenAnswer(invocation -> new DataGeneratedSocialSecurityNumberEntity(invocation.getArgument(0)));
-
-        List<DataGeneratedSocialSecurityNumberEntity> list = service.generateSSN(10);
-        Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedSocialSecurityNumberEntity.class, Mockito.times(0)).persist(Mockito.any(DataGeneratedSocialSecurityNumberEntity.class));
-        PanacheMock.verify(DataGeneratedSocialSecurityNumberEntity.class, Mockito.times(10)).findBySSN(Mockito.anyString());
+        Assertions.assertEquals(10, DataGeneratedSocialSecurityNumberEntity.count());
     }
 
     @Test

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
@@ -15,34 +16,23 @@ import org.mockito.Mockito;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
 import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
+@TestTransaction
 public class PhoneNumberServiceTest {
-
     @Inject
     PhoneNumberService service;
 
     @Test
-    public void testPhoneNumberGenerationHappyPath() throws InvokeRealMethodException {
-        PanacheMock.mock(DataGeneratedPhoneNumberEntity.class);
-        Mockito.when(DataGeneratedPhoneNumberEntity.findByPhoneNumber(Mockito.anyString())).thenReturn(null);
-
+    @Transactional
+    public void testPhoneNumberGeneration() throws InvokeRealMethodException {
+        DefaultApplication.seed();
         List<DataGeneratedPhoneNumberEntity> list = service.generatePhoneNumber(10);
         Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedPhoneNumberEntity.class, Mockito.times(10)).persist(Mockito.any(DataGeneratedPhoneNumberEntity.class));
-        PanacheMock.verify(DataGeneratedPhoneNumberEntity.class, Mockito.times(10)).findByPhoneNumber(Mockito.anyString());
-    }
 
-    @Test
-    public void testPhoneNumberGenerationWithExisting() {
-        PanacheMock.mock(DataGeneratedPhoneNumberEntity.class);
-        Mockito.when(DataGeneratedPhoneNumberEntity.findByPhoneNumber(Mockito.anyString())).thenAnswer(invocation -> new DataGeneratedPhoneNumberEntity(invocation.getArgument(0)));
-
-        List<DataGeneratedPhoneNumberEntity> list = service.generatePhoneNumber(10);
-        Assertions.assertEquals(10, list.size());
-        PanacheMock.verify(DataGeneratedPhoneNumberEntity.class, Mockito.times(0)).persist(Mockito.any(DataGeneratedPhoneNumberEntity.class));
-        PanacheMock.verify(DataGeneratedPhoneNumberEntity.class, Mockito.times(10)).findByPhoneNumber(Mockito.anyString());
+        Assertions.assertEquals(10, DataGeneratedPhoneNumberEntity.count());
     }
 
     @Test

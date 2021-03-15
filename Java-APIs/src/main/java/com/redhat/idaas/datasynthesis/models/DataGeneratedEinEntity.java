@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_ein", schema = "datasynthesis", catalog = "")
-public class DataGeneratedEinEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedEinEntity extends BaseEntity {
     private long einid;
     private String einValue;
     private Timestamp createdDate;
@@ -117,11 +117,5 @@ public class DataGeneratedEinEntity extends io.quarkus.hibernate.orm.panache.Pan
 
     public static DataGeneratedEinEntity findByEinNumber(String einValue) {
         return find("einValue", einValue).firstResult();
-    }
-
-    public static void persist(DataGeneratedEinEntity entity) {
-        if (null != entity) {
-            entity.persist();
-        }
     }
 }

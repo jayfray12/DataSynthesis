@@ -115,4 +115,8 @@ public class RefDataApplicationEntity extends io.quarkus.hibernate.orm.panache.P
     public static List<RefDataApplicationEntity> findByStatusId(Short statusId) {
         return find("status", new RefDataStatusEntity(statusId)).list();
     }
+
+    public static RefDataApplicationEntity findByApplicationCustomCode(String code) {
+        return find("ApplicationCustomCode", code).firstResult();
+    }
 }

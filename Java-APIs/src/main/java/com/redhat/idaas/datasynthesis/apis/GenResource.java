@@ -9,12 +9,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.redhat.idaas.datasynthesis.dtos.NameFirst;
+import com.redhat.idaas.datasynthesis.dtos.NameLast;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
 import com.redhat.idaas.datasynthesis.services.CreditCardService;
 import com.redhat.idaas.datasynthesis.services.DateOfBirthService;
 import com.redhat.idaas.datasynthesis.services.DriversLicenseNumberService;
 import com.redhat.idaas.datasynthesis.services.EINService;
+import com.redhat.idaas.datasynthesis.services.NameFirstService;
+import com.redhat.idaas.datasynthesis.services.NameLastService;
 import com.redhat.idaas.datasynthesis.services.PhoneNumberService;
 import com.redhat.idaas.datasynthesis.services.SSNService;
 import com.redhat.idaas.datasynthesis.services.UserIdentityService;
@@ -52,6 +56,12 @@ public class GenResource {
 
     @Inject
     UserIdentityService userIdentityService;
+
+    @Inject
+    NameLastService nameLastService;
+
+    @Inject
+    NameFirstService nameFirstService;
 
     @POST
     @Path("ssn/{count}")
@@ -96,5 +106,23 @@ public class GenResource {
     @Path("useridentity/{count}")
     public Response generateUserIdentities(@PathParam int count) {
         throw new UnsupportedOperationException("generateUserIdentities Not yet implemented");
+    }
+
+    @POST
+    @Path("lastname")
+    public Response generateLastName(NameLast lastName) {
+        if (nameLastService.insertNameLast(lastName.lastName)) {
+            return Response.status(Status.CREATED).build();
+        }
+        return Response.status(Status.CONFLICT).build();
+    }
+
+    @POST
+    @Path("firstname")
+    public Response generateFirstName(NameFirst firstName) {
+        if (nameFirstService.insertNameFirst(firstName.firstName, firstName.gender)) {
+            return Response.status(Status.CREATED).build();
+        }
+        return Response.status(Status.CONFLICT).build();
     }
 }

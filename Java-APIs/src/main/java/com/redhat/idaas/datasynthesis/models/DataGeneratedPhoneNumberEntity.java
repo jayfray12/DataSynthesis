@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_phonenumber", schema = "datasynthesis", catalog = "")
-public class DataGeneratedPhoneNumberEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedPhoneNumberEntity extends BaseEntity {
     private long phoneNumberId;
     private String phoneNumberValue;
     private Timestamp createdDate;
@@ -117,11 +117,5 @@ public class DataGeneratedPhoneNumberEntity extends io.quarkus.hibernate.orm.pan
 
     public static DataGeneratedPhoneNumberEntity findByPhoneNumber(String phoneNumberValue) {
         return find("phoneNumberValue", phoneNumberValue).firstResult();
-    }
-
-    public static void persist(DataGeneratedPhoneNumberEntity entity) {
-        if (null != entity) {
-            entity.persist();
-        }
     }
 }
