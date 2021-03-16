@@ -4,7 +4,11 @@ services:
   quarkus:
     image: maven
     environment:
-      DATABASE_HOST: datasynthesisdb
+      DB_DATABASE: datasynthesis
+      DB_HOST: 127.0.0.1
+      DB_USERNAME: root
+      DB_PASSWORD: Developer123
+      DB_PORT: 3306
     volumes:
       - "./:/app:Z,delegated"
       # Mounting user's local .m2-directory,
@@ -14,6 +18,7 @@ services:
       - 5005:5005 # Debug port
       - 8080:8080 # Backend HTTP server port
     working_dir: /app
-    command: "mvn quarkus:dev"
+    command: "mvn quarkus:dev -Dquarkus.liquibase.migrate-at-start=false"
     links:
     depends_on:
+    
