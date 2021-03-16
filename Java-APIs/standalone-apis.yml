@@ -19,6 +19,4 @@ services:
       - 8080:8080 # Backend HTTP server port
     working_dir: /app
     command: "mvn quarkus:dev -Dquarkus.liquibase.migrate-at-start=false"
-    links:
-    depends_on:
     
