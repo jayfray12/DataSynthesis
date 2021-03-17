@@ -56,8 +56,15 @@ The stack can be stopped by `Ctrl+C` or by
 ```
 docker-compose down
 ```
+### 2A. Running Locally - Hybrid Container Based Platform (APIs in Containers and RDBMS on a machine somewhere)
+You can use the standalone-api.yml file. You can chage the properties as needed. As long as the attributes you change are valid
+the platform will come up. It is IMPORTANT to know this implementation assumes you have created the datasynthesis database and also seeded it with
+the data provided.
 
-### 2. Running Locally
+[DataSynthesis-DataTier-Setup](../DataTier/DataSynthesis-DataTier-Setup.md)<br/>
+[DataTier-DataLoad](../DataTier/DataTier-DataLoad.md)
+
+### 2B. Running Locally - All Container Based Platform (APIs and RDBMS)
 If you already have a valid MySQL database and would like to run this locally you'll need to set the database credentials.  This can be done in 2 ways:
 * A. Setting Environment Variables the following environment variables and running `mvn quarkus:dev`
 ```

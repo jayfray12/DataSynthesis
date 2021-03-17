@@ -4,11 +4,11 @@ services:
   quarkus:
     image: maven
     environment:
-      DB_DATABASE: datasynthesis
-      DB_HOST: 127.0.0.1
-      DB_USERNAME: root
-      DB_PASSWORD: Developer123
-      DB_PORT: 3306
+      DATABASE_NAME: datasynthesis
+      DATABASE_HOST: host.docker.internal
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: Developer123
+      DATABASE_PORT: 3306
     volumes:
       - "./:/app:Z,delegated"
       # Mounting user's local .m2-directory,

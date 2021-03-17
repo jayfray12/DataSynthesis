@@ -10,9 +10,14 @@ we welcome the assistance.
 In order to enable resources to have independence we have included several directories
 underneath the DataTier/MySQL directory as follows:
 
-- MySQL-DataLoad: We have published all the files needed to load the database (or you
+- MySQL-DataSeeding: We have published all the files needed to load the database (or you
 can use the dump file). We have used both ways. This directory contains all the SQL files and a
-configured source load script.
+configured source load script. You will find two specific sub directories here DataSynthesis-Load-Full which
+has billions of attributes generically created and able to help you jump start and DataSynthesis-Load-Small
+the is a much smaller footprint designed typically for container based implementations looking to leverage and test
+the platform. Either way using the APIs and platform it is extensible. We recommend you use the latest versioned scripts
+for loading activities. We have also included a <version>-Linux for all other than Windows operating systems. The scripts
+could take some work to setup based on security and environment!!!
 - MySQL-DDL: We publish all every export of the database we do as a complete DDL
 - MySQL-DBDumps: Single dump files that can be restored to help with setting up the
 database with all the data.
