@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,6 @@ import org.mockito.Mockito;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
-import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -27,7 +27,7 @@ public class PhoneNumberServiceTest {
 
     @Test
     @Transactional
-    public void testPhoneNumberGeneration() throws InvokeRealMethodException {
+    public void testPhoneNumberGeneration() throws DataSynthesisException {
         DefaultApplication.seed();
         List<DataGeneratedPhoneNumberEntity> list = service.generatePhoneNumber(10);
         Assertions.assertEquals(10, list.size());

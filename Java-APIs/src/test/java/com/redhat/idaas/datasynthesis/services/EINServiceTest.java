@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
-import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -45,7 +44,7 @@ public class EINServiceTest {
 
     @Test
     @Transactional
-    public void testEINGeneration() throws InvokeRealMethodException, Exception {
+    public void testEINGeneration() throws Exception {
         DefaultApplication.seed();
         List<DataGeneratedEinEntity> list = service.generateEinNumber(10);
         Assertions.assertEquals(10, list.size());

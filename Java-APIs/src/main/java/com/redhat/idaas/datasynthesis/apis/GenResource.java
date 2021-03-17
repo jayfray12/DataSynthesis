@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.redhat.idaas.datasynthesis.dtos.NameFirst;
 import com.redhat.idaas.datasynthesis.dtos.NameLast;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
 import com.redhat.idaas.datasynthesis.services.CreditCardService;
@@ -65,7 +66,7 @@ public class GenResource {
 
     @POST
     @Path("ssn/{count}")
-    public Response generateSSNs(@PathParam int count) {
+    public Response generateSSNs(@PathParam int count) throws DataSynthesisException {
         ssnService.generateSSN(count);
         return Response.status(Status.CREATED).build();
     }
@@ -90,14 +91,14 @@ public class GenResource {
 
     @POST
     @Path("ein/{count}")
-    public Response generateEINs(@PathParam int count) {
+    public Response generateEINs(@PathParam int count) throws DataSynthesisException {
         einService.generateEinNumber(count);
         return Response.status(Status.CREATED).build();
     }
 
     @POST
     @Path("phonenumber/{count}")
-    public Response generatePhoneNumbers(@PathParam int count) {
+    public Response generatePhoneNumbers(@PathParam int count) throws DataSynthesisException {
         phoneNumberService.generatePhoneNumber(count);
         return Response.status(Status.CREATED).build();
     }
@@ -110,7 +111,10 @@ public class GenResource {
 
     @POST
     @Path("lastname")
-    public Response generateLastName(NameLast lastName) {
+    public Response generateLastName(NameLast lastName) throws DataSynthesisException {
+        if (lastName == null || lastName.lastName == null || lastName.lastName.isEmpty()) {
+            throw new DataSynthesisException("Missing attribute lastName");
+        }
         if (nameLastService.insertNameLast(lastName.lastName)) {
             return Response.status(Status.CREATED).build();
         }
@@ -119,7 +123,14 @@ public class GenResource {
 
     @POST
     @Path("firstname")
-    public Response generateFirstName(NameFirst firstName) {
+    public Response generateFirstName(NameFirst firstName) throws DataSynthesisException {
+        if (firstName == null || firstName.firstName == null || firstName.firstName.isEmpty()) {
+            throw new DataSynthesisException("Missing attribute firstName");
+        }
+        if (!"M".equals(firstName.gender) && !"F".equals(firstName.gender)) {
+            System.out.println("gender input: " + firstName.gender);
+            throw new DataSynthesisException("Attribute gender should be either M or F");
+        }
         if (nameFirstService.insertNameFirst(firstName.firstName, firstName.gender)) {
             return Response.status(Status.CREATED).build();
         }
