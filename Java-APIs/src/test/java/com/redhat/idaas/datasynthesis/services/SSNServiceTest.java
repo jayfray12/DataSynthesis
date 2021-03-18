@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.SSN;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedSocialSecurityNumberEntity;
 
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,6 @@ import org.mockito.Mockito;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.mock.PanacheMock;
-import io.quarkus.panache.mock.PanacheMock.InvokeRealMethodException;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -28,7 +28,7 @@ public class SSNServiceTest {
 
     @Test
     @Transactional
-    public void testSSNGeneration() throws InvokeRealMethodException {
+    public void testSSNGeneration() throws DataSynthesisException {
         DefaultApplication.seed();
         List<DataGeneratedSocialSecurityNumberEntity> list = service.generateSSN(10);
         Assertions.assertEquals(10, list.size());

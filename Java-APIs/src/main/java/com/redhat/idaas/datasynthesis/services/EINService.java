@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.EIN;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
 
@@ -30,7 +31,7 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
 
     // Generate Data
     @Transactional
-    public List<DataGeneratedEinEntity> generateEinNumber(long generationCounter) {
+    public List<DataGeneratedEinEntity> generateEinNumber(long generationCounter) throws DataSynthesisException {
         List<DataGeneratedEinEntity> einNumberList = new ArrayList<DataGeneratedEinEntity>((int) generationCounter);
         int upperBound1 = 99;
         int upperBound2 = 9999999;

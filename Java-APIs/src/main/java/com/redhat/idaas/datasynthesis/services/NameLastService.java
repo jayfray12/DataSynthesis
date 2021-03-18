@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.NameLast;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataExistingNameLastEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -26,7 +27,7 @@ public class NameLastService extends RandomizerService<DataExistingNameLastEntit
     }
 
     @Transactional
-    public boolean insertNameLast(String lastName) {
+    public boolean insertNameLast(String lastName) throws DataSynthesisException {
         DataExistingNameLastEntity entity = new DataExistingNameLastEntity(lastName);
         entity.setRegisteredApp(getRegisteredApp());
         entity.setStatus(getDefaultStatus());

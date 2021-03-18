@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.SSN;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedSocialSecurityNumberEntity;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,17 +20,18 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNumberEntity> {
     @Override
-	protected long count() {
-		return DataGeneratedSocialSecurityNumberEntity.count();
-	}
+    protected long count() {
+        return DataGeneratedSocialSecurityNumberEntity.count();
+    }
 
-	@Override
-	protected PanacheQuery<DataGeneratedSocialSecurityNumberEntity> findAll() {
-		return DataGeneratedSocialSecurityNumberEntity.findAll();
-	}
+    @Override
+    protected PanacheQuery<DataGeneratedSocialSecurityNumberEntity> findAll() {
+        return DataGeneratedSocialSecurityNumberEntity.findAll();
+    }
+
     // Generate Data
     @Transactional
-    public List<DataGeneratedSocialSecurityNumberEntity> generateSSN(long generationCounter) {
+    public List<DataGeneratedSocialSecurityNumberEntity> generateSSN(long generationCounter) throws DataSynthesisException {
         List<DataGeneratedSocialSecurityNumberEntity> ssnList = new ArrayList<DataGeneratedSocialSecurityNumberEntity>((int) generationCounter);
         int upperBound1 = 999;
         int upperBound2 = 99;

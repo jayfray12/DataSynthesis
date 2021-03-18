@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedPhoneNumberEntity;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,7 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
 
     // Generate Data
     @Transactional
-    public List<DataGeneratedPhoneNumberEntity> generatePhoneNumber(long generationCounter) {
+    public List<DataGeneratedPhoneNumberEntity> generatePhoneNumber(long generationCounter) throws DataSynthesisException {
         List<DataGeneratedPhoneNumberEntity> phoneNumberList = new ArrayList<DataGeneratedPhoneNumberEntity>((int) generationCounter);
         int upperBound1 = 999;
         int upperBound2 = 9999;
