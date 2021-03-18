@@ -21,7 +21,7 @@ public class NameLastServiceTest {
     @Test
     @Transactional
     public void testInsertLastHappy() throws DataSynthesisException {
-        DefaultApplication.seed();
+        Common.seed();
         Assertions.assertTrue(service.insertNameLast("name1"));
         Assertions.assertTrue(service.insertNameLast("name2"));
         Assertions.assertEquals(2, DataExistingNameLastEntity.count());
@@ -30,10 +30,18 @@ public class NameLastServiceTest {
     @Test
     @Transactional
     public void testInsertLastDuplicate() throws DataSynthesisException {
-        DefaultApplication.seed();
+        Common.seed();
         Assertions.assertTrue(service.insertNameLast("name1"));
         Assertions.assertFalse(service.insertNameLast("name1"));
         Assertions.assertEquals(1, DataExistingNameLastEntity.count());
+        validateNameLastEntity((DataExistingNameLastEntity)DataExistingNameLastEntity.listAll().get(0));
+    }
+
+    private void validateNameLastEntity(DataExistingNameLastEntity entity){
+        Assertions.assertEquals("name1", entity.getLastName());
+        Assertions.assertNotNull(entity.getStatus());
+        Assertions.assertNotNull(entity.getCreatedDate());
+        Assertions.assertNotNull(entity.getRegisteredApp());
     }
 
     @Test
