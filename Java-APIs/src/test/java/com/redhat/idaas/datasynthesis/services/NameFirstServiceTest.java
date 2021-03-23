@@ -21,7 +21,7 @@ public class NameFirstServiceTest {
     @Test
     @Transactional   
     public void testInsertFirstHappy() throws DataSynthesisException {
-        DefaultApplication.seed();
+        Common.seed();
         Assertions.assertTrue(service.insertNameFirst("name1", "F"));
         Assertions.assertTrue(service.insertNameFirst("name1", "M"));
         Assertions.assertEquals(2, DataExistingNameFirstEntity.count());
@@ -30,10 +30,19 @@ public class NameFirstServiceTest {
     @Test
     @Transactional
     public void testInsertFirstDuplicate() throws DataSynthesisException {
-        DefaultApplication.seed();
+        Common.seed();
         Assertions.assertTrue(service.insertNameFirst("name1", "F"));
         Assertions.assertFalse(service.insertNameFirst("name1", "F"));
         Assertions.assertEquals(1, DataExistingNameFirstEntity.count());
+        validateNameFirstEntity((DataExistingNameFirstEntity)DataExistingNameFirstEntity.listAll().get(0));
+    }
+
+    private void validateNameFirstEntity(DataExistingNameFirstEntity entity){
+        Assertions.assertEquals("name1", entity.getFirstName());
+        Assertions.assertEquals("F", entity.getGender());
+        Assertions.assertNotNull(entity.getStatus());
+        Assertions.assertNotNull(entity.getCreatedDate());
+        Assertions.assertNotNull(entity.getRegisteredApp());
     }
 
     @Test

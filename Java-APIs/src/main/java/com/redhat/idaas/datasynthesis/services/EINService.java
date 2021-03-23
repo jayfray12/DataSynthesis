@@ -1,5 +1,6 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedEinEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -36,6 +38,8 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
         int upperBound1 = 99;
         int upperBound2 = 9999999;
         RefDataApplicationEntity app = getRegisteredApp();
+        RefDataStatusEntity defaultStatus = getDefaultStatus();
+        Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
         for (int i = 0; i < generationCounter; ) {
             StringBuilder einNumber = new StringBuilder();
@@ -46,6 +50,8 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
 
             DataGeneratedEinEntity einNumberEntity = new DataGeneratedEinEntity(einNumber.toString());
             einNumberEntity.setRegisteredApp(app);
+            einNumberEntity.setStatus(defaultStatus);
+            einNumberEntity.setCreatedDate(createdDate);
             if (einNumberEntity.safePersist()) {
                 einNumberList.add(einNumberEntity);
                 i++;

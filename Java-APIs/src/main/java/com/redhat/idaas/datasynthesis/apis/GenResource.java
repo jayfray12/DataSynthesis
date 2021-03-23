@@ -85,8 +85,9 @@ public class GenResource {
 
     @POST
     @Path("birthdate/{count}")
-    public Response generateBirthDates(@PathParam int count) {
-        throw new UnsupportedOperationException("generateBirthDates Not yet implemented");
+    public Response generateBirthDates(@PathParam int count) throws DataSynthesisException {
+        dobService.generatedDateOfBirthEntities(count);
+        return Response.status(Status.CREATED).build();
     }
 
     @POST

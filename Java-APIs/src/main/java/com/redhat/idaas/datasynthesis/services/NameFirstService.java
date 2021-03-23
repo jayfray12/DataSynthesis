@@ -1,5 +1,6 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ public class NameFirstService extends RandomizerService<DataExistingNameFirstEnt
         DataExistingNameFirstEntity entity = new DataExistingNameFirstEntity(firstName, gender);
         entity.setRegisteredApp(getRegisteredApp());
         entity.setStatus(getDefaultStatus());
+        entity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return entity.safePersist();
     }
 

@@ -29,11 +29,18 @@ public class SSNServiceTest {
     @Test
     @Transactional
     public void testSSNGeneration() throws DataSynthesisException {
-        DefaultApplication.seed();
+        Common.seed();
         List<DataGeneratedSocialSecurityNumberEntity> list = service.generateSSN(10);
         Assertions.assertEquals(10, list.size());
-
         Assertions.assertEquals(10, DataGeneratedSocialSecurityNumberEntity.count());
+        validateSSNEntity(list.get(0));
+    }
+
+    private void validateSSNEntity(DataGeneratedSocialSecurityNumberEntity entity) {
+        Common.validatePattern("^\\d{3}-\\d{2}-\\d{4}$", entity.getSocialSecurityNumberValue());
+        Assertions.assertNotNull(entity.getStatus());
+        Assertions.assertNotNull(entity.getCreatedDate());
+        Assertions.assertNotNull(entity.getRegisteredApp());
     }
 
     @Test

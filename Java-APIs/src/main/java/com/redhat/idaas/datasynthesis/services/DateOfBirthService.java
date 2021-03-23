@@ -1,18 +1,29 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDateOfBirthEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class DateOfBirthService extends RandomizerService<DataGeneratedDateOfBirthEntity> {
+    private final long MILLS_IN_100YRS = 3155695200000L; // milliseconds in 100 years
+    private final int DAYS_IN_100YRS = 36525;
+    private final long MILLS_IN_DAY = 86400000L;
 
     @Override
     protected long count() {
@@ -23,58 +34,38 @@ public class DateOfBirthService extends RandomizerService<DataGeneratedDateOfBir
     protected PanacheQuery<DataGeneratedDateOfBirthEntity> findAll() {
         return DataGeneratedDateOfBirthEntity.findAll();
     }
+
     // Create Generated Data
+    @Transactional
+    public List<DataGeneratedDateOfBirthEntity> generatedDateOfBirthEntities(int count) throws DataSynthesisException {
+        long now = System.currentTimeMillis();
+        Timestamp createdDate = new Timestamp(now);
+        RefDataApplicationEntity registeredApp = getRegisteredApp();
+        RefDataStatusEntity defaultStatus = getDefaultStatus();
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        List<DataGeneratedDateOfBirthEntity> entities = new ArrayList<DataGeneratedDateOfBirthEntity>();
 
-    // Existing Code
+        for(int i = 0; i<count;) {
+            long dobMills = this.rand.nextInt(DAYS_IN_100YRS) * MILLS_IN_DAY + now - MILLS_IN_100YRS;
+            Date dob = new Date(dobMills);
 
-    /* // Create List for return
-            List<DataSynthesis.Data.Business.Models.genRefData.BirthDates> birthDateList = new List<DataSynthesis.Data.Business.Models.genRefData.BirthDates>();
-            // Create age limit variable
-            int maximumage = 100;
-            // ArrayList
-            ArrayList dobArray = new ArrayList();
+            DataGeneratedDateOfBirthEntity entity = new DataGeneratedDateOfBirthEntity();            
+            entity.setRegisteredApp(registeredApp);
+            entity.setStatus(defaultStatus);
+            entity.setDateOfBirthDate(dob);
+            entity.setDateOfBirth(sdf.format(dob));
+            entity.setAge((int)((now - dobMills) / MILLS_IN_DAY / 365));
+            entity.setCreatedDate(createdDate);
 
-            var birthdateRandomizer = new Random();
-            for (int i = 0; i <= generationCount; i++)
-            {
-
-                // Create a general Birthdate randomizer
-
-                var birthdateRandomizer2 = new Random();
-                var birthdateRandomizer3 = new Random();
-                int year = System.DateTime.Today.Year;
-                // Calculate Maximum Age years
-                int maximumageCalc = year - maximumage;
-                var birthYear = birthdateRandomizer.Next(maximumageCalc, year);
-                // Create the month
-                var birthMonth = birthdateRandomizer.Next(1, 13);
-                // Create the day
-                int daysInMonth = System.DateTime.DaysInMonth(birthYear, birthMonth);
-                var birthDay = birthdateRandomizer.Next(1, daysInMonth);
-                // Ensure value isnt in array
-                if (!dobArray.Contains(birthMonth + "/" + birthDay + "/" + birthYear))
-                {
-                    dobArray.Add(birthMonth + "/" + birthDay + "/" + birthYear);
-                }
-
+            if (entity.safePersist()) {
+                entities.add(entity);
+                i++;
             }
-            // loop thru and populate liST and populate Date Of Borth  Structure
-            foreach (var item in dobArray)
-            {
-                string dobStringValue = item.ToString();
-                dobStringValue = dobStringValue.Replace('/', '');
-                birthDateList.Add(new DataSynthesis.Data.Business.Models.genRefData.BirthDates()
-                {
-                    DateOfBirth = dobStringValue,
-                    DateOfBirthDate = Convert.ToDateTime(item.ToString())
-                });
-            }
-
-            return birthDateList;
         }
-        */
 
-    // Persist to Data Tier
+        return entities;
+    } 
+
     public List<BirthDate> retrieveRandomBirthDates(int count) {
         Set<DataGeneratedDateOfBirthEntity> entities = findRandomRows(count);
         return entities.stream().map(e -> new BirthDate(e.getDateOfBirth(), e.getDateOfBirthDate(), e.getAge())).collect(Collectors.toList());
