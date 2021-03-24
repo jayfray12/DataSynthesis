@@ -27,7 +27,7 @@ public class EINServiceTest {
     @Test
     @Transactional
     public void testUnique() throws Exception {
-        DefaultApplication.seed();
+        Common.seed();
 
         DataGeneratedEinEntity ein = new DataGeneratedEinEntity();
         ein.setRegisteredApp(service.getRegisteredApp());
@@ -45,11 +45,18 @@ public class EINServiceTest {
     @Test
     @Transactional
     public void testEINGeneration() throws Exception {
-        DefaultApplication.seed();
+        Common.seed();
         List<DataGeneratedEinEntity> list = service.generateEinNumber(10);
         Assertions.assertEquals(10, list.size());
-
         Assertions.assertEquals(10, DataGeneratedEinEntity.count());
+        validateEINEntity(list.get(0));
+    }
+
+    private void validateEINEntity(DataGeneratedEinEntity entity) {
+        Common.validatePattern("^\\d{2}-\\d{7}$", entity.getEinValue());
+        Assertions.assertNotNull(entity.getStatus());
+        Assertions.assertNotNull(entity.getCreatedDate());
+        Assertions.assertNotNull(entity.getRegisteredApp());
     }
 
     @Test

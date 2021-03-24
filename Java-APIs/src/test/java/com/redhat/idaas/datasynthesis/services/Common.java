@@ -1,9 +1,14 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 
-public class DefaultApplication {
+import org.junit.jupiter.api.Assertions;
+
+public class Common {
     public static void seed() {
         RefDataApplicationEntity app = new RefDataApplicationEntity();
         app.setAppGuid("common");
@@ -13,5 +18,11 @@ public class DefaultApplication {
         RefDataStatusEntity status = new RefDataStatusEntity();
         status.setStatusDescription("Active");
         status.persist();
+    }
+
+    public static void validatePattern(String patternString, String actual) {
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(actual);
+        Assertions.assertTrue(matcher.matches());        
     }
 }
