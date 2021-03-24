@@ -119,7 +119,7 @@ public class DataResource {
     }
 
     @GET
-    @Path("lastname/{count}")
+    @Path("firstname/{count}")
     public List<NameFirst> getFirstNames(@PathParam int count) {
         return nameFirstService.retrieveNameFirsts(count);
     }
