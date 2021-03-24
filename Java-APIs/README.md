@@ -40,7 +40,17 @@ The base platform comes with over 50+ rules all associated to DataSynthesis (ref
 ## Starting DataSynthesis
 This is a Quarkus application (https://quarkus.io/) that can easily be run by the following 2 ways
 
-### 1. Containers
+### Maven Command
+You can start the entire platform from a command line through Maven. **This example will ALSO enable you to leverage a
+standalone database instance. The database instance MUST be seeded with data from the existing DataSynthesis data loading  scripts and processes.**
+
+The following command specifically shows you specifically how to connect to a database server on IP 127.0.0.1 on Port 3306
+to a database named datasynthesis with a user named root who has a password of Developer123
+```
+mvn quarkus:dev -Dquarkus.liquibase.migrate-at-start=false -DDATABASE_NAME=datasynthesis -DDATABASE_HOST=127.0.0.1 -DDATABASE_USERNAME=root -DDATABASE_PASSWORD=Developer123 -DDATABASE_PORT=3306
+```
+
+### Containers (Docker)
 We have setup a combination of container images orchestrated using [docker-compose](https://docs.docker.com/compose/install/)
 
 #### Included Services
