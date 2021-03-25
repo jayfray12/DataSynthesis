@@ -40,7 +40,6 @@ putting phases together. We wanted to do an initial set of phases and then re-ev
 * Build out data tier and general capabilities with a few prototypes 
 
 ## Myopic Focus
-
 We did the phases and out of the initial effort came some amazing work and findings and some
 moments of internal honesty. We did one round of a prototype. Within this phase it lasted 
 about six months. Here is what we did/achieve:

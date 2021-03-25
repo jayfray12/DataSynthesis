@@ -38,11 +38,12 @@ ApplicationID is the GUID that needs to be inserted into the database to tell th
 The base platform comes with over 50+ rules all associated to DataSynthesis (refdata_application).
 
 ## Starting DataSynthesis
-This is a Quarkus application (https://quarkus.io/) that can easily be run by the following 2 ways
+This is a Quarkus application (https://quarkus.io/) that can easily be run by the following 2 ways:
 
 ### Maven Command
-You can start the entire platform from a command line through Maven. **This example will ALSO enable you to leverage a
-standalone database instance. The database instance MUST be seeded with data from the existing DataSynthesis data loading  scripts and processes.**
+You can start the entire platform from a command line through Maven. This example will ALSO enable you to leverage a
+standalone database instance. The database instance MUST be seeded with data from the existing DataSynthesis data loading  
+scripts and processes.
 
 The following command specifically shows you specifically how to connect to a database server on IP 127.0.0.1 on Port 3306
 to a database named datasynthesis with a user named root who has a password of Developer123
@@ -58,9 +59,13 @@ We have setup a combination of container images orchestrated using [docker-compo
 * **Quarkus** - Http://localhost:8080
 
 #### Getting Started
-You can start the application stack by doing:
+You can start the application stack and have everything containerized using:
 ```
-docker-compose up
+docker-compose -f mysql-docker-compose.yml up
+```
+You can start the application stack and have it access an existing Database server (you will just need to setup the Database connectivity parameters in the environment section of the standalone-apis.yml file) :
+```
+docker-compose -f standalone-apis.yml up
 ```
 The stack can be stopped by `Ctrl+C` or by
 ```
@@ -129,3 +134,18 @@ NOTE:  by default the original/old database will utilized the properties in the 
 
 #### Useful Diff links
 - [Maven Liquibase Plugin diff](https://docs.liquibase.com/tools-integrations/maven/commands/maven-diff.html)
+
+# Testing the DataSynthesis APIs
+For simplicity we will just discuss how to test from a web browser; however, as said on the main README.md there is an
+included Insomnia API JSON file for those that like using an IDE based tool.
+
+After you have brought up the Java-APIs and database in whatever configuration fits your needs you are
+now ready to test the APIs.
+## Get Random Data
+Every specific data attribute has an API and it can retrieve random data.
+
+Here is the base URL: http://localhost:8080/api/v1/data  to get the API specific GET and POST details.
+Let's walk through one: Social Security (/ssn) <br/>
+This means the complete URL for getting 50 Random Social Security Numbers is http://localhost:8080/api/v1/data/ssn/50
+
+
