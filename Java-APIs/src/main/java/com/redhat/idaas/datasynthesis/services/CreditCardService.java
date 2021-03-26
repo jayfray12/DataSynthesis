@@ -2,6 +2,7 @@ package com.redhat.idaas.datasynthesis.services;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,13 +18,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity> {
 
     @Override
-    protected long count() {
-        return DataGeneratedCreditCardEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedCreditCardEntity.count();
+        }
+        return DataGeneratedCreditCardEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedCreditCardEntity> findAll() {
-        return DataGeneratedCreditCardEntity.findAll();
+    protected PanacheQuery<DataGeneratedCreditCardEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedCreditCardEntity.findAll();
+        }
+        return DataGeneratedCreditCardEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     public List<CreditCard> retrieveRandomCreditCards(int count) {

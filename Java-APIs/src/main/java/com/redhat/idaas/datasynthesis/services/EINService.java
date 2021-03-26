@@ -2,6 +2,7 @@ package com.redhat.idaas.datasynthesis.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,13 +23,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public class EINService extends RandomizerService<DataGeneratedEinEntity> {
     @Override
-    protected long count() {
-        return DataGeneratedEinEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedEinEntity.count();
+        }
+        return DataGeneratedEinEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedEinEntity> findAll() {
-        return DataGeneratedEinEntity.findAll();
+    protected PanacheQuery<DataGeneratedEinEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedEinEntity.findAll();
+        }
+        return DataGeneratedEinEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     // Generate Data

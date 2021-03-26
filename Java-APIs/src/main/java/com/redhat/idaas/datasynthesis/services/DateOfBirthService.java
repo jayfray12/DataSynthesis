@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,13 +27,19 @@ public class DateOfBirthService extends RandomizerService<DataGeneratedDateOfBir
     private final long MILLS_IN_DAY = 86400000L;
 
     @Override
-    protected long count() {
-        return DataGeneratedDateOfBirthEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedDateOfBirthEntity.count();
+        }
+        return DataGeneratedDateOfBirthEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedDateOfBirthEntity> findAll() {
-        return DataGeneratedDateOfBirthEntity.findAll();
+    protected PanacheQuery<DataGeneratedDateOfBirthEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedDateOfBirthEntity.findAll();
+        }
+        return DataGeneratedDateOfBirthEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     // Create Generated Data

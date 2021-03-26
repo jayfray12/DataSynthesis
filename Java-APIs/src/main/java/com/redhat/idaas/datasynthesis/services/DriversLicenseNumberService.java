@@ -1,5 +1,7 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.Arrays;
+
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDriversLicensesEntity;
@@ -11,13 +13,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity> {
 
     @Override
-    protected long count() {
-        return PanacheEntityBase.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedDriversLicensesEntity.count();
+        }
+        return DataGeneratedDriversLicensesEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedDriversLicensesEntity> findAll() {
-        return PanacheEntityBase.findAll();
+    protected PanacheQuery<DataGeneratedDriversLicensesEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedDriversLicensesEntity.findAll();
+        }
+        return DataGeneratedDriversLicensesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
     // Existing Code
 

@@ -1,6 +1,7 @@
 package com.redhat.idaas.datasynthesis.services;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,13 +19,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class NameFirstService extends RandomizerService<DataExistingNameFirstEntity> {
 
     @Override
-    protected long count() {
-        return DataExistingNameFirstEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataExistingNameFirstEntity.count();
+        }
+        return DataExistingNameFirstEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataExistingNameFirstEntity> findAll() {
-        return DataExistingNameFirstEntity.findAll();
+    protected PanacheQuery<DataExistingNameFirstEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataExistingNameFirstEntity.findAll();
+        }
+        return DataExistingNameFirstEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Transactional
@@ -36,8 +43,14 @@ public class NameFirstService extends RandomizerService<DataExistingNameFirstEnt
         return entity.safePersist();
     }
 
-    public List<NameFirst> retrieveNameFirsts(int count) {
-        Set<DataExistingNameFirstEntity> entities = findRandomRows(count);
+    public List<NameFirst> retrieveNameFirsts(int count, String gender) {
+        Set<DataExistingNameFirstEntity> entities = null;
+        if (gender == null) {
+            entities = findRandomRows(count);
+        } else {
+            entities = findRandomRows(count, "gender", gender);
+        }
+        System.out.println("entities count - " + entities.size() + " gender param = " + gender);
         return entities.stream().map(e -> new NameFirst(e.getFirstName(), e.getGender())).collect(Collectors.toList());
     }
 }

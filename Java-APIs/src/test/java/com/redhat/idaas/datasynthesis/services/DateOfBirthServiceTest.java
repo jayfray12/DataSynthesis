@@ -41,7 +41,7 @@ public class DateOfBirthServiceTest {
         SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
         Date dob = formatter.parse(entity.getDateOfBirth());
         //accuracy up to day
-        Assertions.assertEquals(dob.getTime()/86400000, entity.getDateOfBirthDate().getTime()/86400000);
+        Assertions.assertTrue(Math.abs(dob.getTime() - entity.getDateOfBirthDate().getTime())/86400000 <= 1);
 
         Assertions.assertNotNull(entity.getStatus());
         Assertions.assertNotNull(entity.getCreatedDate());

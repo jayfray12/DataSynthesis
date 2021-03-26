@@ -12,14 +12,14 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public abstract class RandomizerService<T extends PanacheEntityBase> extends BaseService {
 
-    protected abstract long count();
+    protected abstract long count(Object... queryOpts);
 
-    protected abstract PanacheQuery<T> findAll();
+    protected abstract PanacheQuery<T> findAll(Object... queryOpts);
 
     protected Random rand = new Random();
 
-    public Set<T> findRandomRows(int count) {
-        long recordCount = count();
+    public Set<T> findRandomRows(int count, Object... queryOpts) {
+        long recordCount = count(queryOpts);
         int totalCount = Math.min(count, 5000);
         if (recordCount < totalCount) {
             totalCount = (int) recordCount;
@@ -29,10 +29,10 @@ public abstract class RandomizerService<T extends PanacheEntityBase> extends Bas
         // If they want more records than we have in the database
         // Just return the entire database
         if (recordCount < totalCount) {
-            entities.addAll(findAll().list());
+            entities.addAll(findAll(queryOpts).list());
         } else {
             while (entities.size() < totalCount) {
-                T record = findAll().page(rand.nextInt((int) recordCount), 1).firstResult();
+                T record = findAll(queryOpts).page(rand.nextInt((int) recordCount), 1).firstResult();
                 entities.add(record);
             }
         }
