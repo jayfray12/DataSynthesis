@@ -219,7 +219,6 @@
 
     <profiles>
         <profile>
-            <!-- Optionally activate this profile to compile the demo into native! -->
             <id>native</id>
             <activation>
                 <property>
