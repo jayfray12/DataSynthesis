@@ -1,5 +1,7 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -19,7 +21,7 @@ public class NameFirstServiceTest {
     NameFirstService service;
 
     @Test
-    @Transactional   
+    @Transactional
     public void testInsertFirstHappy() throws DataSynthesisException {
         Common.seed();
         Assertions.assertTrue(service.insertNameFirst("name1", "F"));
@@ -34,10 +36,10 @@ public class NameFirstServiceTest {
         Assertions.assertTrue(service.insertNameFirst("name1", "F"));
         Assertions.assertFalse(service.insertNameFirst("name1", "F"));
         Assertions.assertEquals(1, DataExistingNameFirstEntity.count());
-        validateNameFirstEntity((DataExistingNameFirstEntity)DataExistingNameFirstEntity.listAll().get(0));
+        validateNameFirstEntity((DataExistingNameFirstEntity) DataExistingNameFirstEntity.listAll().get(0));
     }
 
-    private void validateNameFirstEntity(DataExistingNameFirstEntity entity){
+    private void validateNameFirstEntity(DataExistingNameFirstEntity entity) {
         Assertions.assertEquals("name1", entity.getFirstName());
         Assertions.assertEquals("F", entity.getGender());
         Assertions.assertNotNull(entity.getStatus());
@@ -51,5 +53,18 @@ public class NameFirstServiceTest {
         Assertions.assertThrows(DataSynthesisException.class, () -> {
             service.insertNameFirst("name1", "F");
         });
+    }
+
+    @Test
+    @Transactional
+    public void testGetWithFilter() throws DataSynthesisException {
+        Common.seed();
+        service.insertNameFirst("name1", "F");
+        service.insertNameFirst("name2", "M");
+        Set<DataExistingNameFirstEntity> results = service.findRandomRows(10, "gender", "F");
+        Assertions.assertEquals(1, results.size());
+        Assertions.assertEquals("F", results.toArray(new DataExistingNameFirstEntity[0])[0].getGender());
+
+        Assertions.assertEquals(2, service.findRandomRows(10).size());
     }
 }

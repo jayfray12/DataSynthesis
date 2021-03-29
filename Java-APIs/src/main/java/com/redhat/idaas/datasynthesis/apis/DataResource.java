@@ -31,6 +31,7 @@ import com.redhat.idaas.datasynthesis.services.SSNService;
 import com.redhat.idaas.datasynthesis.services.UserIdentityService;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 @Path("/data")
 @Produces(MediaType.APPLICATION_JSON)
@@ -120,7 +121,7 @@ public class DataResource {
 
     @GET
     @Path("firstname/{count}")
-    public List<NameFirst> getFirstNames(@PathParam int count) {
-        return nameFirstService.retrieveNameFirsts(count);
+    public List<NameFirst> getFirstNames(@PathParam int count, @QueryParam("gender") String gender) {
+        return nameFirstService.retrieveNameFirsts(count, gender);
     }
 }

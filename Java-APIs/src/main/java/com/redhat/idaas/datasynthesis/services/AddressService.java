@@ -1,5 +1,7 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.Arrays;
+
 import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.models.DataGeneratedAddressesEntity;
@@ -10,13 +12,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class AddressService extends RandomizerService<DataGeneratedAddressesEntity> {
 
     @Override
-    protected long count() {
-        return DataGeneratedAddressesEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedAddressesEntity.count();
+        }
+        return DataGeneratedAddressesEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedAddressesEntity> findAll() {
-        return DataGeneratedAddressesEntity.findAll();
+    protected PanacheQuery<DataGeneratedAddressesEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedAddressesEntity.findAll();
+        }
+        return DataGeneratedAddressesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     // Existing Code

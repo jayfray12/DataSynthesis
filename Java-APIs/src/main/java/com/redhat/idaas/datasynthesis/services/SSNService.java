@@ -2,6 +2,7 @@ package com.redhat.idaas.datasynthesis.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -23,13 +24,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public class SSNService extends RandomizerService<DataGeneratedSocialSecurityNumberEntity> {
     @Override
-    protected long count() {
-        return DataGeneratedSocialSecurityNumberEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedSocialSecurityNumberEntity.count();
+        }
+        return DataGeneratedSocialSecurityNumberEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedSocialSecurityNumberEntity> findAll() {
-        return DataGeneratedSocialSecurityNumberEntity.findAll();
+    protected PanacheQuery<DataGeneratedSocialSecurityNumberEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedSocialSecurityNumberEntity.findAll();
+        }
+        return DataGeneratedSocialSecurityNumberEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     // Generate Data
