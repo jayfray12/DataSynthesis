@@ -102,6 +102,23 @@ mvn -Dquarkus.datasource.username=lskywalker \
     quarkus:dev
 ``` 
 
+### Creating a native executable
+You can create a native executable using: 
+```
+./mvnw package -Pnative
+```
+
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
+```
+./mvnw package -Pnative -Dquarkus.native.container-build=true
+```
+
+You can then execute your native executable with: ./target/idaas-datasynthesis-1.0.0-SNAPSHOT-runner
+
+If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+
+If you run out of memory during the native build add `-Dnative-image.xmx=6g` to your command.
+
 ## Liquibase
 [Liquibase](https://www.liquibase.com/) is used to help track, version and deploy database schema changes.  We are utilizing the [liquibase maven plugin](https://docs.liquibase.com/tools-integrations/maven/home.html) to simplify the use of liquibase.
 
