@@ -2,6 +2,7 @@ package com.redhat.idaas.datasynthesis.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,13 +23,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @ApplicationScoped
 public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
     @Override
-    protected long count() {
-        return DataGeneratedPhoneNumberEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedPhoneNumberEntity.count();
+        }
+        return DataGeneratedPhoneNumberEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedPhoneNumberEntity> findAll() {
-        return DataGeneratedPhoneNumberEntity.findAll();
+    protected PanacheQuery<DataGeneratedPhoneNumberEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedPhoneNumberEntity.findAll();
+        }
+        return DataGeneratedPhoneNumberEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     // Generate Data

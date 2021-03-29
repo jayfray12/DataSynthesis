@@ -1,5 +1,6 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,13 +16,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class UserIdentityService extends RandomizerService<DataGeneratedUserIdentitiesEntity> {
 
     @Override
-    protected long count() {
-        return DataGeneratedUserIdentitiesEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedUserIdentitiesEntity.count();
+        }
+        return DataGeneratedUserIdentitiesEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedUserIdentitiesEntity> findAll() {
-        return DataGeneratedUserIdentitiesEntity.findAll();
+    protected PanacheQuery<DataGeneratedUserIdentitiesEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedUserIdentitiesEntity.findAll();
+        }
+        return DataGeneratedUserIdentitiesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     public List<UserIdentity> retrieveRandomUserIdentities(int count) {

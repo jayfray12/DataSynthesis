@@ -1,5 +1,6 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,13 +16,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class AccountNumberService extends RandomizerService<DataGeneratedAccountNumbersEntity> {
 
     @Override
-    protected long count() {
-        return DataGeneratedAccountNumbersEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedAccountNumbersEntity.count();
+        }
+        return DataGeneratedAccountNumbersEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedAccountNumbersEntity> findAll() {
-        return DataGeneratedAccountNumbersEntity.findAll();
+    protected PanacheQuery<DataGeneratedAccountNumbersEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataGeneratedAccountNumbersEntity.findAll();
+        }
+        return DataGeneratedAccountNumbersEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     public List<AccountNumber> retrieveRandomAccountNumbers(int count) {

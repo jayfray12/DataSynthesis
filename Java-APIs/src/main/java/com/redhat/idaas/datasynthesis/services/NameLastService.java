@@ -1,6 +1,7 @@
 package com.redhat.idaas.datasynthesis.services;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,13 +19,19 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 public class NameLastService extends RandomizerService<DataExistingNameLastEntity> {
 
     @Override
-    protected long count() {
-        return DataExistingNameLastEntity.count();
+    protected long count(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataExistingNameLastEntity.count();
+        }
+        return DataExistingNameLastEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataExistingNameLastEntity> findAll() {
-        return DataExistingNameLastEntity.findAll();
+    protected PanacheQuery<DataExistingNameLastEntity> findAll(Object... queryOpts) {
+        if (queryOpts.length <= 1) {
+            return DataExistingNameLastEntity.findAll();
+        }
+        return DataExistingNameLastEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Transactional
