@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
+import com.redhat.idaas.datasynthesis.dtos.DLN;
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.dtos.NameFirst;
 import com.redhat.idaas.datasynthesis.dtos.NameLast;
@@ -123,5 +124,11 @@ public class DataResource {
     @Path("firstname/{count}")
     public List<NameFirst> getFirstNames(@PathParam int count, @QueryParam("gender") String gender) {
         return nameFirstService.retrieveNameFirsts(count, gender);
+    }
+
+    @GET
+    @Path("driverlicense/{count}")
+    public List<DLN> getDriverLicenses(@PathParam int count, @QueryParam("state") String state) {
+        return dlnService.retrieveRandomDriverLicenses(count, state);
     }
 }
