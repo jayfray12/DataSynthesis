@@ -1,22 +1,38 @@
 package com.redhat.idaas.datasynthesis.common;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import java.util.Random;
 
 public class Randomization{
+    private Random rnd;
 
-    public String GeneratedRandomLetter(int numberValue)
-    {
-        String strValue = "";
-        // Take the integer and convert it to a specific letter to be returned
-
-        return strValue;
+    public Randomization() {
+        rnd = new Random();
     }
 
+    public Randomization(Random rnd) {
+        this.rnd = rnd;
+    }
+
+    public String randomLetters(int numLetters) {
+        if (numLetters == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numLetters; i++) {
+            sb.append((char)(rnd.nextInt(26) + 'A'));
+        }
+        return sb.toString();
+    }
+
+    public String randomDigits(int digits) {
+        if (digits == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < digits - 1; i++) {
+            sb.append((char)(rnd.nextInt(10) + '0'));
+        }
+        sb.append((char)(rnd.nextInt(9) + '1'));
+        return sb.toString();
+    }
 }

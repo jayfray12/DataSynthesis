@@ -25,6 +25,7 @@ import com.redhat.idaas.datasynthesis.services.SSNService;
 import com.redhat.idaas.datasynthesis.services.UserIdentityService;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 @Path("/gen")
 @Produces(MediaType.APPLICATION_JSON)
@@ -136,5 +137,13 @@ public class GenResource {
             return Response.status(Status.CREATED).build();
         }
         return Response.status(Status.CONFLICT).build();
+    }
+
+    @POST
+    @Path("driverlicense/{count}")
+    public Response generateDriverLicenses(@PathParam int count, @QueryParam("state") String state)
+            throws DataSynthesisException {
+        dlnService.generatedDriverLicenses(count, state);
+        return Response.status(Status.CREATED).build();       
     }
 }

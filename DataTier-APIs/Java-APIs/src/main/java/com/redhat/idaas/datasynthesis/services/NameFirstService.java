@@ -50,7 +50,6 @@ public class NameFirstService extends RandomizerService<DataExistingNameFirstEnt
         } else {
             entities = findRandomRows(count, "gender", gender);
         }
-        System.out.println("entities count - " + entities.size() + " gender param = " + gender);
         return entities.stream().map(e -> new NameFirst(e.getFirstName(), e.getGender())).collect(Collectors.toList());
     }
 }

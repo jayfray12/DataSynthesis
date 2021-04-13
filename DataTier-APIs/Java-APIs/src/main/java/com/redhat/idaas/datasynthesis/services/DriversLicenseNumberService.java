@@ -1,23 +1,74 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.sql.Timestamp;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
+import com.redhat.idaas.datasynthesis.dtos.DLN;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDriversLicensesEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataUsStatesEntity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity> {
+    // format is based on https://www.mvrdecoder.com/content/drvlicformats.aspx
+    // https://ntsi.com/drivers-license-format/ is outdated
+    //
+    // Placeholder # num, . optional num, * num or letter, % letter
+    private static final Map<String, String> FORMAT_MAP = Stream.of(new SimpleEntry<>("AL", "#######."), 
+            new SimpleEntry<>("AK", "#######"), new SimpleEntry<>("AZ", "%########"),
+            new SimpleEntry<>("AR", "#########"), new SimpleEntry<>("CA", "%#######"),
+            new SimpleEntry<>("CO", "#########"), new SimpleEntry<>("CT", "#########"),
+            new SimpleEntry<>("DE", "#......"), new SimpleEntry<>("DC", "#######"),
+            new SimpleEntry<>("FL", "%############"), new SimpleEntry<>("GA", "#########"),
+            new SimpleEntry<>("HI", "H########"), new SimpleEntry<>("ID", "%%%######"),
+            new SimpleEntry<>("IL", "%###########"), new SimpleEntry<>("IN", "##########"),
+            new SimpleEntry<>("IA", "###%%####"), new SimpleEntry<>("KS", "K########"),
+            new SimpleEntry<>("KY", "%########"), new SimpleEntry<>("LA", "0########"),
+            new SimpleEntry<>("ME", "#######"), new SimpleEntry<>("MD", "%############"),
+            new SimpleEntry<>("MA", "S########"), new SimpleEntry<>("MI", "%############"),
+            new SimpleEntry<>("MN", "%############"), new SimpleEntry<>("MS", "#########"),
+            new SimpleEntry<>("MO", "%#########"), new SimpleEntry<>("MT", "#############"),
+            new SimpleEntry<>("NE", "%########"), new SimpleEntry<>("NV", "############"),
+            new SimpleEntry<>("NH", "%%%#########"), new SimpleEntry<>("NJ", "%##############"),
+            new SimpleEntry<>("NM", "#########"), new SimpleEntry<>("NY", "#########"),
+            new SimpleEntry<>("NC", "############"), new SimpleEntry<>("ND", "%%%######"),
+            new SimpleEntry<>("OH", "%%######"), new SimpleEntry<>("OK", "%#########"),
+            new SimpleEntry<>("OR", "%######."), new SimpleEntry<>("PA", "########"),
+            new SimpleEntry<>("RI", "[V#]######"), new SimpleEntry<>("SC", "######....."),
+            new SimpleEntry<>("SD", "########."), new SimpleEntry<>("TN", "#######.."),
+            new SimpleEntry<>("TX", "########"), new SimpleEntry<>("UT", "####......"),
+            new SimpleEntry<>("VT", "#######[A#]"), new SimpleEntry<>("VA", "%########"),
+            new SimpleEntry<>("WA", "%%%%%###**"), new SimpleEntry<>("WV", "#######%*#####"),
+            new SimpleEntry<>("WI", "%#############"), new SimpleEntry<>("WY", "#########"))
+            .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue));
+
+    private static final List<Map.Entry<String, String>> FORMAT_LIST = FORMAT_MAP.entrySet().stream()
+            .collect(Collectors.toList());
 
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
             return DataGeneratedDriversLicensesEntity.count();
         }
-        return DataGeneratedDriversLicensesEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedDriversLicensesEntity.count((String) queryOpts[0],
+                Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
@@ -25,661 +76,102 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         if (queryOpts.length <= 1) {
             return DataGeneratedDriversLicensesEntity.findAll();
         }
-        return DataGeneratedDriversLicensesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedDriversLicensesEntity.find((String) queryOpts[0],
+                Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
-    // Existing Code
 
-    /*
-    foreach (var stateCode in stateCodes)
-            {
-                var randomGenerator = new Random();
-                int numberLength;
-                int numberLength2;
+    @Transactional
+    public List<DataGeneratedDriversLicensesEntity> generatedDriverLicenses(int count, String state)
+            throws DataSynthesisException {
+        List<DataGeneratedDriversLicensesEntity> results = new ArrayList<DataGeneratedDriversLicensesEntity>();
+        RefDataApplicationEntity app = getRegisteredApp();
+        RefDataStatusEntity defaultStatus = getDefaultStatus();
+        Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
-                string driversLicenseNumber = null;
-
-                // variables for code
-                Int64 rtrnNumber;
-                string rtrnChar = null;
-
-                for (int ctr = 1; ctr <= generationCount; ctr++)
-                {
-                    switch (stateCode)
-                    {
-                        case "AL":
-                            numberLength = 7;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("AL" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("AL" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "AK":
-                            numberLength = 7;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("AK" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("AK" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "AZ":
-                            numberLength = 9;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("AZ" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("AZ" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "AR":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("AR" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("AR" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "CA":
-                            numberLength = 9;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("CA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("CA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "CO":
-                            numberLength = 6;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("CO" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("CO" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "CT":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("CT" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("CT" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "DE":
-                            numberLength = 7;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("DE" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("DE" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "DC":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("DC" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("DC" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "FL":
-                            numberLength = 12;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("FL" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("FL" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "GA":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("GA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("GA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "HI":
-                            numberLength = 8;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("HI" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("HI" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "ID":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("ID" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("ID" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "IL":
-                            numberLength = 11;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 10));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("IL" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("IL" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "IN":
-                            numberLength = 9;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("IN" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("IN" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "IA":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("IA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("IA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "KS":
-                            numberLength = 8;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("KS" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("KS" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "KY":
-                            numberLength = 9;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("KY" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("KY" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "LA":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("LA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("LA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "ME":
-                            numberLength = 7;
-                            rtrnNumber = rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000001));
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            driversLicenseNumber =
-                                Convert.ToString(rtrnNumber).PadLeft(numberLength, '0') + "" + rtrnChar;
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("ME" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("ME" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MD":
-                            numberLength = 12;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MD" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MD" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MA":
-                            numberLength = 8;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MI":
-                            numberLength = 10;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MI" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MI" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MN":
-                            numberLength = 12;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MN" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MN" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MS":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MS" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MS" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MO":
-                            numberLength = 9;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MO" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MO" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "MT":
-                            numberLength = 8;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("MT" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("MT" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NE":
-                            numberLength = 8;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NE" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NE" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NV":
-                            numberLength = 8;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000000));
-                            driversLicenseNumber = "X" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NV" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NV" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NH":
-                            numberLength = 2;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            string rtrnCharNH1 = GenerateRandomData.generateAlphaCharacter();
-                            string rtrnCharNH2 = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100));
-                            Int64 rtrnNumberNH1 = Convert.ToInt64(randomGenerator.Next(1, 10001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0') + "" +
-                                                   rtrnChar + "" + rtrnCharNH1 + "" + rtrnCharNH2 + "" +
-                                                   Convert.ToString(rtrnNumberNH1).PadLeft(5, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NH" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NH" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NJ":
-                            numberLength = 14;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 1001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NJ" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NJ" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NM":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NM" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NM" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NY":
-                            numberLength = 18;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NY" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NY" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "NC":
-                            numberLength = 12;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 101));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("NC" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("NC" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "ND":
-                            numberLength = 6;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            string rtrnCharND1 = GenerateRandomData.generateAlphaCharacter();
-                            string rtrnCharND2 = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100001));
-                            driversLicenseNumber = rtrnChar + "" + rtrnCharND1 + "" + rtrnCharND2 + "" +
-                                                   Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("ND" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("ND" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "OH":
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            numberLength = 8;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000000));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("OH" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("OH" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "OK":
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("OK" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("OK" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "OR":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("OR" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("OR" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "PA":
-                            numberLength = 8;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("PA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("PA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "RI":
-                            numberLength = 6;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("RI" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("RI" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "SC":
-                            numberLength = 11;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("SC" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("SC" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "SD":
-                            numberLength = 12;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 1000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("SD" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("SD" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "TN":
-                            numberLength = 8;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("TN" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("TN" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "TX":
-                            numberLength = 8;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 10000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("TX" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("TX" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "UT":
-                            numberLength = 10;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("UT" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("UT" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "VT":
-                            numberLength = 10;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 1000000001));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("VT" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("VT" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "VA":
-                            numberLength = 11;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("VA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("VA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "WV":
-                            numberLength = 6;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("WV" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("WV" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "WA":
-                            numberLength = 11;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 100));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("WA" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("WA" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "WI":
-                            numberLength = 12;
-                            rtrnChar = GenerateRandomData.generateAlphaCharacter();
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000001));
-                            rtrnNumber = rtrnNumber + Convert.ToInt64(randomGenerator.Next(1, 101));
-                            driversLicenseNumber =
-                                rtrnChar + "" + Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("WI" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("WI" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        case "WY":
-                            numberLength = 9;
-                            rtrnNumber = Convert.ToInt64(randomGenerator.Next(1, 100000000));
-                            driversLicenseNumber = Convert.ToString(rtrnNumber).PadLeft(numberLength, '0');
-                            // Check if Array Doesnt contain the value, if it doesnt add it
-                            if (!dlnList.Contains("WY" + "|" + driversLicenseNumber))
-                            {
-                                dlnList.Add("WY" + "|" + driversLicenseNumber);
-                            }
-
-                            break;
-                        default:
-                            break;
-                    }
-                }
+        String format = null;
+        RefDataUsStatesEntity stateEntity = null;
+        if (state != null) {
+            format = FORMAT_MAP.get(state);
+            stateEntity = RefDataUsStatesEntity.findById(state);
+        }
+        for (int i = 0; i < count;) {
+            DataGeneratedDriversLicensesEntity entity = new DataGeneratedDriversLicensesEntity();
+            entity.setCreatedDate(createdDate);
+            entity.setStatus(defaultStatus);
+            entity.setRegisteredApp(app);
+            if (state == null) {
+                // generate a random DLN for a random state
+                Entry<String, String> entry = FORMAT_LIST.get(rand.nextInt(FORMAT_LIST.size()));
+                entity.setState(RefDataUsStatesEntity.findById(entry.getKey()));
+                entity.setDln(randLicense(entry.getValue()));
+            } else {
+                entity.setState(stateEntity);
+                entity.setDln(randLicense(format));
             }
-     */
+            if (entity.safePersist()) {
+                results.add(entity);
+                i++;
+            }
+        }
+
+        return results;
+    }
+
+    private String randLicense(String format) {
+        CharacterIterator it = new StringCharacterIterator(format);
+        StringBuffer sb = new StringBuffer();
+ 
+        while (it.current() != CharacterIterator.DONE)
+        {
+            if (it.current() == '[') { // expect [A#] pattern, 9% to fill a fixed letter, 91% to fill a random number
+                it.next(); //skip '['
+                char letter = it.current();
+                it.next(); //done letter
+                it.next(); //skip '#'
+                if (chance(9)) {
+                    sb.append(letter);
+                } else {
+                    sb.append(randDigit());
+                }
+                it.next(); //skip ']'
+                continue;
+            }
+            switch(it.current()) {
+                case '#': sb.append(randDigit()); break;
+                case '.': if (chance()) {sb.append(randDigit());} break;
+                case '%': sb.append(randLetter()); break;
+                case '*': sb.append(chance() ? randDigit() : randLetter()); break;
+                default: sb.append(it.current());
+            }
+            it.next();
+        }
+
+        return sb.toString();
+    }
+    
+    private char randDigit() {
+        return (char)(rand.nextInt(10) + '0');
+    }
+
+    private char randLetter() {
+        return (char)(rand.nextInt(26) + 'A');
+    }
+
+    private boolean chance(int percent) {
+        return rand.nextInt(100) < percent;
+    }
+
+    private boolean chance() {
+        return chance(50); // 50% chance
+    }
+
+    public List<DLN> retrieveRandomDriverLicenses(int count, String state) {
+        Set<DataGeneratedDriversLicensesEntity> entities = null;
+        if (state == null) {
+            entities = findRandomRows(count);
+        } else {
+            entities = findRandomRows(count, "StateCode", state);
+        }
+        return entities.stream().map(e -> new DLN(e.getDln(), e.getState().getStateId(), "")).collect(Collectors.toList());
+    }
 }
