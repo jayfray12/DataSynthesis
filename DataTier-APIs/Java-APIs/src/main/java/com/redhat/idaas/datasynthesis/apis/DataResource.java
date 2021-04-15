@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
+import com.redhat.idaas.datasynthesis.dtos.Address;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.dtos.DLN;
@@ -130,5 +131,11 @@ public class DataResource {
     @Path("driverlicense/{count}")
     public List<DLN> getDriverLicenses(@PathParam int count, @QueryParam("state") String state) {
         return dlnService.retrieveRandomDriverLicenses(count, state);
+    }
+
+    @GET
+    @Path("address/{count}")
+    public List<Address> getAddresses(@PathParam int count) {
+        return addressService.retrieveAddresses(count);
     }
 }

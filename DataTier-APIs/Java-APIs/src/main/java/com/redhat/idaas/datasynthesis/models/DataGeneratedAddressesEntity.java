@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_addresses", schema = "datasynthesis", catalog = "")
-public class DataGeneratedAddressesEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedAddressesEntity extends BaseEntity {
     private long addressId;
     private String addressStreet;
     private String addressStreet2;

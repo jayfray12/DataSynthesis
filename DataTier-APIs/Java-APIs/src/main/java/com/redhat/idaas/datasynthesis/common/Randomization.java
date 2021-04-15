@@ -35,4 +35,16 @@ public class Randomization{
         sb.append((char)(rnd.nextInt(9) + '1'));
         return sb.toString();
     }
+
+    public String randomEntry(String[] entries) {
+        return entries[rnd.nextInt(entries.length)];
+    }
+
+    // chance% to select one from entries, otherwise return ""
+    public String randomEntry(String[] entries, int chance) {
+        if (rnd.nextInt(100) > chance) {
+            return "";
+        }
+        return randomEntry(entries);
+    }
 }

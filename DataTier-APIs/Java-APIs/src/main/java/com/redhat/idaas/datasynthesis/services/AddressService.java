@@ -1,15 +1,29 @@
 package com.redhat.idaas.datasynthesis.services;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
+import com.redhat.idaas.datasynthesis.common.Randomization;
+import com.redhat.idaas.datasynthesis.dtos.Address;
+import com.redhat.idaas.datasynthesis.dtos.NameLast;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedAddressesEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class AddressService extends RandomizerService<DataGeneratedAddressesEntity> {
+    final static String[] STREET_TYPES = new String[] {"Way", "Ave", "Lane", "Street", "Court", "Place", "Walk", "Pike", "Run"};
+    final static String[] DIRECTIONS = new String[] {"N", "S", "E", "W", "NW", "NE", "SW", "SE"};
 
     @Override
     protected long count(Object... queryOpts) {
@@ -27,116 +41,42 @@ public class AddressService extends RandomizerService<DataGeneratedAddressesEnti
         return DataGeneratedAddressesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
-    // Existing Code
-    // This code constructs
-    /*
-        // Create List for return
-            List<DataSynthesis.Data.Business.Models.genRefData.Addresses> addressesList = new List<DataSynthesis.Data.Business.Models.genRefData.Addresses>();
-            // Build Response ArrayList Value
-            ArrayList completeStreetNameArray = new ArrayList();
-            string completeStreetNameValue = null;
+    @Transactional
+    public List<DataGeneratedAddressesEntity> generateAddresses(int count) throws DataSynthesisException {
+        List<DataGeneratedAddressesEntity> entities = new ArrayList<DataGeneratedAddressesEntity>();
 
-            // Build Array Lists of Values
-            ArrayList streetLocationName = new ArrayList();
-            streetLocationName.Add("N");
-            streetLocationName.Add("S");
-            streetLocationName.Add("E");
-            streetLocationName.Add("W");
-            streetLocationName.Add("NW");
-            streetLocationName.Add("NE");
-            streetLocationName.Add("SW");
-            streetLocationName.Add("SE");
+        Randomization rndService = new Randomization(this.rand);
+        RefDataApplicationEntity app = getRegisteredApp();
+        RefDataStatusEntity defaultStatus = getDefaultStatus();
+        Timestamp createdDate = new Timestamp(System.currentTimeMillis());
+        List<NameLast> lastNames = new NameLastService().retrieveNameLasts(count);
+        String[] lastNameArray = lastNames.stream().map(e -> e.lastName).toArray(String[]::new);
+        for(int i = 0; i < count;) {
+            DataGeneratedAddressesEntity entity = new DataGeneratedAddressesEntity();
+            entity.setRegisteredApp(app);
+            entity.setStatus(defaultStatus);
+            entity.setCreatedDate(createdDate);
 
-            ArrayList streetTypeName = new ArrayList();
-            streetTypeName.Add("Way");
-            streetTypeName.Add("Ave");
-            streetTypeName.Add("Lane");
-            streetTypeName.Add("Street");
-            streetTypeName.Add("Court");
-            streetTypeName.Add("Place");
-            streetTypeName.Add("Walk");
-            streetTypeName.Add("Pike");
-            streetTypeName.Add("Run");
-
-            //Create a local random number object
-            var randomGenerator = new Random();
-            // For Loop To Test
-            for (int ctr = 1; ctr <= generationCount; ctr++)
-            {
-                //Enumerate through a set of last names which we will use for street names.
-                //foreach (var lastName in NameGenerator.GetLastName(generationCount))
-                //{
-                Random rndmGen = new Random();
-                Random rndmGen2 = new Random();
-                Random rndmGen3 = new Random();
-                Random rndmGen4 = new Random();
-                Random rndmGen5 = new Random();
-
-                // House Number
-                int hNmbr = rndmGen2.Next(1, 10000);
-                string houseNmbr = hNmbr.ToString();
-                houseNmbr = houseNmbr.PadLeft(4, '0');
-
-                // Street Location Name
-                int n = rndmGen.Next(0, streetLocationName.Count);
-                string strLocationName = streetLocationName[n].ToString().Trim();
-
-                //Name
-                // From the List of Last Names
-                //int lastNameNumber = rndmGen5.Next(1, tableCount);
-                //string lastName = NameGenerator.GetLastNameByID(lastNameNumber);
-                string lastName = null;
-
-                // Street Name Ending
-                int n3 = rndmGen3.Next(0, streetTypeName.Count);
-                string strNameEnd = streetTypeName[n3].ToString().Trim();
-
-                int n4 = rndmGen4.Next(1, 3);
-                if (n4 == 1)
-                {
-                    //Return a concatenation of the street direction, house number, street namem and street type
-                    //yield return $"{(StreetDirection)randomStreetDirection} {Convert.ToString(randomHouseNumber)} {lastName} {(StreetType)randomStreetType}";
-                    //yield return houseNmbr + " " + strLocationName + " "+ lastName.ToString().Trim()+" "+strNameEnd;
-                    completeStreetNameValue = houseNmbr + " " + strLocationName + " " + lastName.ToString().Trim() + " " + strNameEnd;
-                    // Check if Array Doesnt contain the value, if it doesnt add it
-                    if (!completeStreetNameArray.Contains(completeStreetNameValue))
-                    {
-                        completeStreetNameArray.Add(completeStreetNameValue);
-                    }
-                    // Reset Values to Ensure unique random numbers
-                    hNmbr = 0;
-                    n = 0;
-                    n3 = 0;
-                    n4 = 0;
-                }
-                else
-                {
-                    completeStreetNameValue = houseNmbr + " " + lastName.ToString().Trim() + " " + strNameEnd;
-                    if (!completeStreetNameArray.Contains(completeStreetNameValue))
-                    {
-                        completeStreetNameArray.Add(completeStreetNameValue);
-                    }
-                    // Reset Values to Ensure unique random numbers
-                    hNmbr = 0;
-                    n = 0;
-                    n3 = 0;
-                    n4 = 0;
-                    //yield return houseNmbr + " " + lastName.ToString().Trim() + " " + strNameEnd;
-                }
-                // end of foreach loop to build names
-                //}
+            String address = rand.nextInt(10000) + 1 + " ";
+            String direction = rndService.randomEntry(DIRECTIONS, 25);
+            if (direction.length() > 0) {
+                address = address + direction + " ";
             }
+            address = address + rndService.randomEntry(lastNameArray) + " " + rndService.randomEntry(STREET_TYPES);
 
-            // loop thru and populate liST and populate Address Structure
-            foreach (var item in completeStreetNameArray)
-            {
-                addressesList.Add(new DataSynthesis.Data.Business.Models.genRefData.Addresses()
-                {
-                    address1 = item.ToString()
-                });
+            entity.setAddressStreet(address);
+
+            if (entity.safePersist()) {
+                entities.add(entity);
+                i++;
             }
-            return addressesList;
         }
-     */
 
+        return entities;
+    }
+
+    public List<Address> retrieveAddresses(int count) {
+        Set<DataGeneratedAddressesEntity> entities = findRandomRows(count);
+        return entities.stream().map(e -> new Address(e.getAddressStreet())).collect(Collectors.toList());
+    }    
 }
