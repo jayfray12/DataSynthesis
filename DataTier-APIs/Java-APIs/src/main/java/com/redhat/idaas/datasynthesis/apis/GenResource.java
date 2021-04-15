@@ -146,4 +146,11 @@ public class GenResource {
         dlnService.generatedDriverLicenses(count, state);
         return Response.status(Status.CREATED).build();       
     }
+
+    @POST
+    @Path("address/{count}")
+    public Response generateAddresses(@PathParam int count) throws DataSynthesisException {
+        addressService.generateAddresses(count);
+        return Response.status(Status.CREATED).build(); 
+    }
 }
