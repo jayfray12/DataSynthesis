@@ -89,7 +89,7 @@ source ./DataExisting/datasynthesis_dataexisting_namelast-04.sql
 source ./DataExisting/datasynthesis_dataexisting_namelast-05.sql
 source ./DataExisting/datasynthesis_dataexisting_namelast-06.sql
 source ./DataExisting/datasynthesis_dataexisting_namelast-07.sql
-source /DataExisting/datasynthesis_dataexisting_namelast-08.sql
+source ./DataExisting/datasynthesis_dataexisting_namelast-08.sql
 source ./DataExisting/datasynthesis_dataexisting_namelast-09.sql
 source ./DataExisting/datasynthesis_dataexisting_namelast-10.sql
 source ./DataExisting/datasynthesis_dataexisting_upccodes.sql
