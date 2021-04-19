@@ -73,6 +73,7 @@ source Other\datasynthesis_datamodel_datatables.sql
 source Platform\1-platform_dataattributes.sql
 source Platform\2-platform_datastructures.sql
 source Platform\3-platform_datastructurestodataattributes.sql
+source Platform\platform_appsettings_dataattributes.sql
 source Platform\platform_config_datagen.sql
 source DataExisting\datasynthesis_dataexisting_ababanking.sql
 source DataExisting\datasynthesis_dataexisting_areacode.sql
