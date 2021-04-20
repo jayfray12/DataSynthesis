@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_creditcard", schema = "datasynthesis", catalog = "")
-public class DataGeneratedCreditCardEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedCreditCardEntity extends BaseEntity {
     private long creditCardId;
     private String creditCardNumber;
     private String creditCardName;

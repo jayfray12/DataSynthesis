@@ -79,12 +79,6 @@ public class GenResource {
     }
 
     @POST
-    @Path("creditcard/{count}")
-    public Response generateCreditCards(@PathParam int count) {
-        throw new UnsupportedOperationException("generateCreditCards Not yet implemented");
-    }
-
-    @POST
     @Path("birthdate/{count}")
     public Response generateBirthDates(@PathParam int count) throws DataSynthesisException {
         dobService.generatedDateOfBirthEntities(count);
@@ -152,5 +146,13 @@ public class GenResource {
     public Response generateAddresses(@PathParam int count) throws DataSynthesisException {
         addressService.generateAddresses(count);
         return Response.status(Status.CREATED).build(); 
+    }
+
+    @POST
+    @Path("creditcard/{count}")
+    public Response generateCreditCards(@PathParam int count, @QueryParam("name") String cardName)
+            throws DataSynthesisException {
+        creditCardService.generateCreditCards(count, cardName);
+        return Response.status(Status.CREATED).build();       
     }
 }

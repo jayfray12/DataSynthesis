@@ -18,7 +18,7 @@ public class AreaCodeService extends RandomizerService<DataExistingAreaCodeEntit
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
-            return DataGeneratedUserIdentitiesEntity.count();
+            return DataExistingAreaCodeEntity.count();
         }
         return DataExistingAreaCodeEntity.count((String) queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
@@ -31,7 +31,7 @@ public class AreaCodeService extends RandomizerService<DataExistingAreaCodeEntit
     }
     public List<AreaCode> retrieveRandomAreaCode(int count) {
         Set<DataExistingAreaCodeEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new AreaCode(e.areaCodeValue(), e.getTimeZone(),
-                e.getStateCode())).collect(Collectors.toList());
+        return entities.stream().map(e -> new AreaCode(e.getAreaCodeValue(), e.getTimeZone().getTimeZoneValue(),
+                e.getState().getStateId())).collect(Collectors.toList());
     }
 }

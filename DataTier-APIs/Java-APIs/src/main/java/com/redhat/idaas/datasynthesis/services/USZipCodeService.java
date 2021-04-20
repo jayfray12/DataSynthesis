@@ -1,4 +1,4 @@
-ackage com.redhat.idaas.datasynthesis.services;
+package com.redhat.idaas.datasynthesis.services;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,4 +11,9 @@ import com.redhat.idaas.datasynthesis.dtos.ZipCode;
 import com.redhat.idaas.datasynthesis.models.DataExistingZipCodeUsEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+
+@ApplicationScoped
+public class USZipCodeService {
+
+}
 
