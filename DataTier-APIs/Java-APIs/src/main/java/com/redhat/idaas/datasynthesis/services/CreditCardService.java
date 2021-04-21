@@ -1,13 +1,8 @@
 package com.redhat.idaas.datasynthesis.services;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
 
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedCreditCardEntity;

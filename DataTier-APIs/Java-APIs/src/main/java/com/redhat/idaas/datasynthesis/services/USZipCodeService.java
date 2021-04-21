@@ -1,4 +1,4 @@
-ackage com.redhat.idaas.datasynthesis.services;
+package com.redhat.idaas.datasynthesis.services;
 
 import java.util.Arrays;
 import java.util.List;

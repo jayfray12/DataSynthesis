@@ -33,6 +33,9 @@ public class DataStructureService extends BaseService {
             try {
                 Class<?> c = Class.forName("com.redhat.idaas.datasynthesis.services." + className);
                 RandomizerService<?,?> service = (RandomizerService<?,?>) Arc.container().instance(c).get();
+                if (null == service) {
+                    throw new DataSynthesisException("Invalid ServiceClassName " + className + " specified for attribute " + attribute.getDataAttributeName() + " with id " + attribute.getPlatformDataAttributesId());
+                }
                 List<?> data = service.retrieveRandomData(count);
 
                 for (int i=0; i<data.size(); i++) {

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
 import com.redhat.idaas.datasynthesis.dtos.Address;
+import com.redhat.idaas.datasynthesis.dtos.AreaCode;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.dtos.DataStructure;
@@ -24,6 +25,7 @@ import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
 import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
+import com.redhat.idaas.datasynthesis.services.AreaCodeService;
 import com.redhat.idaas.datasynthesis.services.CreditCardService;
 import com.redhat.idaas.datasynthesis.services.DataStructureService;
 import com.redhat.idaas.datasynthesis.services.DateOfBirthService;
@@ -78,6 +80,9 @@ public class DataResource {
 
     @Inject
     DataStructureService dataStructureService;
+
+    @Inject
+    AreaCodeService areaCodeService;
 
     @GET
     @Path("ssn/{count}")
@@ -148,6 +153,12 @@ public class DataResource {
     @GET
     @Path("address/{count}")
     public List<Address> getAddresses(@PathParam int count) {
-        return addressService.retrieveAddresses(count);
+        return addressService.retrieveRandomData(count);
+    }
+
+    @GET
+    @Path("areacode/{count}")
+    public List<AreaCode> getAreaCodes(@PathParam int count) {
+        return areaCodeService.retrieveRandomData(count);
     }
 }
