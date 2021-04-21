@@ -16,7 +16,7 @@ public class AreaCodeService extends RandomizerService<DataExistingAreaCodeEntit
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
-            return DataGeneratedUserIdentitiesEntity.count();
+            return DataExistingAreaCodeEntity.count();
         }
         return DataExistingAreaCodeEntity.count((String) queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
