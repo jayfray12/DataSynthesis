@@ -4,12 +4,13 @@ import java.util.Arrays;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import com.redhat.idaas.datasynthesis.dtos.Address;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedAddressesEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class AddressService extends RandomizerService<DataGeneratedAddressesEntity> {
+public class AddressService extends RandomizerService<DataGeneratedAddressesEntity, Address> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -27,6 +28,12 @@ public class AddressService extends RandomizerService<DataGeneratedAddressesEnti
         return DataGeneratedAddressesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
+    @Override
+    protected Address mapEntityToDTO(DataGeneratedAddressesEntity entity) {
+        return new Address(entity.getAddressStreet());
+    }
+
+    
     // Existing Code
     // This code constructs
     /*

@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import com.redhat.idaas.datasynthesis.dtos.DLN;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDriversLicensesEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity> {
+public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity, DLN> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -27,6 +28,12 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         }
         return DataGeneratedDriversLicensesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
+
+    @Override
+    protected DLN mapEntityToDTO(DataGeneratedDriversLicensesEntity entity) {
+        return new DLN(entity.getCompleteDriversLicenseNumber(), entity.getState().getStateDescription(), entity.getCompleteDriversLicenseNumber());
+    }
+
     // Existing Code
 
     /*

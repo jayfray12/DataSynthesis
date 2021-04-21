@@ -16,7 +16,7 @@ import com.redhat.idaas.datasynthesis.models.DataExistingNameFirstEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class NameFirstService extends RandomizerService<DataExistingNameFirstEntity> {
+public class NameFirstService extends RandomizerService<DataExistingNameFirstEntity, NameFirst> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -34,6 +34,11 @@ public class NameFirstService extends RandomizerService<DataExistingNameFirstEnt
         return DataExistingNameFirstEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
+    @Override
+    protected NameFirst mapEntityToDTO(DataExistingNameFirstEntity e) {
+        return new NameFirst(e.getFirstName(), e.getGender());
+    }
+
     @Transactional
     public boolean insertNameFirst(String firstName, String gender) throws DataSynthesisException {
         DataExistingNameFirstEntity entity = new DataExistingNameFirstEntity(firstName, gender);
@@ -44,13 +49,10 @@ public class NameFirstService extends RandomizerService<DataExistingNameFirstEnt
     }
 
     public List<NameFirst> retrieveNameFirsts(int count, String gender) {
-        Set<DataExistingNameFirstEntity> entities = null;
         if (gender == null) {
-            entities = findRandomRows(count);
-        } else {
-            entities = findRandomRows(count, "gender", gender);
+            return retrieveRandomData(count);
         }
-        System.out.println("entities count - " + entities.size() + " gender param = " + gender);
-        return entities.stream().map(e -> new NameFirst(e.getFirstName(), e.getGender())).collect(Collectors.toList());
+            
+        return retrieveRandomData(count, "gender", gender);
     }
 }

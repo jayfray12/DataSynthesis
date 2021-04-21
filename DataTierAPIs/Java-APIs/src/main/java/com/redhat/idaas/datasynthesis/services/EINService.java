@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class EINService extends RandomizerService<DataGeneratedEinEntity> {
+public class EINService extends RandomizerService<DataGeneratedEinEntity, EIN> {
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
@@ -36,6 +36,11 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
             return DataGeneratedEinEntity.findAll();
         }
         return DataGeneratedEinEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+    }
+
+    @Override
+    protected EIN mapEntityToDTO(DataGeneratedEinEntity e) {
+        return new EIN(e.getEinValue());
     }
 
     // Generate Data
@@ -66,11 +71,5 @@ public class EINService extends RandomizerService<DataGeneratedEinEntity> {
         }
 
         return einNumberList;
-    }
-
-    // Persist Data
-    public List<EIN> retrieveRandomEINs(int count) {
-        Set<DataGeneratedEinEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new EIN(e.getEinValue())).collect(Collectors.toList());
     }
 }

@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity> {
+public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumberEntity, PhoneNumber> {
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
@@ -36,6 +36,11 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
             return DataGeneratedPhoneNumberEntity.findAll();
         }
         return DataGeneratedPhoneNumberEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+    }
+
+    @Override
+    protected PhoneNumber mapEntityToDTO(DataGeneratedPhoneNumberEntity e) {
+        return new PhoneNumber(e.getPhoneNumberValue());
     }
 
     // Generate Data
@@ -66,11 +71,5 @@ public class PhoneNumberService extends RandomizerService<DataGeneratedPhoneNumb
         }
 
         return phoneNumberList;
-    }
-
-    // Persist to Data Tier
-    public List<PhoneNumber> retrieveRandomPhoneNumbers(int count) {
-        Set<DataGeneratedPhoneNumberEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new PhoneNumber(e.getPhoneNumberValue())).collect(Collectors.toList());
     }
 }

@@ -13,7 +13,7 @@ import com.redhat.idaas.datasynthesis.models.DataGeneratedAccountNumbersEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class AccountNumberService extends RandomizerService<DataGeneratedAccountNumbersEntity> {
+public class AccountNumberService extends RandomizerService<DataGeneratedAccountNumbersEntity, AccountNumber> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -31,8 +31,8 @@ public class AccountNumberService extends RandomizerService<DataGeneratedAccount
         return DataGeneratedAccountNumbersEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
-    public List<AccountNumber> retrieveRandomAccountNumbers(int count) {
-        Set<DataGeneratedAccountNumbersEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new AccountNumber(e.getAccountNumberValue())).collect(Collectors.toList());
+    @Override
+    protected AccountNumber mapEntityToDTO(DataGeneratedAccountNumbersEntity e) {
+        return new AccountNumber(e.getAccountNumberValue());
     }
 }

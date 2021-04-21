@@ -6661,4 +6661,104 @@ databaseChangeLog:
         referencedColumnNames: AppGUID
         referencedTableName: refdata_application
         validate: true
-
+- changeSet:
+    id: 1615466832063-378
+    author: jfroehli (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: AppSettingsDataAttributeID
+            type: SMALLINT
+        - column:
+            name: PlatformDataAttributeID
+            type: SMALLINT
+        - column:
+            name: ServiceClassName
+            type: VARCHAR(75)
+        - column:
+            name: CodeBaseLang
+            type: VARCHAR(75)
+        - column:
+            defaultValueComputed: CURRENT_TIMESTAMP
+            name: CreatedDate
+            type: datetime
+        - column:
+            defaultValueNumeric: 1
+            name: StatusID
+            type: SMALLINT
+        - column:
+            name: MaxTableTransactionCount
+            type: BIGINT
+        - column:
+            name: CurrentTableTransactionCount
+            type: BIGINT
+        - column:
+            name: CurrentTableTransactionCounRunDateTime
+            type: datetime
+        - column:
+            name: RegisteredApp
+            type: CHAR(38)
+        tableName: platform_appsettings_dataattributes
+- changeSet:
+    id: 1615466832063-379
+    author: jfroehli (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: StatusID
+        baseTableName: platform_appsettings_dataattributes
+        constraintName: FK_refdata_appsettings_dataattributes_status
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: StatusID
+        referencedTableName: refdata_status
+        validate: true
+- changeSet:
+    id: 1615466832063-380
+    author: jfroehli (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: PlatformDataAttributeID
+        baseTableName: platform_appsettings_dataattributes
+        constraintName: FK_platform_appsettings_dataattributes_dataattributes
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: PlatformDataAttributesID
+        referencedTableName: platform_dataattributes
+        validate: true
+- changeSet:
+    id: 1615466832063-381
+    author: jfroehli (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: AppSettingsDataAttributeID
+        - column:
+            name: PlatformDataAttributeID
+        - column:
+            name: ServiceClassName
+        - column:
+            defaultValueComputed: CURRENT_TIMESTAMP
+            name: CreatedDate
+        - column:
+            defaultValueNumeric: !!float '1'
+            name: StatusID
+        - column:
+            name: MaxTableTransactionCount
+        - column:
+            name: CurrentTableTransactionCount
+        - column:
+            name: CurrentTableTransactionCounRunDateTime
+        - column:
+            name: RegisteredApp
+        indexName: IDX_PlatformData_AppSettings_DataAttributes
+        tableName: platform_appsettings_dataattributes

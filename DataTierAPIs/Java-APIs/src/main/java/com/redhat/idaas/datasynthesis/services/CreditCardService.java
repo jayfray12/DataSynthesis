@@ -15,7 +15,7 @@ import com.redhat.idaas.datasynthesis.models.DataGeneratedCreditCardEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity> {
+public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity, CreditCard> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -33,10 +33,12 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
         return DataGeneratedCreditCardEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
-    public List<CreditCard> retrieveRandomCreditCards(int count) {
-        Set<DataGeneratedCreditCardEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new CreditCard(e.getCreditCardNumber(), e.getCreditCardName())).collect(Collectors.toList());
+    @Override
+    protected CreditCard mapEntityToDTO(DataGeneratedCreditCardEntity e) {
+        return new CreditCard(e.getCreditCardNumber(), e.getCreditCardName());
     }
+
+    
     // Generate Data
     /*
     @Transactional

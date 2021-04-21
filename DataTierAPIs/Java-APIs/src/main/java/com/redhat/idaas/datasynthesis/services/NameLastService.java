@@ -16,7 +16,7 @@ import com.redhat.idaas.datasynthesis.models.DataExistingNameLastEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class NameLastService extends RandomizerService<DataExistingNameLastEntity> {
+public class NameLastService extends RandomizerService<DataExistingNameLastEntity, NameLast> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -34,6 +34,11 @@ public class NameLastService extends RandomizerService<DataExistingNameLastEntit
         return DataExistingNameLastEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
+    @Override
+    protected NameLast mapEntityToDTO(DataExistingNameLastEntity e) {
+        return new NameLast(e.getLastName());
+    }
+
     @Transactional
     public boolean insertNameLast(String lastName) throws DataSynthesisException {
         DataExistingNameLastEntity entity = new DataExistingNameLastEntity(lastName);
@@ -41,10 +46,5 @@ public class NameLastService extends RandomizerService<DataExistingNameLastEntit
         entity.setStatus(getDefaultStatus());
         entity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return entity.safePersist();
-    }
-
-    public List<NameLast> retrieveNameLasts(int count) {
-        Set<DataExistingNameLastEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new NameLast(e.getLastName())).collect(Collectors.toList());
     }
 }
