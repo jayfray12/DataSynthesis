@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_driverslicenses", schema = "datasynthesis", catalog = "")
-public class DataGeneratedDriversLicensesEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedDriversLicensesEntity extends BaseEntity {
     private long driversLicensesId;
     private String dln;
     private Timestamp createdDate;

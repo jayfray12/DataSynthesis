@@ -10,9 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
+import com.redhat.idaas.datasynthesis.dtos.Address;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
 import com.redhat.idaas.datasynthesis.dtos.DataStructure;
+import com.redhat.idaas.datasynthesis.dtos.DLN;
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.dtos.NameFirst;
 import com.redhat.idaas.datasynthesis.dtos.NameLast;
@@ -135,5 +137,17 @@ public class DataResource {
     @Path("datastructure/{count}")
     public List<DataStructure> getDataStructureByName(@PathParam int count, @QueryParam("name") String name) throws DataSynthesisException {
         return dataStructureService.retrieveDataStructures(name, count);
+    }
+
+    @GET
+    @Path("driverlicense/{count}")
+    public List<DLN> getDriverLicenses(@PathParam int count, @QueryParam("state") String state) {
+        return dlnService.retrieveRandomDriverLicenses(count, state);
+    }
+
+    @GET
+    @Path("address/{count}")
+    public List<Address> getAddresses(@PathParam int count) {
+        return addressService.retrieveAddresses(count);
     }
 }
