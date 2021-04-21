@@ -1,15 +1,14 @@
 package com.redhat.idaas.datasynthesis.services;
 
-import java.util.List;
-import java.util.Map;
 import java.sql.Timestamp;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -24,7 +23,7 @@ import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity> {
+public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity, CreditCard> {
     static final Map<String, String> FORMAT_MAP = Stream.of(new SimpleEntry<>("AMEX", "^3[47][0-9]{13}$"),
             new SimpleEntry<>("Discover",
                     "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"),
@@ -52,15 +51,18 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
                 Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
+    @Override
+    protected CreditCard mapEntityToDTO(DataGeneratedCreditCardEntity e) {
+        return new CreditCard(e.getCreditCardNumber(), e.getCreditCardName());
+    }
+
+    
     public List<CreditCard> retrieveRandomCreditCards(int count, String cardName) {
-        Set<DataGeneratedCreditCardEntity> entities = findRandomRows(count);
         if (cardName == null) {
-            entities = findRandomRows(count);
-        } else {
-            entities = findRandomRows(count, "CreditCardName", cardName);
-        }
-        return entities.stream().map(e -> new CreditCard(e.getCreditCardNumber(), e.getCreditCardName()))
-                .collect(Collectors.toList());
+            return retrieveRandomData(count);
+        } 
+        
+        return retrieveRandomData(count, "CreditCardName", cardName);
     }
 
     @Transactional

@@ -11,8 +11,10 @@ import javax.ws.rs.core.MediaType;
 
 import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
 import com.redhat.idaas.datasynthesis.dtos.Address;
+import com.redhat.idaas.datasynthesis.dtos.AreaCode;
 import com.redhat.idaas.datasynthesis.dtos.BirthDate;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
+import com.redhat.idaas.datasynthesis.dtos.DataStructure;
 import com.redhat.idaas.datasynthesis.dtos.DLN;
 import com.redhat.idaas.datasynthesis.dtos.EIN;
 import com.redhat.idaas.datasynthesis.dtos.NameFirst;
@@ -20,9 +22,12 @@ import com.redhat.idaas.datasynthesis.dtos.NameLast;
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.dtos.SSN;
 import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
+import com.redhat.idaas.datasynthesis.services.AreaCodeService;
 import com.redhat.idaas.datasynthesis.services.CreditCardService;
+import com.redhat.idaas.datasynthesis.services.DataStructureService;
 import com.redhat.idaas.datasynthesis.services.DateOfBirthService;
 import com.redhat.idaas.datasynthesis.services.DriversLicenseNumberService;
 import com.redhat.idaas.datasynthesis.services.EINService;
@@ -73,52 +78,64 @@ public class DataResource {
     @Inject
     NameFirstService nameFirstService;
 
+    @Inject
+    DataStructureService dataStructureService;
+
+    @Inject
+    AreaCodeService areaCodeService;
+
     @GET
     @Path("ssn/{count}")
     public List<SSN> getSSNs(@PathParam int count) {
-        return ssnService.retrieveRandomSSNs(count);
+        return ssnService.retrieveRandomData(count);
     }
 
     @GET
     @Path("accountnumber/{count}")
     public List<AccountNumber> getAccountNumbers(@PathParam int count) {
-       return accountNumberService.retrieveRandomAccountNumbers(count);
+       return accountNumberService.retrieveRandomData(count);
     }
 
     @GET
     @Path("birthdate/{count}")
     public List<BirthDate> getBirthDates(@PathParam int count) {
-        return dobService.retrieveRandomBirthDates(count);
+        return dobService.retrieveRandomData(count);
     }
 
     @GET
     @Path("ein/{count}")
     public List<EIN> getEINs(@PathParam int count) {
-        return einService.retrieveRandomEINs(count);
+        return einService.retrieveRandomData(count);
     }
 
     @GET
     @Path("phonenumber/{count}")
     public List<PhoneNumber> getPhoneNumbers(@PathParam int count) {
-        return phoneNumberService.retrieveRandomPhoneNumbers(count);
+        return phoneNumberService.retrieveRandomData(count);
     }
 
     @GET
     @Path("useridentity/{count}")
     public List<UserIdentity> getUserIdentities(@PathParam int count) {
-        return userIdentityService.retrieveRandomUserIdentities(count);
+        return userIdentityService.retrieveRandomData(count);
     }
 
     @GET
     @Path("lastname/{count}")
     public List<NameLast> getLastNames(@PathParam int count) {
-        return nameLastService.retrieveNameLasts(count);
+        return nameLastService.retrieveRandomData(count);
     }
 
     @GET
     @Path("firstname/{count}")
     public List<NameFirst> getFirstNames(@PathParam int count, @QueryParam("gender") String gender) {
         return nameFirstService.retrieveNameFirsts(count, gender);
+    }
+
+    @GET
+    @Path("datastructure/{count}")
+    public List<DataStructure> getDataStructureByName(@PathParam int count, @QueryParam("name") String name) throws DataSynthesisException {
+        return dataStructureService.retrieveDataStructures(name, count);
     }
 
     @GET
@@ -130,7 +147,13 @@ public class DataResource {
     @GET
     @Path("address/{count}")
     public List<Address> getAddresses(@PathParam int count) {
-        return addressService.retrieveAddresses(count);
+        return addressService.retrieveRandomData(count);
+    }
+
+    @GET
+    @Path("areacode/{count}")
+    public List<AreaCode> getAreaCodes(@PathParam int count) {
+        return areaCodeService.retrieveRandomData(count);
     }
 
     @GET

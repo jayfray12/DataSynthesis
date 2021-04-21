@@ -1,9 +1,6 @@
 package com.redhat.idaas.datasynthesis.services;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -13,7 +10,7 @@ import com.redhat.idaas.datasynthesis.models.DataGeneratedUserIdentitiesEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class UserIdentityService extends RandomizerService<DataGeneratedUserIdentitiesEntity> {
+public class UserIdentityService extends RandomizerService<DataGeneratedUserIdentitiesEntity, UserIdentity> {
 
     @Override
     protected long count(Object... queryOpts) {
@@ -31,8 +28,8 @@ public class UserIdentityService extends RandomizerService<DataGeneratedUserIden
         return DataGeneratedUserIdentitiesEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
-    public List<UserIdentity> retrieveRandomUserIdentities(int count) {
-        Set<DataGeneratedUserIdentitiesEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new UserIdentity(e.getUserIdentityValue(), e.getUserDomain(), e.getAdditionalAttributes())).collect(Collectors.toList());
+    @Override
+    protected UserIdentity mapEntityToDTO(DataGeneratedUserIdentitiesEntity e) {
+        return new UserIdentity(e.getUserIdentityValue(), e.getUserDomain(), e.getAdditionalAttributes());
     }
 }

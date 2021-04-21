@@ -3,15 +3,14 @@ package com.redhat.idaas.datasynthesis.services;
 import java.sql.Timestamp;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -26,7 +25,7 @@ import com.redhat.idaas.datasynthesis.models.RefDataUsStatesEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity> {
+public class DriversLicenseNumberService extends RandomizerService<DataGeneratedDriversLicensesEntity, DLN> {
     // format is based on https://www.mvrdecoder.com/content/drvlicformats.aspx
     // https://ntsi.com/drivers-license-format/ is outdated
     //
@@ -78,6 +77,11 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         }
         return DataGeneratedDriversLicensesEntity.find((String) queryOpts[0],
                 Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+    }
+
+    @Override
+    protected DLN mapEntityToDTO(DataGeneratedDriversLicensesEntity e) {
+        return new DLN(e.getDln(), e.getState().getStateId(), null);
     }
 
     @Transactional
@@ -166,12 +170,10 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
     }
 
     public List<DLN> retrieveRandomDriverLicenses(int count, String state) {
-        Set<DataGeneratedDriversLicensesEntity> entities = null;
         if (state == null) {
-            entities = findRandomRows(count);
-        } else {
-            entities = findRandomRows(count, "StateCode", state);
-        }
-        return entities.stream().map(e -> new DLN(e.getDln(), e.getState().getStateId(), "")).collect(Collectors.toList());
+            return retrieveRandomData(count);
+        } 
+        
+        return retrieveRandomData(count, "StateCode", state);
     }
 }
