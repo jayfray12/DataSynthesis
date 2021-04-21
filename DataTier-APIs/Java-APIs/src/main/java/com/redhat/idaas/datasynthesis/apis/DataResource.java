@@ -86,12 +86,6 @@ public class DataResource {
     }
 
     @GET
-    @Path("creditcard/{count}")
-    public List<CreditCard> getCreditCards(@PathParam int count) {
-        return creditCardService.retrieveRandomCreditCards(count);
-    }
-
-    @GET
     @Path("birthdate/{count}")
     public List<BirthDate> getBirthDates(@PathParam int count) {
         return dobService.retrieveRandomBirthDates(count);
@@ -137,5 +131,11 @@ public class DataResource {
     @Path("address/{count}")
     public List<Address> getAddresses(@PathParam int count) {
         return addressService.retrieveAddresses(count);
+    }
+
+    @GET
+    @Path("creditcard/{count}")
+    public List<CreditCard> getCreditCards(@PathParam int count, @QueryParam("name") String cardName) {
+        return this.creditCardService.retrieveRandomCreditCards(count, cardName);
     }
 }

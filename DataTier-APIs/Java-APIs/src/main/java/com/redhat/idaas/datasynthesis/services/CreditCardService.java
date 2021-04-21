@@ -1,28 +1,46 @@
 package com.redhat.idaas.datasynthesis.services;
 
 import java.util.List;
+import java.util.Map;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
+import com.github.curiousoddman.rgxgen.RgxGen;
 import com.redhat.idaas.datasynthesis.dtos.CreditCard;
+import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedCreditCardEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
 public class CreditCardService extends RandomizerService<DataGeneratedCreditCardEntity> {
+    static final Map<String, String> FORMAT_MAP = Stream.of(new SimpleEntry<>("AMEX", "^3[47][0-9]{13}$"),
+            new SimpleEntry<>("Discover",
+                    "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"),
+            new SimpleEntry<>("Master", "^5[1-5][0-9]{14}$"), new SimpleEntry<>("Visa", "^4[0-9]{12}(?:[0-9]{3})?$"))
+            .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue));
+
+    private static final List<Map.Entry<String, String>> FORMAT_LIST = FORMAT_MAP.entrySet().stream()
+            .collect(Collectors.toList());
 
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
             return DataGeneratedCreditCardEntity.count();
         }
-        return DataGeneratedCreditCardEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedCreditCardEntity.count((String) queryOpts[0],
+                Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
@@ -30,110 +48,55 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
         if (queryOpts.length <= 1) {
             return DataGeneratedCreditCardEntity.findAll();
         }
-        return DataGeneratedCreditCardEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedCreditCardEntity.find((String) queryOpts[0],
+                Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
-    public List<CreditCard> retrieveRandomCreditCards(int count) {
+    public List<CreditCard> retrieveRandomCreditCards(int count, String cardName) {
         Set<DataGeneratedCreditCardEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new CreditCard(e.getCreditCardNumber(), e.getCreditCardName())).collect(Collectors.toList());
+        if (cardName == null) {
+            entities = findRandomRows(count);
+        } else {
+            entities = findRandomRows(count, "CreditCardName", cardName);
+        }
+        return entities.stream().map(e -> new CreditCard(e.getCreditCardNumber(), e.getCreditCardName()))
+                .collect(Collectors.toList());
     }
-    // Generate Data
-    /*
+
     @Transactional
-    public List<DataGeneratedCreditCardEntity> generatedCCNumber(long generationCounter) {
-        List<DataGeneratedCreditCardEntity> ccnnumberList = new ArrayList<DataGeneratedCreditCardEntity>(
-                (int) generationCounter);
-        int upperBound1 = 99;
-        int upperBound2 = 9999999;
+    public List<DataGeneratedCreditCardEntity> generateCreditCards(int count, String cardName)
+            throws DataSynthesisException {
+        List<DataGeneratedCreditCardEntity> ccnList = new ArrayList<DataGeneratedCreditCardEntity>(count);
+        RefDataApplicationEntity app = getRegisteredApp();
+        RefDataStatusEntity defaultStatus = getDefaultStatus();
+        Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
-        for (int i = 0; i < generationCounter; i++)
-        {
-            StringBuilder ccnumber = new StringBuilder();
-            // Credit Cards selection need to be randomized
-
-            // Create the first 16 phone number digits
-            // ccnumber.append(StringUtils.leftPad(String.valueOf(einRandomizer.nextInt(upperBound1)), 16, "0"));
-
-            //Existing Code from .Net Core
-            
-               // Create List for return
-                List<DataSynthesis.Data.Business.Models.genRefData.CreditCard> creditcardList = new List<DataSynthesis.Data.Business.Models.genRefData.CreditCard>();
-                //Create list object to store data in
-                ArrayList ccList = new ArrayList();
-
-                //Create ArrayList of CreditCards
-                ArrayList creditCardName = new ArrayList();
-                creditCardName.Add("AMEX");
-                creditCardName.Add("Discover");
-                creditCardName.Add("Visa");
-                creditCardName.Add("Mastercard");
-
-                Random rndmGen = new Random();
-                Random rndmAMEXGenPt1 = new Random();
-                Random rndmAMEXGenPt2 = new Random();
-                Random rndmAMEXGenPt3 = new Random();
-                Random rndmOtherCCGenPt1 = new Random();
-
-                string creditCardNumbers;
-                //loop
-                for (int i = 0; i <= generationCount - 1; i++)
-                {
-                    int n = rndmGen.Next(0, creditCardName.Count);
-
-                    // Create Credit Card Number Based on Credit Card Name
-                    string strName0 = creditCardName[n].ToString();
-
-                    if (!strName0.Equals("AMEX"))
-                    {
-                        creditCardNumbers = Convert.ToString(rndmOtherCCGenPt1.Next(0, 1001).ToString().PadLeft(4, '0') + " " +
-                            Convert.ToString(rndmOtherCCGenPt1.Next(0, 1001).ToString().PadLeft(4, '0')) + " " +
-                            Convert.ToString(rndmOtherCCGenPt1.Next(0, 1001).ToString().PadLeft(4, '0')) + " " +
-                            Convert.ToString(rndmOtherCCGenPt1.Next(0, 1001).ToString().PadLeft(4, '0')));
-                        // Persist to list object
-                        ccList.Add(strName0 + "|" + creditCardNumbers);
-                        // Add To ArrayList if unique value
-                        if (!ccList.Contains(strName0 + "|" + creditCardNumbers))
-                        {
-                            ccList.Add(strName0 + "|" + creditCardNumbers);
-                        }
-                    }
-                    else
-                    {
-                        creditCardNumbers = Convert.ToString(rndmAMEXGenPt1.Next(0, 10001)) + " " +
-                            Convert.ToString(rndmAMEXGenPt2.Next(0, 1001)) + " " +
-                            Convert.ToString(rndmAMEXGenPt3.Next(0, 100001));
-                        //Persist to List Object
-                        ccList.Add(strName0 + "|" + creditCardNumbers);
-                        // Add To ArrayList if unique value
-                        if (!ccList.Contains(strName0 + "|" + creditCardNumbers))
-                        {
-                            ccList.Add(strName0 + "|" + creditCardNumbers);
-                        }
-                    }
-                }
-
-             
-
-
-            
-            DataGeneratedEinEntity einNumberEntity = DataGeneratedEinEntity
-                    .findByEinNumber(einnumber.toString());
-            if (einNumberEntity == null) {
-                einNumberEntity = new DataGeneratedEinEntity();
-                einNumberEntity.setEinValue(einnumber.toString());
-                DataGeneratedEinEntity.persist(einNumberEntity);
-            }
-
-            einnumberList.add(einNumberEntity);
+        RgxGen rgxGen = null;
+        if (cardName != null) {
+            rgxGen = new RgxGen(FORMAT_MAP.get(cardName));
         }
 
-        return einnumberList;
-    }
+        for (int i = 0; i < count;) {
+            DataGeneratedCreditCardEntity entity = new DataGeneratedCreditCardEntity();
+            entity.setCreatedDate(createdDate);
+            entity.setStatus(defaultStatus);
+            entity.setRegisteredApp(app);
+            if (cardName == null) {
+                // generate a random cc number for a random card
+                Entry<String, String> entry = FORMAT_LIST.get(rand.nextInt(FORMAT_LIST.size()));
+                entity.setCreditCardName(entry.getKey());
+                rgxGen = new RgxGen(entry.getValue());
+                entity.setCreditCardNumber(rgxGen.generate(rand));
+            } else {
+                entity.setCreditCardName(cardName);
+                entity.setCreditCardNumber(rgxGen.generate(rand));
+            }
+            if (entity.safePersist()) {
+                ccnList.add(entity);
+                i++;
+            }
+        }
 
-    // Persist Data
-    public List<EIN> retrieveRandomEINs(int count) {
-        Set<DataGeneratedEinEntity> entities = findRandomRows(count);
-        return entities.stream().map(e -> new EIN(e.getEinValue())).collect(Collectors.toList());
+        return ccnList;
     }
-         */
 }
