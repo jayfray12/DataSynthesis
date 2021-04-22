@@ -1,4 +1,4 @@
-name: Event Builder Release
+name: Release
 
 on:
   workflow_dispatch:
