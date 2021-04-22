@@ -37,6 +37,33 @@
         </dependencies>
     </dependencyManagement>
 
+    <developers>
+		<developer>
+		  <name>Alan Scott</name>
+		  <email>alscott@redhat.com</email>
+		  <organization>Red Hat</organization>
+		  <organizationUrl>http://www.redhat.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Bill Wei</name>
+			<email>bilwei@redhat.com</email>
+			<organization>Red Hat</organization>
+			<organizationUrl>http://www.redhat.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Jason Froehlich</name>
+			<email>jfroehlich@redhat.com</email>
+			<organization>Red Hat</organization>
+			<organizationUrl>http://www.redhat.com</organizationUrl>
+		</developer>
+	</developers>
+
+    <scm>
+		<connection>scm:git:https://github.com/jayfray12/DataSynthesis.git</connection>
+		<url>https://github.com/jayfray12/DataSynthesis</url>
+		<developerConnection>scm:git:https://github.com/jayfray12/DataSynthesis.git</developerConnection>
+    	<tag>HEAD</tag>
+  	</scm>
 
     <dependencies>
         <dependency>
@@ -148,6 +175,7 @@
 				   <tagNameFormat>v@{project.version}</tagNameFormat>
 				   <autoVersionSubmodules>true</autoVersionSubmodules>
 				   <releaseProfiles>releases</releaseProfiles>
+				   <scmCommentPrefix>[ci skip]</scmCommentPrefix>
 				</configuration>
              </plugin>
             <plugin>
