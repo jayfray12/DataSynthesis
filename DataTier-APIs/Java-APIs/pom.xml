@@ -176,6 +176,9 @@
 				   <autoVersionSubmodules>true</autoVersionSubmodules>
 				   <releaseProfiles>releases</releaseProfiles>
 				   <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                   <scmReleaseCommitComment>@{prefix} prepare release @{releaseLabel}
+                       
+                    skip-checks: true</scmReleaseCommitComment>
 				</configuration>
              </plugin>
             <plugin>
