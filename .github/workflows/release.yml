@@ -32,3 +32,4 @@ jobs:
         version-major: ${{ github.event.inputs.increment-major }}
         version-minor: ${{ github.event.inputs.increment-minor }}
         maven-project-folder: "DataTier-APIs/Java-APIs/"
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
