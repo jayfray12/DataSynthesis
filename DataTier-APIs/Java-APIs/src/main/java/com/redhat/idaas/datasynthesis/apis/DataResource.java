@@ -22,6 +22,7 @@ import com.redhat.idaas.datasynthesis.dtos.NameLast;
 import com.redhat.idaas.datasynthesis.dtos.PhoneNumber;
 import com.redhat.idaas.datasynthesis.dtos.SSN;
 import com.redhat.idaas.datasynthesis.dtos.UserIdentity;
+import com.redhat.idaas.datasynthesis.dtos.ZipCode;
 import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.services.AccountNumberService;
 import com.redhat.idaas.datasynthesis.services.AddressService;
@@ -35,6 +36,7 @@ import com.redhat.idaas.datasynthesis.services.NameFirstService;
 import com.redhat.idaas.datasynthesis.services.NameLastService;
 import com.redhat.idaas.datasynthesis.services.PhoneNumberService;
 import com.redhat.idaas.datasynthesis.services.SSNService;
+import com.redhat.idaas.datasynthesis.services.USZipCodeService;
 import com.redhat.idaas.datasynthesis.services.UserIdentityService;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -83,6 +85,9 @@ public class DataResource {
 
     @Inject
     AreaCodeService areaCodeService;
+
+    @Inject
+    USZipCodeService zipCodeService;
 
     @GET
     @Path("ssn/{count}")
@@ -154,6 +159,12 @@ public class DataResource {
     @Path("areacode/{count}")
     public List<AreaCode> getAreaCodes(@PathParam int count) {
         return areaCodeService.retrieveRandomData(count);
+    }
+
+    @GET
+    @Path("zipcode/{count}")
+    public List<ZipCode> getZipCodes(@PathParam int count) {
+        return zipCodeService.retrieveRandomData(count);
     }
 
     @GET
