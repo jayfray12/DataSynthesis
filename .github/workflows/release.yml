@@ -21,12 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
-    - name: Temporarily disable branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
-        enforce_admins: false
     - uses: actions/checkout@v2
     - name: Java Maven release
       uses: qcastel/github-actions-maven-release@v1.12.16
@@ -40,11 +34,5 @@ jobs:
         maven-project-folder: "DataTier-APIs/Java-APIs/"
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         maven-args: "-DskipTests -Dmaven.deploy.skip=true"
-    - name: Enable branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()  # Force to always run this step to ensure branch protection is always turned back on
-      with:
-        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
-        enforce_admins: true
-        # owner: benjefferies
-        # repo: branch-protection-bot
+        git-release-bot-name: jayfray12
+
