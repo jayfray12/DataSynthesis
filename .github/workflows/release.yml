@@ -26,6 +26,7 @@ jobs:
       if: always()
       with:
         access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
+        enforce_admins: false
     - uses: actions/checkout@v2
     - name: Java Maven release
       uses: qcastel/github-actions-maven-release@v1.12.16
@@ -44,5 +45,6 @@ jobs:
       if: always()  # Force to always run this step to ensure branch protection is always turned back on
       with:
         access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
+        enforce_admins: true
         # owner: benjefferies
-        # repo: branch-protection-bo
+        # repo: branch-protection-bot
