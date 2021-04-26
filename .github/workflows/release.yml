@@ -25,7 +25,7 @@ jobs:
       uses: benjefferies/branch-protection-bot@master
       if: always()
       with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
+        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
     - uses: actions/checkout@v2
     - name: Java Maven release
       uses: qcastel/github-actions-maven-release@v1.12.16
@@ -43,6 +43,6 @@ jobs:
       uses: benjefferies/branch-protection-bot@master
       if: always()  # Force to always run this step to ensure branch protection is always turned back on
       with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
+        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
         # owner: benjefferies
         # repo: branch-protection-bo
