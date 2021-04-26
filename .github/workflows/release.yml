@@ -33,6 +33,5 @@ jobs:
         version-minor: ${{ github.event.inputs.increment-minor }}
         maven-project-folder: "DataTier-APIs/Java-APIs/"
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        maven-args: "-DskipTests -Dmaven.deploy.skip=true"
-        git-release-bot-name: jayfray12
+        maven-args: "-Dmaven.deploy.skip=true"
 
