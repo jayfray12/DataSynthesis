@@ -27,12 +27,12 @@ jobs:
       env:
         JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
       with:
-        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
+        access-token: ${{ secrets.TEST_ACCESS_TOKEN }}
         release-branch-name: ${{ github.event.inputs.branch }}
         version-major: ${{ github.event.inputs.increment-major }}
         version-minor: ${{ github.event.inputs.increment-minor }}
         maven-project-folder: "DataTier-APIs/Java-APIs/"
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+#        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         maven-args: "-Dmaven.deploy.skip=true"
-        git-release-bot-name: "idaas-bot"
+#        git-release-bot-name: "idaas-bot"
 
