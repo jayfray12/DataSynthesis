@@ -6,7 +6,6 @@ import javax.enterprise.context.ApplicationScoped;
 
 import com.redhat.idaas.datasynthesis.dtos.AreaCode;
 import com.redhat.idaas.datasynthesis.models.DataExistingAreaCodeEntity;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedUserIdentitiesEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
