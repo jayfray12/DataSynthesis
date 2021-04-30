@@ -21,7 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
       with:
         token: ${{ secrets.IDAAS_ACCESS_TOKEN }}
     - name: Java Maven release
@@ -36,5 +37,4 @@ jobs:
         maven-project-folder: "DataTier-APIs/Java-APIs/"
         maven-args: "-Dmaven.deploy.skip=true"
         git-release-bot-name: "idaas-bot"
-        git-release-bot-email: "jfroehlich@redhat.com"
 
