@@ -25,6 +25,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         token: ${{ secrets.IDAAS_ACCESS_TOKEN }}
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
     - name: Java Maven release
       uses: qcastel/github-actions-maven-release@v1.12.16
       env:
@@ -37,4 +43,5 @@ jobs:
         maven-project-folder: "DataTier-APIs/Java-APIs/"
         maven-args: "-Dmaven.deploy.skip=true"
         git-release-bot-name: "idaas-bot"
+        m2-home-folder: "~/.m2"
 
