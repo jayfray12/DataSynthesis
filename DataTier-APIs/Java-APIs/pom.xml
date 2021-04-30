@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.redhat.idaas</groupId>
     <artifactId>idaas-datasynthesis</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <name>iDAAS DataSystesis</name>
 
     <properties>
@@ -170,7 +170,6 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>${maven.release.version}</version>
 				<configuration>
-				   <tagNameFormat>v@{project.version}</tagNameFormat>
 				   <autoVersionSubmodules>true</autoVersionSubmodules>
 				   <releaseProfiles>releases</releaseProfiles>
 				   <scmCommentPrefix>[ci skip]</scmCommentPrefix>
