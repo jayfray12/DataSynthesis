@@ -24,23 +24,17 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
+        token: ${{ secrets.IDAAS_ACCESS_TOKEN }}
     - name: Java Maven release
       uses: qcastel/github-actions-maven-release@v1.12.16
       env:
         JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
       with:
-        access-token: ${{ secrets.GITREPO_ACCESS_TOKEN }}
+        access-token: ${{ secrets.IDAAS_ACCESS_TOKEN }}
         release-branch-name: ${{ github.event.inputs.branch }}
         version-major: ${{ github.event.inputs.increment-major }}
         version-minor: ${{ github.event.inputs.increment-minor }}
         maven-project-folder: "DataTier-APIs/Java-APIs/"
         maven-args: "-Dmaven.deploy.skip=true"
-        m2-home-folder: "~/.m2"
+        git-release-bot-name: "idaas-bot"
 
