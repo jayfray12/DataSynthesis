@@ -8,11 +8,11 @@ on:
         required: true
         default: "master"
       increment-major:
-        description: "Should we increment the major version"
+        description: "Should we increment the major version (true/false)"
         required: true
         default: "false"
       increment-minor:
-        description: "Should we increment the minor version"
+        description: "Should we increment the minor version (true/false)"
         required: true
         default: "false"
 
