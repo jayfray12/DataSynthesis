@@ -12,6 +12,7 @@ TRUNCATE TABLE refdata_countries;
 TRUNCATE TABLE refdata_operationtype;
 TRUNCATE TABLE refdata_sensitivityflag;
 TRUNCATE TABLE refdata_codeset;
+TRUNCATE TABLE refdata_datagentypes;
 TRUNCATE TABLE refdata_legalentity;
 TRUNCATE TABLE refdata_operationtype;
 TRUNCATE TABLE refdata_platformparams;

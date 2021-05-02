@@ -17,7 +17,7 @@ TRUNCATE TABLE refdata_operationtype;
 TRUNCATE TABLE refdata_platformparams;
 TRUNCATE TABLE refdata_platformparamstodataattributes;
 TRUNCATE TABLE refdata_sensitivityflag;
-TRUNCATE TABLE refdata_datagenttypes;
+TRUNCATE TABLE refdata_datagentypes;
 TRUNCATE TABLE datamodel_datatables;
 TRUNCATE TABLE datastructure_address;
 TRUNCATE TABLE datastructure_bankaccount;
@@ -25,6 +25,7 @@ TRUNCATE TABLE datastructure_corporations;
 TRUNCATE TABLE datastructure_names;
 TRUNCATE TABLE datastructure_persondemographics;
 TRUNCATE TABLE datastructure_phonenumbers;
+TRUNCATE TABLE datastructure_products;
 TRUNCATE TABLE datastructure_products;
 TRUNCATE TABLE dataexisting_ababanking;
 TRUNCATE TABLE dataexisting_areacode;
@@ -65,7 +66,7 @@ source ./ReferenceData/6-refdata_application.sql
 source ./ReferenceData/7-refdata_industrystd.sql
 source ./ReferenceData/8-refdata_sensitivityflag.sql
 source ./ReferenceData/9-refdata_codeset.sql
-source ./ReferenceData/10-refdata_datagenttypes.sql
+source ./ReferenceData/10-refdata_datagentypes.sql
 source ./ReferenceData/refdata_countries.sql
 source ./ReferenceData/refdata_operationtype.sql
 source ./ReferenceData/refdata_sensitivityflag.sql
