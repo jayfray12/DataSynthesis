@@ -15,10 +15,13 @@ import java.util.stream.Stream;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
+import com.github.curiousoddman.rgxgen.RgxGen;
 import com.redhat.idaas.datasynthesis.dtos.DLN;
 import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
 import com.redhat.idaas.datasynthesis.models.DataGeneratedDriversLicensesEntity;
+import com.redhat.idaas.datasynthesis.models.PlatformDataAttributesEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
+import com.redhat.idaas.datasynthesis.models.RefDataDataGenTypesEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataUsStatesEntity;
 
@@ -92,12 +95,18 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         RefDataStatusEntity defaultStatus = getDefaultStatus();
         Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
-        String format = null;
+        PlatformDataAttributesEntity dlnDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Drivers License Number");
+        List<RefDataDataGenTypesEntity> dlnTypes = null;
         RefDataUsStatesEntity stateEntity = null;
+        RgxGen rgxGen = null;
         if (state != null) {
-            format = FORMAT_MAP.get(state);
             stateEntity = RefDataUsStatesEntity.findById(state);
+            RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", dlnDataAttribute, state).firstResult();
+            rgxGen = new RgxGen(dataType.getDefinition());
+        } else {
+            dlnTypes = RefDataDataGenTypesEntity.find("dataAttribute", dlnDataAttribute).list();
         }
+
         for (int i = 0; i < count;) {
             DataGeneratedDriversLicensesEntity entity = new DataGeneratedDriversLicensesEntity();
             entity.setCreatedDate(createdDate);
@@ -105,12 +114,13 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
             entity.setRegisteredApp(app);
             if (state == null) {
                 // generate a random DLN for a random state
-                Entry<String, String> entry = FORMAT_LIST.get(rand.nextInt(FORMAT_LIST.size()));
-                entity.setState(RefDataUsStatesEntity.findById(entry.getKey()));
-                entity.setDln(randLicense(entry.getValue()));
+                RefDataDataGenTypesEntity dataType = dlnTypes.get(rand.nextInt(dlnTypes.size()));
+                entity.setState(RefDataUsStatesEntity.findById(dataType.getDataGenTypeDescription()));
+                rgxGen = new RgxGen(dataType.getDefinition());
+                entity.setDln(rgxGen.generate(rand));
             } else {
                 entity.setState(stateEntity);
-                entity.setDln(randLicense(format));
+                entity.setDln(rgxGen.generate(rand));
             }
             if (entity.safePersist()) {
                 results.add(entity);
@@ -119,54 +129,6 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         }
 
         return results;
-    }
-
-    private String randLicense(String format) {
-        CharacterIterator it = new StringCharacterIterator(format);
-        StringBuffer sb = new StringBuffer();
- 
-        while (it.current() != CharacterIterator.DONE)
-        {
-            if (it.current() == '[') { // expect [A#] pattern, 9% to fill a fixed letter, 91% to fill a random number
-                it.next(); //skip '['
-                char letter = it.current();
-                it.next(); //done letter
-                it.next(); //skip '#'
-                if (chance(9)) {
-                    sb.append(letter);
-                } else {
-                    sb.append(randDigit());
-                }
-                it.next(); //skip ']'
-                continue;
-            }
-            switch(it.current()) {
-                case '#': sb.append(randDigit()); break;
-                case '.': if (chance()) {sb.append(randDigit());} break;
-                case '%': sb.append(randLetter()); break;
-                case '*': sb.append(chance() ? randDigit() : randLetter()); break;
-                default: sb.append(it.current());
-            }
-            it.next();
-        }
-
-        return sb.toString();
-    }
-    
-    private char randDigit() {
-        return (char)(rand.nextInt(10) + '0');
-    }
-
-    private char randLetter() {
-        return (char)(rand.nextInt(26) + 'A');
-    }
-
-    private boolean chance(int percent) {
-        return rand.nextInt(100) < percent;
-    }
-
-    private boolean chance() {
-        return chance(50); // 50% chance
     }
 
     public List<DLN> retrieveRandomDriverLicenses(int count, String state) {

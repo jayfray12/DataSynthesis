@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_status` (
   PRIMARY KEY (`StatusID`),
   INDEX `IDX_RefData_Status` (`StatusID` ASC, `StatusDescription` ASC, `CreatedDate` ASC, `CreatedUser` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -101,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_vendor` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -158,7 +156,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_ababanking` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10115
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -236,7 +233,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_areacode` (
     FOREIGN KEY (`StateCode`)
     REFERENCES `datasynthesis`.`refdata_usstates` (`StateID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 311
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -257,7 +253,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_countries` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 235
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -311,7 +306,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_companies` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 948
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -339,7 +333,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_namefirst` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 301552
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -366,7 +359,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_namelast` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 601224
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -392,7 +384,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_upccodes` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 46529
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -459,7 +450,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`dataexisting_zipcodeus` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 41862
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -468,14 +458,20 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `datasynthesis`.`refdata_datagentypes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_datagentypes` (
-  `DataGenTypeID` VARCHAR(10) NOT NULL,
+  `DataGenTypeID` SMALLINT NOT NULL AUTO_INCREMENT,
   `DataGenTypeDescription` VARCHAR(65) NULL DEFAULT NULL,
+  `Definition` VARCHAR(255) NULL DEFAULT NULL,
+  `DataAttributeID` SMALLINT NULL DEFAULT NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`DataGenTypeID`),
+  INDEX `FK_RefDataDataGenTypes_DataAttributes` (`DataAttributeID` ASC) VISIBLE,
   INDEX `FK_RefDataDataGenTypes_Status` (`StatusID` ASC) VISIBLE,
-  INDEX `IDX_RefData_DataGenTypes` (`DataGenTypeID` ASC, `DataGenTypeDescription` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC) VISIBLE,
+  INDEX `IDX_RefData_DataGenTypes` (`DataGenTypeID` ASC, `DataGenTypeDescription` ASC, `Definition` ASC, `DataAttributeID` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC) VISIBLE,
+  CONSTRAINT `FK_platform_config_datagen_dataattributes`
+    FOREIGN KEY (`DataAttributeID`)
+    REFERENCES `datasynthesis`.`platform_dataattributes` (`PlatformDataAttributesID`),
   CONSTRAINT `FK_RefDataDataGenTypes_Status`
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
@@ -494,7 +490,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_accountnumbers` (
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT 'N/A',
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`AccountNumbersID`),
   UNIQUE INDEX `IDX_UC_datagenerated_accountnumbers` (`AccountNumberValue` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   INDEX `FK_datagenerated_accountnumbers_status` (`StatusID` ASC) VISIBLE,
@@ -526,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_addresses` (
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT 'N/A',
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`AddressID`),
   UNIQUE INDEX `IDX_UC_DataGenerated_Addresses` (`AddressStreet` ASC, `AddressStreet2` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   INDEX `FK_datagenerated_addresses_status` (`StatusID` ASC) VISIBLE,
@@ -543,7 +539,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_addresses` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 33110
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -558,11 +553,16 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_bankaccount` (
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`BankAccountsID`),
-  UNIQUE INDEX `IDX_UC_DataGenerated_BankAccounts` (`BankAccountValue` ASC, `RegisteredApp` ASC) VISIBLE,
+  UNIQUE INDEX `IDX_UC_DataGenerated_BankAccounts` (`BankAccountValue` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   INDEX `FK_datagenerated_bankaccount_Status` (`StatusID` ASC) VISIBLE,
   INDEX `FK_datagenerated_bankaccount_registeredapp` (`RegisteredApp` ASC) VISIBLE,
-  INDEX `IDX_DataGenerated_BankAccounts` (`BankAccountsID` ASC, `BankAccountValue` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC) VISIBLE,
+  INDEX `datagenerated_bankaccount__datagentype` (`DataGenTypeID` ASC) VISIBLE,
+  INDEX `IDX_DataGenerated_BankAccounts` (`BankAccountsID` ASC, `BankAccountValue` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
+  CONSTRAINT `datagenerated_bankaccount__datagentype`
+    FOREIGN KEY (`DataGenTypeID`)
+    REFERENCES `datasynthesis`.`refdata_datagentypes` (`DataGenTypeID`),
   CONSTRAINT `FK_datagenerated_bankaccount_registeredapp`
     FOREIGN KEY (`RegisteredApp`)
     REFERENCES `datasynthesis`.`refdata_application` (`AppGUID`),
@@ -570,7 +570,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_bankaccount` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 74998
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -585,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_creditcard` (
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT 'N/A',
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`CreditCardID`),
   UNIQUE INDEX `IDX_UC_datagenerated_creditcard` (`CreditCardNumber` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   INDEX `FK_datagenerated_creditcard_Status` (`StatusID` ASC) VISIBLE,
@@ -602,7 +601,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_creditcard` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1751
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -631,7 +629,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_dateofbirth` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 30000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -645,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_driverslicenses` (
   `StateCode` VARCHAR(2) NULL DEFAULT NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT 'N/A',
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
   PRIMARY KEY (`DriversLicensesID`),
@@ -668,7 +665,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_driverslicenses` (
     FOREIGN KEY (`StateCode`)
     REFERENCES `datasynthesis`.`refdata_usstates` (`StateID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 184000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -721,7 +717,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_phonenumber` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 74623
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -768,10 +763,10 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_socialsecuritynumber` 
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
   PRIMARY KEY (`SocialSecurityNumberID`),
-  UNIQUE INDEX `IDX_UC_DataGenerated_SocialSecurityNumbers` (`SocialSecurityNumberValue` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
+  UNIQUE INDEX `IDX_UC_DataGenerated_SocialSecurityNumbers` (`SocialSecurityNumberValue` ASC, `RegisteredApp` ASC) VISIBLE,
   INDEX `FK_datagenerated_socialsecuritynumber_Status` (`StatusID` ASC) VISIBLE,
   INDEX `FK_datagenerated_socialsecuritynumber_registeredapp` (`RegisteredApp` ASC) VISIBLE,
-  INDEX `IDX_DataGenerated_SocialSecurityNumber` (`SocialSecurityNumberID` ASC, `SocialSecurityNumberValue` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
+  INDEX `IDX_DataGenerated_SocialSecurityNumber` (`SocialSecurityNumberID` ASC, `SocialSecurityNumberValue` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC) VISIBLE,
   CONSTRAINT `FK_datagenerated_socialsecuritynumber_registeredapp`
     FOREIGN KEY (`RegisteredApp`)
     REFERENCES `datasynthesis`.`refdata_application` (`AppGUID`),
@@ -779,7 +774,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_socialsecuritynumber` 
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 78214
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -795,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_useridentities` (
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `RegisteredApp` CHAR(38) NULL DEFAULT NULL,
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT 'N/A',
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`UserIdentitiesID`),
   UNIQUE INDEX `IDX_UC_DataGenerated_UserIdentities` (`UserIdentityValue` ASC, `UserDomain` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   INDEX `FK_datagenerated_useridentities_Status` (`StatusID` ASC) VISIBLE,
@@ -1071,7 +1065,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_sensitivityflag` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1103,7 +1096,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_dataattributes` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1134,7 +1126,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_appsettings_dataattributes`
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1176,10 +1167,9 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_config_datagen` (
   `DataGenConfigID` SMALLINT NOT NULL AUTO_INCREMENT,
   `DataTypeGenConfigName` VARCHAR(25) NULL DEFAULT NULL,
   `DataAttributeID` SMALLINT NULL DEFAULT NULL,
-  `SpecialInstructions` VARCHAR(99) NULL DEFAULT NULL,
   `RunQuantity` INT NULL DEFAULT NULL,
   `MinuteInterval` SMALLINT NULL DEFAULT NULL,
-  `DataGenTypeID` VARCHAR(10) NULL DEFAULT NULL,
+  `DataGenTypeID` SMALLINT NULL DEFAULT NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
@@ -1188,7 +1178,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_config_datagen` (
   INDEX `FK_platform_datagenconfig_dataattributes` (`DataAttributeID` ASC) VISIBLE,
   INDEX `FK_platform_datagenconfig_status` (`StatusID` ASC) VISIBLE,
   INDEX `platform_config_datagen_registeredapp` (`ApplicationID` ASC) VISIBLE,
-  INDEX `IDX_PlatformConfigDataGen` (`DataGenConfigID` ASC, `DataAttributeID` ASC, `DataTypeGenConfigName` ASC, `RunQuantity` ASC, `MinuteInterval` ASC, `SpecialInstructions` ASC, `CreatedDate` ASC, `CreatedUser` ASC, `StatusID` ASC, `ApplicationID` ASC) VISIBLE,
+  INDEX `IDX_PlatformConfigDataGen` (`DataGenConfigID` ASC, `DataAttributeID` ASC, `DataTypeGenConfigName` ASC, `RunQuantity` ASC, `MinuteInterval` ASC, `CreatedDate` ASC, `CreatedUser` ASC, `StatusID` ASC, `ApplicationID` ASC) VISIBLE,
   INDEX `FK_platform_config_datagen_datagentype` (`DataGenTypeID` ASC) VISIBLE,
   CONSTRAINT `FK_platform_config_datagen_dataattributes`
     FOREIGN KEY (`DataAttributeID`)
@@ -1203,7 +1193,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_config_datagen` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 62
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1235,7 +1224,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_datastructures` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1277,7 +1265,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`platform_datastructurestodataattribu
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1412,7 +1399,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_codeset` (
     FOREIGN KEY (`StatusID`)
     REFERENCES `datasynthesis`.`refdata_status` (`StatusID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 70
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -1484,6 +1470,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_industrystd_fields` (
   `SensitivityFlagID` SMALLINT NULL DEFAULT NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
+  PRIMARY KEY (`FieldsToIndustryID`),
   INDEX `IDX_IndustryStd_Fields` (`FieldsToIndustryID` ASC, `MessageFieldNumber` ASC, `MessageFieldName` ASC, `FieldLength` ASC, `DataType` ASC, `MessageSegment` ASC, `SegmentFieldOrder` ASC, `Vrsn` ASC, `IndustryStd` ASC, `SensitivityFlagID` ASC, `CreatedDate` ASC, `StatusID` ASC) VISIBLE,
   INDEX `FK_refdata_industrystd_fields_industrystd` (`IndustryStd` ASC) VISIBLE,
   INDEX `FK_refdata_industrystd_fields_status` (`StatusID` ASC) VISIBLE,
@@ -1656,7 +1643,6 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`tasks` (
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
