@@ -469,7 +469,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`refdata_datagentypes` (
   INDEX `FK_RefDataDataGenTypes_DataAttributes` (`DataAttributeID` ASC) VISIBLE,
   INDEX `FK_RefDataDataGenTypes_Status` (`StatusID` ASC) VISIBLE,
   INDEX `IDX_RefData_DataGenTypes` (`DataGenTypeID` ASC, `DataGenTypeDescription` ASC, `Definition` ASC, `DataAttributeID` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC) VISIBLE,
-  CONSTRAINT `FK_platform_config_datagen_dataattributes`
+  CONSTRAINT `FK_RefDataDataGenTypes_dataattributes`
     FOREIGN KEY (`DataAttributeID`)
     REFERENCES `datasynthesis`.`platform_dataattributes` (`PlatformDataAttributesID`),
   CONSTRAINT `FK_RefDataDataGenTypes_Status`

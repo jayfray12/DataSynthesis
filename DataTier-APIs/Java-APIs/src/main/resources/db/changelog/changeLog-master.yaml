@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1621268567056-1
+    id: 1621278575809-1
     author: bzwei (generated)
     changes:
     - createTable:
@@ -49,7 +49,7 @@ databaseChangeLog:
             type: VARCHAR(75)
         tableName: auditing_dataplatform
 - changeSet:
-    id: 1621268567056-2
+    id: 1621278575809-2
     author: bzwei (generated)
     changes:
     - createTable:
@@ -89,7 +89,7 @@ databaseChangeLog:
             type: VARCHAR(400)
         tableName: auditing_datarequest
 - changeSet:
-    id: 1621268567056-3
+    id: 1621278575809-3
     author: bzwei (generated)
     changes:
     - createTable:
@@ -135,7 +135,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_ababanking
 - changeSet:
-    id: 1621268567056-4
+    id: 1621278575809-4
     author: bzwei (generated)
     changes:
     - createTable:
@@ -174,7 +174,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-5
+    id: 1621278575809-5
     author: bzwei (generated)
     changes:
     - createTable:
@@ -201,7 +201,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_areacodeintl
 - changeSet:
-    id: 1621268567056-6
+    id: 1621278575809-6
     author: bzwei (generated)
     changes:
     - createTable:
@@ -232,7 +232,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_companies
 - changeSet:
-    id: 1621268567056-7
+    id: 1621278575809-7
     author: bzwei (generated)
     changes:
     - createTable:
@@ -266,7 +266,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_namefirst
 - changeSet:
-    id: 1621268567056-8
+    id: 1621278575809-8
     author: bzwei (generated)
     changes:
     - createTable:
@@ -299,7 +299,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_namelast
 - changeSet:
-    id: 1621268567056-9
+    id: 1621278575809-9
     author: bzwei (generated)
     changes:
     - createTable:
@@ -330,7 +330,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_upccodes
 - changeSet:
-    id: 1621268567056-10
+    id: 1621278575809-10
     author: bzwei (generated)
     changes:
     - createTable:
@@ -381,7 +381,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_zipcodeintl
 - changeSet:
-    id: 1621268567056-11
+    id: 1621278575809-11
     author: bzwei (generated)
     changes:
     - createTable:
@@ -432,7 +432,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: dataexisting_zipcodeus
 - changeSet:
-    id: 1621268567056-12
+    id: 1621278575809-12
     author: bzwei (generated)
     changes:
     - createTable:
@@ -466,7 +466,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-13
+    id: 1621278575809-13
     author: bzwei (generated)
     changes:
     - createTable:
@@ -503,7 +503,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-14
+    id: 1621278575809-14
     author: bzwei (generated)
     changes:
     - createTable:
@@ -537,7 +537,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-15
+    id: 1621278575809-15
     author: bzwei (generated)
     changes:
     - createTable:
@@ -571,7 +571,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-16
+    id: 1621278575809-16
     author: bzwei (generated)
     changes:
     - createTable:
@@ -608,7 +608,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_dateofbirth
 - changeSet:
-    id: 1621268567056-17
+    id: 1621278575809-17
     author: bzwei (generated)
     changes:
     - createTable:
@@ -645,7 +645,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-18
+    id: 1621278575809-18
     author: bzwei (generated)
     changes:
     - createTable:
@@ -676,7 +676,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_ein
 - changeSet:
-    id: 1621268567056-19
+    id: 1621278575809-19
     author: bzwei (generated)
     changes:
     - createTable:
@@ -707,7 +707,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_phonenumber
 - changeSet:
-    id: 1621268567056-20
+    id: 1621278575809-20
     author: bzwei (generated)
     changes:
     - createTable:
@@ -741,7 +741,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-21
+    id: 1621278575809-21
     author: bzwei (generated)
     changes:
     - createTable:
@@ -772,7 +772,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: datagenerated_socialsecuritynumber
 - changeSet:
-    id: 1621268567056-22
+    id: 1621278575809-22
     author: bzwei (generated)
     changes:
     - createTable:
@@ -809,7 +809,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-23
+    id: 1621278575809-23
     author: bzwei (generated)
     changes:
     - createTable:
@@ -833,7 +833,7 @@ databaseChangeLog:
             type: datetime
         tableName: datamodel_datatables
 - changeSet:
-    id: 1621268567056-24
+    id: 1621278575809-24
     author: bzwei (generated)
     changes:
     - createTable:
@@ -870,7 +870,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_address
 - changeSet:
-    id: 1621268567056-25
+    id: 1621278575809-25
     author: bzwei (generated)
     changes:
     - createTable:
@@ -904,7 +904,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_bankaccount
 - changeSet:
-    id: 1621268567056-26
+    id: 1621278575809-26
     author: bzwei (generated)
     changes:
     - createTable:
@@ -944,7 +944,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_corporations
 - changeSet:
-    id: 1621268567056-27
+    id: 1621278575809-27
     author: bzwei (generated)
     changes:
     - createTable:
@@ -975,7 +975,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_names
 - changeSet:
-    id: 1621268567056-28
+    id: 1621278575809-28
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1018,7 +1018,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_persondemographics
 - changeSet:
-    id: 1621268567056-29
+    id: 1621278575809-29
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1052,7 +1052,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_phonenumbers
 - changeSet:
-    id: 1621268567056-30
+    id: 1621278575809-30
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1086,7 +1086,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_phonenumbersintl
 - changeSet:
-    id: 1621268567056-31
+    id: 1621278575809-31
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1117,7 +1117,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: datastructure_products
 - changeSet:
-    id: 1621268567056-32
+    id: 1621278575809-32
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1160,7 +1160,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: platform_appsettings_dataattributes
 - changeSet:
-    id: 1621268567056-33
+    id: 1621278575809-33
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1194,7 +1194,50 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: platform_appsettings_general
 - changeSet:
-    id: 1621268567056-34
+    id: 1621278575809-34
+    author: bzwei (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: DataGenConfigID
+            type: SMALLINT
+        - column:
+            name: DataTypeGenConfigName
+            type: VARCHAR(25)
+        - column:
+            name: DataAttributeID
+            type: SMALLINT
+        - column:
+            name: RunQuantity
+            type: INT
+        - column:
+            name: MinuteInterval
+            type: SMALLINT
+        - column:
+            name: DataGenTypeID
+            type: SMALLINT
+        - column:
+            defaultValueComputed: CURRENT_TIMESTAMP
+            name: CreatedDate
+            type: datetime
+        - column:
+            defaultValueNumeric: 1
+            name: StatusID
+            type: SMALLINT
+        - column:
+            name: CreatedUser
+            type: VARCHAR(20)
+        - column:
+            name: ApplicationID
+            type: CHAR(38)
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-35
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1231,7 +1274,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: platform_dataattributes
 - changeSet:
-    id: 1621268567056-35
+    id: 1621278575809-36
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1268,7 +1311,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: platform_datastructures
 - changeSet:
-    id: 1621268567056-36
+    id: 1621278575809-37
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1312,7 +1355,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-37
+    id: 1621278575809-38
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1343,7 +1386,7 @@ databaseChangeLog:
             type: timestamp
         tableName: platform_rulesets
 - changeSet:
-    id: 1621268567056-38
+    id: 1621278575809-39
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1391,7 +1434,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-39
+    id: 1621278575809-40
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1424,7 +1467,7 @@ databaseChangeLog:
             type: INT
         tableName: refdata_application
 - changeSet:
-    id: 1621268567056-40
+    id: 1621278575809-41
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1464,7 +1507,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_codeset
 - changeSet:
-    id: 1621268567056-41
+    id: 1621278575809-42
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1495,7 +1538,7 @@ databaseChangeLog:
             type: VARCHAR(20)
         tableName: refdata_codesettomsgtype
 - changeSet:
-    id: 1621268567056-42
+    id: 1621278575809-43
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1523,7 +1566,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_countries
 - changeSet:
-    id: 1621268567056-43
+    id: 1621278575809-44
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1557,7 +1600,7 @@ databaseChangeLog:
             type: VARCHAR(20)
         tableName: refdata_datagentypes
 - changeSet:
-    id: 1621268567056-44
+    id: 1621278575809-45
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1581,7 +1624,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_industrystd
 - changeSet:
-    id: 1621268567056-45
+    id: 1621278575809-46
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1617,7 +1660,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_industrystd_datatypes
 - changeSet:
-    id: 1621268567056-46
+    id: 1621278575809-47
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1666,7 +1709,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_industrystd_fields
 - changeSet:
-    id: 1621268567056-47
+    id: 1621278575809-48
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1702,7 +1745,7 @@ databaseChangeLog:
             type: VARCHAR(129)
         tableName: refdata_industrystd_segments
 - changeSet:
-    id: 1621268567056-48
+    id: 1621278575809-49
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1749,7 +1792,7 @@ databaseChangeLog:
             type: VARCHAR(12)
         tableName: refdata_legalentity
 - changeSet:
-    id: 1621268567056-49
+    id: 1621278575809-50
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1773,7 +1816,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_operationtype
 - changeSet:
-    id: 1621268567056-50
+    id: 1621278575809-51
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1823,7 +1866,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: refdata_organization
 - changeSet:
-    id: 1621268567056-51
+    id: 1621278575809-52
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1851,7 +1894,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_platformparams
 - changeSet:
-    id: 1621268567056-52
+    id: 1621278575809-53
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1882,7 +1925,7 @@ databaseChangeLog:
             type: VARCHAR(38)
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-53
+    id: 1621278575809-54
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1907,7 +1950,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_sensitivityflag
 - changeSet:
-    id: 1621268567056-54
+    id: 1621278575809-55
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1933,7 +1976,7 @@ databaseChangeLog:
             type: VARCHAR(20)
         tableName: refdata_status
 - changeSet:
-    id: 1621268567056-55
+    id: 1621278575809-56
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1957,7 +2000,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: refdata_timezones
 - changeSet:
-    id: 1621268567056-56
+    id: 1621278575809-57
     author: bzwei (generated)
     changes:
     - createTable:
@@ -1990,7 +2033,7 @@ databaseChangeLog:
             type: VARCHAR(20)
         tableName: refdata_usstates
 - changeSet:
-    id: 1621268567056-57
+    id: 1621278575809-58
     author: bzwei (generated)
     changes:
     - createTable:
@@ -2021,7 +2064,7 @@ databaseChangeLog:
             type: CHAR(38)
         tableName: refdata_vendor
 - changeSet:
-    id: 1621268567056-58
+    id: 1621278575809-59
     author: bzwei (generated)
     changes:
     - createTable:
@@ -2052,7 +2095,7 @@ databaseChangeLog:
             type: datetime
         tableName: tasks
 - changeSet:
-    id: 1621268567056-59
+    id: 1621278575809-60
     author: bzwei (generated)
     changes:
     - createTable:
@@ -2119,7 +2162,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-60
+    id: 1621278575809-61
     author: bzwei (generated)
     changes:
     - createTable:
@@ -2176,7 +2219,7 @@ databaseChangeLog:
             type: SMALLINT
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-61
+    id: 1621278575809-62
     author: bzwei (generated)
     changes:
     - createTable:
@@ -2218,7 +2261,7 @@ databaseChangeLog:
             type: VARCHAR(10)
         tableName: terms_codesetstoapplicationvalues
 - changeSet:
-    id: 1621268567056-62
+    id: 1621278575809-63
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2226,7 +2269,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataExisting_NameLast
         tableName: dataexisting_namelast
 - changeSet:
-    id: 1621268567056-63
+    id: 1621278575809-64
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2234,7 +2277,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGeneratedPhoneNumbers
         tableName: datagenerated_phonenumber
 - changeSet:
-    id: 1621268567056-64
+    id: 1621278575809-65
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2242,7 +2285,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_Addresses
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-65
+    id: 1621278575809-66
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2250,7 +2293,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_BankAccounts
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-66
+    id: 1621278575809-67
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2258,7 +2301,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_DateOfBirths
         tableName: datagenerated_dateofbirth
 - changeSet:
-    id: 1621268567056-67
+    id: 1621278575809-68
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2266,7 +2309,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_DriversLicenses
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-68
+    id: 1621278575809-69
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2274,7 +2317,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_EIN
         tableName: datagenerated_ein
 - changeSet:
-    id: 1621268567056-69
+    id: 1621278575809-70
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2282,7 +2325,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_SocialSecurityNumbers
         tableName: datagenerated_socialsecuritynumber
 - changeSet:
-    id: 1621268567056-70
+    id: 1621278575809-71
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2290,7 +2333,7 @@ databaseChangeLog:
         constraintName: IDX_UC_DataGenerated_UserIdentities
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-71
+    id: 1621278575809-72
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2298,7 +2341,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_address
         tableName: datastructure_address
 - changeSet:
-    id: 1621268567056-72
+    id: 1621278575809-73
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2306,7 +2349,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_bankaccount
         tableName: datastructure_bankaccount
 - changeSet:
-    id: 1621268567056-73
+    id: 1621278575809-74
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2314,7 +2357,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_corporations
         tableName: datastructure_corporations
 - changeSet:
-    id: 1621268567056-74
+    id: 1621278575809-75
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2322,7 +2365,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_persondemographics
         tableName: datastructure_persondemographics
 - changeSet:
-    id: 1621268567056-75
+    id: 1621278575809-76
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2330,7 +2373,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_phonenumbers
         tableName: datastructure_phonenumbers
 - changeSet:
-    id: 1621268567056-76
+    id: 1621278575809-77
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2338,7 +2381,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_phonenumbersintl
         tableName: datastructure_phonenumbersintl
 - changeSet:
-    id: 1621268567056-77
+    id: 1621278575809-78
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2346,7 +2389,7 @@ databaseChangeLog:
         constraintName: IDX_UC_databuilt_products
         tableName: datastructure_products
 - changeSet:
-    id: 1621268567056-78
+    id: 1621278575809-79
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2354,7 +2397,7 @@ databaseChangeLog:
         constraintName: IDX_UC_dataexisting_areacode
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-79
+    id: 1621278575809-80
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2362,7 +2405,7 @@ databaseChangeLog:
         constraintName: IDX_UC_dataexisting_namefirst
         tableName: dataexisting_namefirst
 - changeSet:
-    id: 1621268567056-80
+    id: 1621278575809-81
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2370,7 +2413,7 @@ databaseChangeLog:
         constraintName: IDX_UC_datagenerated_accountnumbers
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-81
+    id: 1621278575809-82
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2378,7 +2421,7 @@ databaseChangeLog:
         constraintName: IDX_UC_datagenerated_creditcard
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-82
+    id: 1621278575809-83
     author: bzwei (generated)
     changes:
     - addUniqueConstraint:
@@ -2386,7 +2429,7 @@ databaseChangeLog:
         constraintName: IDX_UC_datagenerated_phonenumbersintl
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-83
+    id: 1621278575809-84
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2397,7 +2440,7 @@ databaseChangeLog:
         indexName: FK_Countries_Status
         tableName: refdata_countries
 - changeSet:
-    id: 1621268567056-84
+    id: 1621278575809-85
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2407,7 +2450,7 @@ databaseChangeLog:
         indexName: FK_RefDataDataGenTypes_DataAttributes
         tableName: refdata_datagentypes
 - changeSet:
-    id: 1621268567056-85
+    id: 1621278575809-86
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2418,7 +2461,7 @@ databaseChangeLog:
         indexName: FK_RefDataDataGenTypes_Status
         tableName: refdata_datagentypes
 - changeSet:
-    id: 1621268567056-86
+    id: 1621278575809-87
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2429,7 +2472,7 @@ databaseChangeLog:
         indexName: FK_TimeZones_Status
         tableName: refdata_timezones
 - changeSet:
-    id: 1621268567056-87
+    id: 1621278575809-88
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2440,7 +2483,7 @@ databaseChangeLog:
         indexName: FK_USStates_Status
         tableName: refdata_usstates
 - changeSet:
-    id: 1621268567056-88
+    id: 1621278575809-89
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2450,7 +2493,7 @@ databaseChangeLog:
         indexName: FK_databuilt_address_registeredapp
         tableName: datastructure_address
 - changeSet:
-    id: 1621268567056-89
+    id: 1621278575809-90
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2461,7 +2504,7 @@ databaseChangeLog:
         indexName: FK_databuilt_address_status
         tableName: datastructure_address
 - changeSet:
-    id: 1621268567056-90
+    id: 1621278575809-91
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2471,7 +2514,7 @@ databaseChangeLog:
         indexName: FK_databuilt_bankaccount_registeredapp
         tableName: datastructure_bankaccount
 - changeSet:
-    id: 1621268567056-91
+    id: 1621278575809-92
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2482,7 +2525,7 @@ databaseChangeLog:
         indexName: FK_databuilt_completenames_status
         tableName: datastructure_names
 - changeSet:
-    id: 1621268567056-92
+    id: 1621278575809-93
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2492,7 +2535,7 @@ databaseChangeLog:
         indexName: FK_databuilt_corporations_resiteredapp
         tableName: datastructure_corporations
 - changeSet:
-    id: 1621268567056-93
+    id: 1621278575809-94
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2503,7 +2546,7 @@ databaseChangeLog:
         indexName: FK_databuilt_corporations_status
         tableName: datastructure_corporations
 - changeSet:
-    id: 1621268567056-94
+    id: 1621278575809-95
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2513,7 +2556,7 @@ databaseChangeLog:
         indexName: FK_databuilt_names_registeredapp
         tableName: datastructure_names
 - changeSet:
-    id: 1621268567056-95
+    id: 1621278575809-96
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2523,7 +2566,7 @@ databaseChangeLog:
         indexName: FK_databuilt_persondemographics_registeredapp
         tableName: datastructure_persondemographics
 - changeSet:
-    id: 1621268567056-96
+    id: 1621278575809-97
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2534,7 +2577,7 @@ databaseChangeLog:
         indexName: FK_databuilt_persondemographics_status
         tableName: datastructure_persondemographics
 - changeSet:
-    id: 1621268567056-97
+    id: 1621278575809-98
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2544,7 +2587,7 @@ databaseChangeLog:
         indexName: FK_databuilt_phonenumbers_registeredapp
         tableName: datastructure_phonenumbers
 - changeSet:
-    id: 1621268567056-98
+    id: 1621278575809-99
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2555,7 +2598,7 @@ databaseChangeLog:
         indexName: FK_databuilt_phonenumbers_status
         tableName: datastructure_phonenumbers
 - changeSet:
-    id: 1621268567056-99
+    id: 1621278575809-100
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2565,7 +2608,7 @@ databaseChangeLog:
         indexName: FK_databuilt_phonenumbersintl_registeredapp
         tableName: datastructure_phonenumbersintl
 - changeSet:
-    id: 1621268567056-100
+    id: 1621278575809-101
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2576,7 +2619,7 @@ databaseChangeLog:
         indexName: FK_databuilt_phonenumbersintl_status
         tableName: datastructure_phonenumbersintl
 - changeSet:
-    id: 1621268567056-101
+    id: 1621278575809-102
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2586,7 +2629,7 @@ databaseChangeLog:
         indexName: FK_databuilt_products_regsiteredapp
         tableName: datastructure_products
 - changeSet:
-    id: 1621268567056-102
+    id: 1621278575809-103
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2597,7 +2640,7 @@ databaseChangeLog:
         indexName: FK_databuilt_products_status
         tableName: datastructure_products
 - changeSet:
-    id: 1621268567056-103
+    id: 1621278575809-104
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2608,7 +2651,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_ababanking_Status
         tableName: dataexisting_ababanking
 - changeSet:
-    id: 1621268567056-104
+    id: 1621278575809-105
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2618,7 +2661,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_ababanking_registeredapp
         tableName: dataexisting_ababanking
 - changeSet:
-    id: 1621268567056-105
+    id: 1621278575809-106
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2629,7 +2672,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacode_Status
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-106
+    id: 1621278575809-107
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2639,7 +2682,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacode_USStates
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-107
+    id: 1621278575809-108
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2649,7 +2692,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacode_registeredapp
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-108
+    id: 1621278575809-109
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2659,7 +2702,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacode_timezones
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-109
+    id: 1621278575809-110
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2669,7 +2712,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacodeintl_Countries
         tableName: dataexisting_areacodeintl
 - changeSet:
-    id: 1621268567056-110
+    id: 1621278575809-111
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2680,7 +2723,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacodeintl_Status
         tableName: dataexisting_areacodeintl
 - changeSet:
-    id: 1621268567056-111
+    id: 1621278575809-112
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2690,7 +2733,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_areacodeintl_registeredapp
         tableName: dataexisting_areacodeintl
 - changeSet:
-    id: 1621268567056-112
+    id: 1621278575809-113
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2701,7 +2744,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_companies_Status
         tableName: dataexisting_companies
 - changeSet:
-    id: 1621268567056-113
+    id: 1621278575809-114
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2711,7 +2754,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_companies_registeredapp
         tableName: dataexisting_companies
 - changeSet:
-    id: 1621268567056-114
+    id: 1621278575809-115
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2722,7 +2765,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_namefirst_Status
         tableName: dataexisting_namefirst
 - changeSet:
-    id: 1621268567056-115
+    id: 1621278575809-116
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2732,7 +2775,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_namefirst_registeredapp
         tableName: dataexisting_namefirst
 - changeSet:
-    id: 1621268567056-116
+    id: 1621278575809-117
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2743,7 +2786,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_namelast_Status
         tableName: dataexisting_namelast
 - changeSet:
-    id: 1621268567056-117
+    id: 1621278575809-118
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2753,7 +2796,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_namelast_registeredapp
         tableName: dataexisting_namelast
 - changeSet:
-    id: 1621268567056-118
+    id: 1621278575809-119
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2764,7 +2807,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_upccodes_Status
         tableName: dataexisting_upccodes
 - changeSet:
-    id: 1621268567056-119
+    id: 1621278575809-120
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2774,7 +2817,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_upccodes_registeredapp
         tableName: dataexisting_upccodes
 - changeSet:
-    id: 1621268567056-120
+    id: 1621278575809-121
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2784,7 +2827,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_zipcodeIntl_Countries
         tableName: dataexisting_zipcodeintl
 - changeSet:
-    id: 1621268567056-121
+    id: 1621278575809-122
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2795,7 +2838,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_zipcodeIntl_Status
         tableName: dataexisting_zipcodeintl
 - changeSet:
-    id: 1621268567056-122
+    id: 1621278575809-123
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2806,7 +2849,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_zipcodeUS_Status
         tableName: dataexisting_zipcodeus
 - changeSet:
-    id: 1621268567056-123
+    id: 1621278575809-124
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2816,7 +2859,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_zipcodeintl_registeredapp
         tableName: dataexisting_zipcodeintl
 - changeSet:
-    id: 1621268567056-124
+    id: 1621278575809-125
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2826,7 +2869,7 @@ databaseChangeLog:
         indexName: FK_dataexisting_zipcodeus_registeredapp
         tableName: dataexisting_zipcodeus
 - changeSet:
-    id: 1621268567056-125
+    id: 1621278575809-126
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2836,7 +2879,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_accountnumbers_datagentype
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-126
+    id: 1621278575809-127
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2846,7 +2889,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_accountnumbers_registeredapp
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-127
+    id: 1621278575809-128
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2857,7 +2900,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_accountnumbers_status
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-128
+    id: 1621278575809-129
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2867,7 +2910,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_addresses_datagenttype
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-129
+    id: 1621278575809-130
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2877,7 +2920,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_addresses_registeredapp
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-130
+    id: 1621278575809-131
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2888,7 +2931,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_addresses_status
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-131
+    id: 1621278575809-132
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2899,7 +2942,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_bankaccount_Status
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-132
+    id: 1621278575809-133
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2909,7 +2952,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_bankaccount_registeredapp
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-133
+    id: 1621278575809-134
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2920,7 +2963,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_creditcard_Status
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-134
+    id: 1621278575809-135
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2930,7 +2973,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_creditcard_registeredapp
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-135
+    id: 1621278575809-136
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2941,7 +2984,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_dateofbirth_Status
         tableName: datagenerated_dateofbirth
 - changeSet:
-    id: 1621268567056-136
+    id: 1621278575809-137
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2951,7 +2994,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_dateofbirth_registeredapp
         tableName: datagenerated_dateofbirth
 - changeSet:
-    id: 1621268567056-137
+    id: 1621278575809-138
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2962,7 +3005,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_driverslicenses_Status
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-138
+    id: 1621278575809-139
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2972,7 +3015,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_driverslicenses_USStates
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-139
+    id: 1621278575809-140
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2982,7 +3025,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_driverslicenses_datagentype
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-140
+    id: 1621278575809-141
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -2992,7 +3035,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_driverslicenses_registeredapp
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-141
+    id: 1621278575809-142
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3003,7 +3046,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_ein_Status
         tableName: datagenerated_ein
 - changeSet:
-    id: 1621268567056-142
+    id: 1621278575809-143
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3013,7 +3056,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_ein_registeredapp
         tableName: datagenerated_ein
 - changeSet:
-    id: 1621268567056-143
+    id: 1621278575809-144
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3023,7 +3066,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_phonenumber_registeredapp
         tableName: datagenerated_phonenumber
 - changeSet:
-    id: 1621268567056-144
+    id: 1621278575809-145
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3034,7 +3077,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_phonenumbers_Status
         tableName: datagenerated_phonenumber
 - changeSet:
-    id: 1621268567056-145
+    id: 1621278575809-146
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3044,7 +3087,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_phonenumbersintl_Country
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-146
+    id: 1621278575809-147
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3055,7 +3098,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_phonenumbersintl_Status
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-147
+    id: 1621278575809-148
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3065,7 +3108,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_phonenumbersintl_registeredapp
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-148
+    id: 1621278575809-149
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3076,7 +3119,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_socialsecuritynumber_Status
         tableName: datagenerated_socialsecuritynumber
 - changeSet:
-    id: 1621268567056-149
+    id: 1621278575809-150
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3086,7 +3129,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_socialsecuritynumber_registeredapp
         tableName: datagenerated_socialsecuritynumber
 - changeSet:
-    id: 1621268567056-150
+    id: 1621278575809-151
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3097,7 +3140,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_useridentities_Status
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-151
+    id: 1621278575809-152
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3107,7 +3150,7 @@ databaseChangeLog:
         indexName: FK_datagenerated_useridentities_registeredapp
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-152
+    id: 1621278575809-153
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3117,7 +3160,7 @@ databaseChangeLog:
         indexName: FK_platform_appsettings_dataattributes_dataattributes
         tableName: platform_appsettings_dataattributes
 - changeSet:
-    id: 1621268567056-153
+    id: 1621278575809-154
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3127,7 +3170,7 @@ databaseChangeLog:
         indexName: FK_platform_appsettings_dataattributes_registeredapp
         tableName: platform_appsettings_dataattributes
 - changeSet:
-    id: 1621268567056-154
+    id: 1621278575809-155
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3137,7 +3180,7 @@ databaseChangeLog:
         indexName: FK_platform_appsettings_general_datagenapp
         tableName: platform_appsettings_general
 - changeSet:
-    id: 1621268567056-155
+    id: 1621278575809-156
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3147,7 +3190,17 @@ databaseChangeLog:
         indexName: FK_platform_appsettings_general_registeredapp
         tableName: platform_appsettings_general
 - changeSet:
-    id: 1621268567056-156
+    id: 1621278575809-157
+    author: bzwei (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: DataGenTypeID
+        indexName: FK_platform_config_datagen_datagentype
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-158
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3157,7 +3210,28 @@ databaseChangeLog:
         indexName: FK_platform_dataattributes_registeredapp
         tableName: platform_dataattributes
 - changeSet:
-    id: 1621268567056-157
+    id: 1621278575809-159
+    author: bzwei (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: DataAttributeID
+        indexName: FK_platform_datagenconfig_dataattributes
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-160
+    author: bzwei (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            defaultValueNumeric: !!float '1'
+            name: StatusID
+        indexName: FK_platform_datagenconfig_status
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-161
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3168,7 +3242,7 @@ databaseChangeLog:
         indexName: FK_platform_dataplatform_status
         tableName: auditing_dataplatform
 - changeSet:
-    id: 1621268567056-158
+    id: 1621278575809-162
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3179,7 +3253,7 @@ databaseChangeLog:
         indexName: FK_platform_datarequest_status
         tableName: auditing_datarequest
 - changeSet:
-    id: 1621268567056-159
+    id: 1621278575809-163
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3189,7 +3263,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructures__registeredapp
         tableName: platform_datastructures
 - changeSet:
-    id: 1621268567056-160
+    id: 1621278575809-164
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3199,7 +3273,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructures_sensitivityflag
         tableName: platform_datastructures
 - changeSet:
-    id: 1621268567056-161
+    id: 1621278575809-165
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3210,7 +3284,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructures_status
         tableName: platform_datastructures
 - changeSet:
-    id: 1621268567056-162
+    id: 1621278575809-166
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3220,7 +3294,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructurestodataattributes_dataattributes
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-163
+    id: 1621278575809-167
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3230,7 +3304,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructurestodataattributes_datastructure
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-164
+    id: 1621278575809-168
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3240,7 +3314,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructurestodataattributes_registeredapp
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-165
+    id: 1621278575809-169
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3251,7 +3325,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructurestodataattributes_sensitivityflag
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-166
+    id: 1621278575809-170
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3262,7 +3336,7 @@ databaseChangeLog:
         indexName: FK_platform_datastructurestodataattributes_status
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-167
+    id: 1621278575809-171
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3273,7 +3347,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesets_status
         tableName: platform_rulesets
 - changeSet:
-    id: 1621268567056-168
+    id: 1621278575809-172
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3283,7 +3357,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesetsdefinitions_dataattributes
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-169
+    id: 1621278575809-173
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3293,7 +3367,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesetsdefinitions_operationtype
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-170
+    id: 1621278575809-174
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3303,7 +3377,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesetsdefinitions_registeredapp
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-171
+    id: 1621278575809-175
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3313,7 +3387,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesetsdefinitions_ruleset
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-172
+    id: 1621278575809-176
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3324,7 +3398,7 @@ databaseChangeLog:
         indexName: FK_platform_rulesetsdefinitions_status
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-173
+    id: 1621278575809-177
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3334,7 +3408,7 @@ databaseChangeLog:
         indexName: FK_platformdataattributes_sensitivtyflag
         tableName: platform_dataattributes
 - changeSet:
-    id: 1621268567056-174
+    id: 1621278575809-178
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3345,7 +3419,7 @@ databaseChangeLog:
         indexName: FK_platformdataattributes_status
         tableName: platform_dataattributes
 - changeSet:
-    id: 1621268567056-175
+    id: 1621278575809-179
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3356,7 +3430,7 @@ databaseChangeLog:
         indexName: FK_refdata_application_status
         tableName: refdata_application
 - changeSet:
-    id: 1621268567056-176
+    id: 1621278575809-180
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3366,7 +3440,7 @@ databaseChangeLog:
         indexName: FK_refdata_application_vendors
         tableName: refdata_application
 - changeSet:
-    id: 1621268567056-177
+    id: 1621278575809-181
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3377,7 +3451,7 @@ databaseChangeLog:
         indexName: FK_refdata_appsettings_dataattributes_status
         tableName: platform_appsettings_dataattributes
 - changeSet:
-    id: 1621268567056-178
+    id: 1621278575809-182
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3388,7 +3462,7 @@ databaseChangeLog:
         indexName: FK_refdata_appsettings_general_status
         tableName: platform_appsettings_general
 - changeSet:
-    id: 1621268567056-179
+    id: 1621278575809-183
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3398,7 +3472,7 @@ databaseChangeLog:
         indexName: FK_refdata_codeset_industrystd
         tableName: refdata_codeset
 - changeSet:
-    id: 1621268567056-180
+    id: 1621278575809-184
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3408,7 +3482,7 @@ databaseChangeLog:
         indexName: FK_refdata_codeset_sensitivityflag
         tableName: refdata_codeset
 - changeSet:
-    id: 1621268567056-181
+    id: 1621278575809-185
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3419,7 +3493,7 @@ databaseChangeLog:
         indexName: FK_refdata_codesets_status
         tableName: refdata_codeset
 - changeSet:
-    id: 1621268567056-182
+    id: 1621278575809-186
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3429,7 +3503,7 @@ databaseChangeLog:
         indexName: FK_refdata_codesettomsgtype_codesets
         tableName: refdata_codesettomsgtype
 - changeSet:
-    id: 1621268567056-183
+    id: 1621278575809-187
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3440,7 +3514,7 @@ databaseChangeLog:
         indexName: FK_refdata_codesettomsgtype_status
         tableName: refdata_codesettomsgtype
 - changeSet:
-    id: 1621268567056-184
+    id: 1621278575809-188
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3450,7 +3524,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_datatypes_industrystd
         tableName: refdata_industrystd_datatypes
 - changeSet:
-    id: 1621268567056-185
+    id: 1621278575809-189
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3461,7 +3535,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_datatypes_status
         tableName: refdata_industrystd_datatypes
 - changeSet:
-    id: 1621268567056-186
+    id: 1621278575809-190
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3471,7 +3545,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_fields_industrystd
         tableName: refdata_industrystd_fields
 - changeSet:
-    id: 1621268567056-187
+    id: 1621278575809-191
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3481,7 +3555,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_fields_sensitivtyflag
         tableName: refdata_industrystd_fields
 - changeSet:
-    id: 1621268567056-188
+    id: 1621278575809-192
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3492,7 +3566,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_fields_status
         tableName: refdata_industrystd_fields
 - changeSet:
-    id: 1621268567056-189
+    id: 1621278575809-193
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3502,7 +3576,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_segments_industrystd
         tableName: refdata_industrystd_segments
 - changeSet:
-    id: 1621268567056-190
+    id: 1621278575809-194
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3513,7 +3587,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_segments_status
         tableName: refdata_industrystd_segments
 - changeSet:
-    id: 1621268567056-191
+    id: 1621278575809-195
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3524,7 +3598,7 @@ databaseChangeLog:
         indexName: FK_refdata_industrystd_status
         tableName: refdata_industrystd
 - changeSet:
-    id: 1621268567056-192
+    id: 1621278575809-196
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3534,7 +3608,7 @@ databaseChangeLog:
         indexName: FK_refdata_location_states
         tableName: refdata_legalentity
 - changeSet:
-    id: 1621268567056-193
+    id: 1621278575809-197
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3545,7 +3619,7 @@ databaseChangeLog:
         indexName: FK_refdata_location_status
         tableName: refdata_legalentity
 - changeSet:
-    id: 1621268567056-194
+    id: 1621278575809-198
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3556,7 +3630,7 @@ databaseChangeLog:
         indexName: FK_refdata_operationtype_status
         tableName: refdata_operationtype
 - changeSet:
-    id: 1621268567056-195
+    id: 1621278575809-199
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3566,7 +3640,7 @@ databaseChangeLog:
         indexName: FK_refdata_organization_legalentity
         tableName: refdata_organization
 - changeSet:
-    id: 1621268567056-196
+    id: 1621278575809-200
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3576,7 +3650,7 @@ databaseChangeLog:
         indexName: FK_refdata_organization_states
         tableName: refdata_organization
 - changeSet:
-    id: 1621268567056-197
+    id: 1621278575809-201
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3587,7 +3661,7 @@ databaseChangeLog:
         indexName: FK_refdata_organization_status
         tableName: refdata_organization
 - changeSet:
-    id: 1621268567056-198
+    id: 1621278575809-202
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3598,7 +3672,7 @@ databaseChangeLog:
         indexName: FK_refdata_platformparams_status
         tableName: refdata_platformparams
 - changeSet:
-    id: 1621268567056-199
+    id: 1621278575809-203
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3608,7 +3682,7 @@ databaseChangeLog:
         indexName: FK_refdata_platformparamstodataattributes_dataattributes
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-200
+    id: 1621278575809-204
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3618,7 +3692,7 @@ databaseChangeLog:
         indexName: FK_refdata_platformparamstodataattributes_platformparams
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-201
+    id: 1621278575809-205
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3628,7 +3702,7 @@ databaseChangeLog:
         indexName: FK_refdata_platformparamstodataattributes_registeredapp
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-202
+    id: 1621278575809-206
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3639,7 +3713,7 @@ databaseChangeLog:
         indexName: FK_refdata_platformparamstodataattributes_status
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-203
+    id: 1621278575809-207
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3650,7 +3724,7 @@ databaseChangeLog:
         indexName: FK_refdata_sensitivityflag_status
         tableName: refdata_sensitivityflag
 - changeSet:
-    id: 1621268567056-204
+    id: 1621278575809-208
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3661,7 +3735,7 @@ databaseChangeLog:
         indexName: FK_refdata_vendors_status
         tableName: refdata_vendor
 - changeSet:
-    id: 1621268567056-205
+    id: 1621278575809-209
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3671,7 +3745,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetmetadata_codesets
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-206
+    id: 1621278575809-210
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3681,7 +3755,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetmetadata_industrystd
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-207
+    id: 1621278575809-211
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3691,7 +3765,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetmetadata_sensitivityflag
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-208
+    id: 1621278575809-212
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3702,7 +3776,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetmetadata_status
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-209
+    id: 1621278575809-213
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3712,7 +3786,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_Application
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-210
+    id: 1621278575809-214
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3722,7 +3796,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_Org
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-211
+    id: 1621278575809-215
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3732,7 +3806,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_Vendor
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-212
+    id: 1621278575809-216
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3742,7 +3816,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_codeset
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-213
+    id: 1621278575809-217
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3752,7 +3826,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_industrystd
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-214
+    id: 1621278575809-218
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3762,7 +3836,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_sensitiveflag
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-215
+    id: 1621278575809-219
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3773,7 +3847,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplication_status
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-216
+    id: 1621278575809-220
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3783,7 +3857,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplicationvalues_codeset
         tableName: terms_codesetstoapplicationvalues
 - changeSet:
-    id: 1621268567056-217
+    id: 1621278575809-221
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3793,7 +3867,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplicationvalues_codesettoapp
         tableName: terms_codesetstoapplicationvalues
 - changeSet:
-    id: 1621268567056-218
+    id: 1621278575809-222
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3804,7 +3878,7 @@ databaseChangeLog:
         indexName: FK_terms_codesetstoapplicationvalues_status
         tableName: terms_codesetstoapplicationvalues
 - changeSet:
-    id: 1621268567056-219
+    id: 1621278575809-223
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3836,7 +3910,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_ABABanking
         tableName: dataexisting_ababanking
 - changeSet:
-    id: 1621268567056-220
+    id: 1621278575809-224
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3860,7 +3934,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_AreaCode
         tableName: dataexisting_areacode
 - changeSet:
-    id: 1621268567056-221
+    id: 1621278575809-225
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3880,7 +3954,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_AreaCodeIntl
         tableName: dataexisting_areacodeintl
 - changeSet:
-    id: 1621268567056-222
+    id: 1621278575809-226
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3902,7 +3976,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_Companies
         tableName: dataexisting_companies
 - changeSet:
-    id: 1621268567056-223
+    id: 1621278575809-227
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3924,7 +3998,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_NameLast
         tableName: dataexisting_namelast
 - changeSet:
-    id: 1621268567056-224
+    id: 1621278575809-228
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3946,7 +4020,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_UPCCodes
         tableName: dataexisting_upccodes
 - changeSet:
-    id: 1621268567056-225
+    id: 1621278575809-229
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -3980,7 +4054,7 @@ databaseChangeLog:
         indexName: IDX_DataExisting_ZipcodeIntl
         tableName: dataexisting_zipcodeintl
 - changeSet:
-    id: 1621268567056-226
+    id: 1621278575809-230
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4004,7 +4078,7 @@ databaseChangeLog:
         indexName: IDX_DataExistng_NameFirst
         tableName: dataexisting_namefirst
 - changeSet:
-    id: 1621268567056-227
+    id: 1621278575809-231
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4028,7 +4102,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_AccountNumbers
         tableName: datagenerated_accountnumbers
 - changeSet:
-    id: 1621268567056-228
+    id: 1621278575809-232
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4052,7 +4126,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_BankAccounts
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-229
+    id: 1621278575809-233
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4076,7 +4150,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_CreditCard
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-230
+    id: 1621278575809-234
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4102,7 +4176,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_DateOfBirths
         tableName: datagenerated_dateofbirth
 - changeSet:
-    id: 1621268567056-231
+    id: 1621278575809-235
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4128,7 +4202,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_DriversLicenses
         tableName: datagenerated_driverslicenses
 - changeSet:
-    id: 1621268567056-232
+    id: 1621278575809-236
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4150,7 +4224,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_EIN
         tableName: datagenerated_ein
 - changeSet:
-    id: 1621268567056-233
+    id: 1621278575809-237
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4176,7 +4250,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_Identities
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-234
+    id: 1621278575809-238
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4198,7 +4272,7 @@ databaseChangeLog:
         indexName: IDX_DataGenerated_SocialSecurityNumber
         tableName: datagenerated_socialsecuritynumber
 - changeSet:
-    id: 1621268567056-235
+    id: 1621278575809-239
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4216,7 +4290,7 @@ databaseChangeLog:
         indexName: IDX_IndustryStd
         tableName: refdata_industrystd
 - changeSet:
-    id: 1621268567056-236
+    id: 1621278575809-240
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4240,7 +4314,7 @@ databaseChangeLog:
         indexName: IDX_IndustryStd_DataTypes
         tableName: refdata_industrystd_datatypes
 - changeSet:
-    id: 1621268567056-237
+    id: 1621278575809-241
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4274,7 +4348,7 @@ databaseChangeLog:
         indexName: IDX_IndustryStd_Fields
         tableName: refdata_industrystd_fields
 - changeSet:
-    id: 1621268567056-238
+    id: 1621278575809-242
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4298,7 +4372,7 @@ databaseChangeLog:
         indexName: IDX_IndustryStd_Segments
         tableName: refdata_industrystd_segments
 - changeSet:
-    id: 1621268567056-239
+    id: 1621278575809-243
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4320,7 +4394,7 @@ databaseChangeLog:
         indexName: IDX_PhoneNumbers
         tableName: datagenerated_phonenumber
 - changeSet:
-    id: 1621268567056-240
+    id: 1621278575809-244
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4344,7 +4418,35 @@ databaseChangeLog:
         indexName: IDX_PhoneNumbersIntl
         tableName: datagenerated_phonenumbersintl
 - changeSet:
-    id: 1621268567056-241
+    id: 1621278575809-245
+    author: bzwei (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: DataGenConfigID
+        - column:
+            name: DataAttributeID
+        - column:
+            name: DataTypeGenConfigName
+        - column:
+            name: RunQuantity
+        - column:
+            name: MinuteInterval
+        - column:
+            defaultValueComputed: CURRENT_TIMESTAMP
+            name: CreatedDate
+        - column:
+            name: CreatedUser
+        - column:
+            defaultValueNumeric: !!float '1'
+            name: StatusID
+        - column:
+            name: ApplicationID
+        indexName: IDX_PlatformConfigDataGen
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-246
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4372,7 +4474,7 @@ databaseChangeLog:
         indexName: IDX_PlatformData_AppSettings_DataAttributes
         tableName: platform_appsettings_dataattributes
 - changeSet:
-    id: 1621268567056-242
+    id: 1621278575809-247
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4396,7 +4498,7 @@ databaseChangeLog:
         indexName: IDX_PlatformData_AppSettings_General
         tableName: platform_appsettings_general
 - changeSet:
-    id: 1621268567056-243
+    id: 1621278575809-248
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4422,7 +4524,7 @@ databaseChangeLog:
         indexName: IDX_Platform_DataAttributes
         tableName: platform_dataattributes
 - changeSet:
-    id: 1621268567056-244
+    id: 1621278575809-249
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4448,7 +4550,7 @@ databaseChangeLog:
         indexName: IDX_Platform_DataStructures
         tableName: platform_datastructures
 - changeSet:
-    id: 1621268567056-245
+    id: 1621278575809-250
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4479,7 +4581,7 @@ databaseChangeLog:
         indexName: IDX_Platform_DataStructuresToDataAttributes
         tableName: platform_datastructurestodataattributes
 - changeSet:
-    id: 1621268567056-246
+    id: 1621278575809-251
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4501,7 +4603,7 @@ databaseChangeLog:
         indexName: IDX_Platform_RuleSets
         tableName: platform_rulesets
 - changeSet:
-    id: 1621268567056-247
+    id: 1621278575809-252
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4535,7 +4637,7 @@ databaseChangeLog:
         indexName: IDX_Platform_RulesetsDefinitions
         tableName: platform_rulesetsdefinitions
 - changeSet:
-    id: 1621268567056-248
+    id: 1621278575809-253
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4559,7 +4661,7 @@ databaseChangeLog:
         indexName: IDX_RefData_Application
         tableName: refdata_application
 - changeSet:
-    id: 1621268567056-249
+    id: 1621278575809-254
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4587,7 +4689,7 @@ databaseChangeLog:
         indexName: IDX_RefData_CodeSets
         tableName: refdata_codeset
 - changeSet:
-    id: 1621268567056-250
+    id: 1621278575809-255
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4609,7 +4711,7 @@ databaseChangeLog:
         indexName: IDX_RefData_CodeSetsToMsgType
         tableName: refdata_codesettomsgtype
 - changeSet:
-    id: 1621268567056-251
+    id: 1621278575809-256
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4633,7 +4735,7 @@ databaseChangeLog:
         indexName: IDX_RefData_DataGenTypes
         tableName: refdata_datagentypes
 - changeSet:
-    id: 1621268567056-252
+    id: 1621278575809-257
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4665,7 +4767,7 @@ databaseChangeLog:
         indexName: IDX_RefData_LegalEntity2
         tableName: refdata_legalentity
 - changeSet:
-    id: 1621268567056-253
+    id: 1621278575809-258
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4683,7 +4785,7 @@ databaseChangeLog:
         indexName: IDX_RefData_OperationType
         tableName: refdata_operationtype
 - changeSet:
-    id: 1621268567056-254
+    id: 1621278575809-259
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4717,7 +4819,7 @@ databaseChangeLog:
         indexName: IDX_RefData_Organization
         tableName: refdata_organization
 - changeSet:
-    id: 1621268567056-255
+    id: 1621278575809-260
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4735,7 +4837,7 @@ databaseChangeLog:
         indexName: IDX_RefData_SensitivityFlag
         tableName: refdata_sensitivityflag
 - changeSet:
-    id: 1621268567056-256
+    id: 1621278575809-261
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4752,7 +4854,7 @@ databaseChangeLog:
         indexName: IDX_RefData_Status
         tableName: refdata_status
 - changeSet:
-    id: 1621268567056-257
+    id: 1621278575809-262
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4770,7 +4872,7 @@ databaseChangeLog:
         indexName: IDX_RefData_TimeZones
         tableName: refdata_timezones
 - changeSet:
-    id: 1621268567056-258
+    id: 1621278575809-263
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4794,7 +4896,7 @@ databaseChangeLog:
         indexName: IDX_RefData_USStates
         tableName: refdata_usstates
 - changeSet:
-    id: 1621268567056-259
+    id: 1621278575809-264
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4816,7 +4918,7 @@ databaseChangeLog:
         indexName: IDX_RefData_Vendors
         tableName: refdata_vendor
 - changeSet:
-    id: 1621268567056-260
+    id: 1621278575809-265
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4850,7 +4952,7 @@ databaseChangeLog:
         indexName: IDX_Terms_CodeSetsToApplication
         tableName: terms_codesetstoapplication
 - changeSet:
-    id: 1621268567056-261
+    id: 1621278575809-266
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4878,7 +4980,7 @@ databaseChangeLog:
         indexName: IDX_Terms_CodeSetsToApplicationValues
         tableName: terms_codesetstoapplicationvalues
 - changeSet:
-    id: 1621268567056-262
+    id: 1621278575809-267
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4908,7 +5010,7 @@ databaseChangeLog:
         indexName: IDX_dataabuilt_persondemographics
         tableName: datastructure_persondemographics
 - changeSet:
-    id: 1621268567056-263
+    id: 1621278575809-268
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4934,7 +5036,7 @@ databaseChangeLog:
         indexName: IDX_databuilt_completeaddress
         tableName: datastructure_address
 - changeSet:
-    id: 1621268567056-264
+    id: 1621278575809-269
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4962,7 +5064,7 @@ databaseChangeLog:
         indexName: IDX_databuilt_corporations
         tableName: datastructure_corporations
 - changeSet:
-    id: 1621268567056-265
+    id: 1621278575809-270
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -4986,7 +5088,7 @@ databaseChangeLog:
         indexName: IDX_databuilt_phonenumbers
         tableName: datastructure_phonenumbers
 - changeSet:
-    id: 1621268567056-266
+    id: 1621278575809-271
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5010,7 +5112,7 @@ databaseChangeLog:
         indexName: IDX_databuilt_phonenumbersintl
         tableName: datastructure_phonenumbersintl
 - changeSet:
-    id: 1621268567056-267
+    id: 1621278575809-272
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5032,7 +5134,7 @@ databaseChangeLog:
         indexName: IDX_databuilt_products
         tableName: datastructure_products
 - changeSet:
-    id: 1621268567056-268
+    id: 1621278575809-273
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5066,7 +5168,7 @@ databaseChangeLog:
         indexName: IDX_dataexisting_zipcodeus
         tableName: dataexisting_zipcodeus
 - changeSet:
-    id: 1621268567056-269
+    id: 1621278575809-274
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5092,7 +5194,7 @@ databaseChangeLog:
         indexName: IDX_datagenerated_addresses
         tableName: datagenerated_addresses
 - changeSet:
-    id: 1621268567056-270
+    id: 1621278575809-275
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5110,7 +5212,7 @@ databaseChangeLog:
         indexName: IDX_datamodel_datatables
         tableName: datamodel_datatables
 - changeSet:
-    id: 1621268567056-271
+    id: 1621278575809-276
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5144,7 +5246,7 @@ databaseChangeLog:
         indexName: IDX_platform_dataplatform
         tableName: auditing_dataplatform
 - changeSet:
-    id: 1621268567056-272
+    id: 1621278575809-277
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5172,7 +5274,7 @@ databaseChangeLog:
         indexName: IDX_platform_datarequest
         tableName: auditing_datarequest
 - changeSet:
-    id: 1621268567056-273
+    id: 1621278575809-278
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5192,7 +5294,7 @@ databaseChangeLog:
         indexName: IDX_refdata_platformparams
         tableName: refdata_platformparams
 - changeSet:
-    id: 1621268567056-274
+    id: 1621278575809-279
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5214,7 +5316,7 @@ databaseChangeLog:
         indexName: IDX_refdata_platformparamstodataattributes
         tableName: refdata_platformparamstodataattributes
 - changeSet:
-    id: 1621268567056-275
+    id: 1621278575809-280
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5240,7 +5342,7 @@ databaseChangeLog:
         indexName: IDX_terms_codesetmetadata1
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-276
+    id: 1621278575809-281
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5268,7 +5370,7 @@ databaseChangeLog:
         indexName: IDX_terms_codesetmetadata2
         tableName: terms_codesetmetadata
 - changeSet:
-    id: 1621268567056-277
+    id: 1621278575809-282
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5288,7 +5390,7 @@ databaseChangeLog:
         indexName: IX_Countries
         tableName: refdata_countries
 - changeSet:
-    id: 1621268567056-278
+    id: 1621278575809-283
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5312,7 +5414,7 @@ databaseChangeLog:
         indexName: IX_databuilt_bankAccounts
         tableName: datastructure_bankaccount
 - changeSet:
-    id: 1621268567056-279
+    id: 1621278575809-284
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5334,7 +5436,7 @@ databaseChangeLog:
         indexName: IX_databuilt_names_databuiltnamesid
         tableName: datastructure_names
 - changeSet:
-    id: 1621268567056-280
+    id: 1621278575809-285
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5344,7 +5446,7 @@ databaseChangeLog:
         indexName: datagenerated_bankaccount__datagentype
         tableName: datagenerated_bankaccount
 - changeSet:
-    id: 1621268567056-281
+    id: 1621278575809-286
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5354,7 +5456,7 @@ databaseChangeLog:
         indexName: datagenerated_creditcard__datagentype
         tableName: datagenerated_creditcard
 - changeSet:
-    id: 1621268567056-282
+    id: 1621278575809-287
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5364,7 +5466,7 @@ databaseChangeLog:
         indexName: datagenerated_useridentities_datagentype
         tableName: datagenerated_useridentities
 - changeSet:
-    id: 1621268567056-283
+    id: 1621278575809-288
     author: bzwei (generated)
     changes:
     - createIndex:
@@ -5375,7 +5477,17 @@ databaseChangeLog:
         indexName: fk_databuilt_bankAccounts_status
         tableName: datastructure_bankaccount
 - changeSet:
-    id: 1621268567056-284
+    id: 1621278575809-289
+    author: bzwei (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: ApplicationID
+        indexName: platform_config_datagen_registeredapp
+        tableName: platform_config_datagen
+- changeSet:
+    id: 1621278575809-290
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5390,7 +5502,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-285
+    id: 1621278575809-291
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5405,7 +5517,22 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-286
+    id: 1621278575809-292
+    author: bzwei (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: DataAttributeID
+        baseTableName: refdata_datagentypes
+        constraintName: FK_RefDataDataGenTypes_dataattributes
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: PlatformDataAttributesID
+        referencedTableName: platform_dataattributes
+        validate: true
+- changeSet:
+    id: 1621278575809-293
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5420,7 +5547,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-287
+    id: 1621278575809-294
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5435,7 +5562,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-288
+    id: 1621278575809-295
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5450,7 +5577,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-289
+    id: 1621278575809-296
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5465,7 +5592,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-290
+    id: 1621278575809-297
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5480,7 +5607,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-291
+    id: 1621278575809-298
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5495,7 +5622,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-292
+    id: 1621278575809-299
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5510,7 +5637,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-293
+    id: 1621278575809-300
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5525,7 +5652,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-294
+    id: 1621278575809-301
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5540,7 +5667,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-295
+    id: 1621278575809-302
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5555,7 +5682,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-296
+    id: 1621278575809-303
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5570,7 +5697,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-297
+    id: 1621278575809-304
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5585,7 +5712,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-298
+    id: 1621278575809-305
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5600,7 +5727,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-299
+    id: 1621278575809-306
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5615,7 +5742,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-300
+    id: 1621278575809-307
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5630,7 +5757,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-301
+    id: 1621278575809-308
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5645,7 +5772,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-302
+    id: 1621278575809-309
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5660,7 +5787,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-303
+    id: 1621278575809-310
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5675,7 +5802,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-304
+    id: 1621278575809-311
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5690,7 +5817,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-305
+    id: 1621278575809-312
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5705,7 +5832,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-306
+    id: 1621278575809-313
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5720,7 +5847,7 @@ databaseChangeLog:
         referencedTableName: refdata_usstates
         validate: true
 - changeSet:
-    id: 1621268567056-307
+    id: 1621278575809-314
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5735,7 +5862,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-308
+    id: 1621278575809-315
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5750,7 +5877,7 @@ databaseChangeLog:
         referencedTableName: refdata_timezones
         validate: true
 - changeSet:
-    id: 1621268567056-309
+    id: 1621278575809-316
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5765,7 +5892,7 @@ databaseChangeLog:
         referencedTableName: refdata_countries
         validate: true
 - changeSet:
-    id: 1621268567056-310
+    id: 1621278575809-317
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5780,7 +5907,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-311
+    id: 1621278575809-318
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5795,7 +5922,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-312
+    id: 1621278575809-319
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5810,7 +5937,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-313
+    id: 1621278575809-320
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5825,7 +5952,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-314
+    id: 1621278575809-321
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5840,7 +5967,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-315
+    id: 1621278575809-322
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5855,7 +5982,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-316
+    id: 1621278575809-323
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5870,7 +5997,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-317
+    id: 1621278575809-324
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5885,7 +6012,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-318
+    id: 1621278575809-325
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5900,7 +6027,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-319
+    id: 1621278575809-326
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5915,7 +6042,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-320
+    id: 1621278575809-327
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5930,7 +6057,7 @@ databaseChangeLog:
         referencedTableName: refdata_countries
         validate: true
 - changeSet:
-    id: 1621268567056-321
+    id: 1621278575809-328
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5945,7 +6072,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-322
+    id: 1621278575809-329
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5960,7 +6087,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-323
+    id: 1621278575809-330
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5975,7 +6102,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-324
+    id: 1621278575809-331
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -5990,7 +6117,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-325
+    id: 1621278575809-332
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6005,7 +6132,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-326
+    id: 1621278575809-333
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6020,7 +6147,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-327
+    id: 1621278575809-334
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6035,7 +6162,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-328
+    id: 1621278575809-335
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6050,7 +6177,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-329
+    id: 1621278575809-336
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6065,7 +6192,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-330
+    id: 1621278575809-337
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6080,7 +6207,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-331
+    id: 1621278575809-338
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6095,7 +6222,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-332
+    id: 1621278575809-339
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6110,7 +6237,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-333
+    id: 1621278575809-340
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6125,7 +6252,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-334
+    id: 1621278575809-341
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6140,7 +6267,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-335
+    id: 1621278575809-342
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6155,7 +6282,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-336
+    id: 1621278575809-343
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6170,7 +6297,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-337
+    id: 1621278575809-344
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6185,7 +6312,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-338
+    id: 1621278575809-345
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6200,7 +6327,7 @@ databaseChangeLog:
         referencedTableName: refdata_usstates
         validate: true
 - changeSet:
-    id: 1621268567056-339
+    id: 1621278575809-346
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6215,7 +6342,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-340
+    id: 1621278575809-347
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6230,7 +6357,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-341
+    id: 1621278575809-348
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6245,7 +6372,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-342
+    id: 1621278575809-349
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6260,7 +6387,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-343
+    id: 1621278575809-350
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6275,7 +6402,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-344
+    id: 1621278575809-351
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6290,7 +6417,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-345
+    id: 1621278575809-352
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6305,7 +6432,7 @@ databaseChangeLog:
         referencedTableName: refdata_countries
         validate: true
 - changeSet:
-    id: 1621268567056-346
+    id: 1621278575809-353
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6320,7 +6447,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-347
+    id: 1621278575809-354
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6335,7 +6462,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-348
+    id: 1621278575809-355
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6350,7 +6477,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-349
+    id: 1621278575809-356
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6365,7 +6492,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-350
+    id: 1621278575809-357
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6380,7 +6507,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-351
+    id: 1621278575809-358
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6395,7 +6522,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-352
+    id: 1621278575809-359
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6410,7 +6537,7 @@ databaseChangeLog:
         referencedTableName: platform_dataattributes
         validate: true
 - changeSet:
-    id: 1621268567056-353
+    id: 1621278575809-360
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6425,7 +6552,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-354
+    id: 1621278575809-361
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6440,12 +6567,12 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-355
+    id: 1621278575809-362
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: DataAttributeID
-        baseTableName: refdata_datagentypes
+        baseTableName: platform_config_datagen
         constraintName: FK_platform_config_datagen_dataattributes
         deferrable: false
         initiallyDeferred: false
@@ -6455,7 +6582,52 @@ databaseChangeLog:
         referencedTableName: platform_dataattributes
         validate: true
 - changeSet:
-    id: 1621268567056-356
+    id: 1621278575809-363
+    author: bzwei (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: DataGenTypeID
+        baseTableName: platform_config_datagen
+        constraintName: FK_platform_config_datagen_datagentype
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: DataGenTypeID
+        referencedTableName: refdata_datagentypes
+        validate: true
+- changeSet:
+    id: 1621278575809-364
+    author: bzwei (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: ApplicationID
+        baseTableName: platform_config_datagen
+        constraintName: FK_platform_config_datagen_registeredapp
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: AppGUID
+        referencedTableName: refdata_application
+        validate: true
+- changeSet:
+    id: 1621278575809-365
+    author: bzwei (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: StatusID
+        baseTableName: platform_config_datagen
+        constraintName: FK_platform_config_datagen_status
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: StatusID
+        referencedTableName: refdata_status
+        validate: true
+- changeSet:
+    id: 1621278575809-366
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6470,7 +6642,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-357
+    id: 1621278575809-367
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6485,7 +6657,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-358
+    id: 1621278575809-368
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6500,7 +6672,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-359
+    id: 1621278575809-369
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6515,7 +6687,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-360
+    id: 1621278575809-370
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6530,7 +6702,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-361
+    id: 1621278575809-371
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6545,7 +6717,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-362
+    id: 1621278575809-372
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6560,7 +6732,7 @@ databaseChangeLog:
         referencedTableName: platform_dataattributes
         validate: true
 - changeSet:
-    id: 1621268567056-363
+    id: 1621278575809-373
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6575,7 +6747,7 @@ databaseChangeLog:
         referencedTableName: platform_datastructures
         validate: true
 - changeSet:
-    id: 1621268567056-364
+    id: 1621278575809-374
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6590,7 +6762,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-365
+    id: 1621278575809-375
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6605,7 +6777,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-366
+    id: 1621278575809-376
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6620,7 +6792,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-367
+    id: 1621278575809-377
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6635,7 +6807,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-368
+    id: 1621278575809-378
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6650,7 +6822,7 @@ databaseChangeLog:
         referencedTableName: platform_dataattributes
         validate: true
 - changeSet:
-    id: 1621268567056-369
+    id: 1621278575809-379
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6665,7 +6837,7 @@ databaseChangeLog:
         referencedTableName: refdata_operationtype
         validate: true
 - changeSet:
-    id: 1621268567056-370
+    id: 1621278575809-380
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6680,7 +6852,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-371
+    id: 1621278575809-381
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6695,7 +6867,7 @@ databaseChangeLog:
         referencedTableName: platform_rulesets
         validate: true
 - changeSet:
-    id: 1621268567056-372
+    id: 1621278575809-382
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6710,7 +6882,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-373
+    id: 1621278575809-383
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6725,7 +6897,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-374
+    id: 1621278575809-384
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6740,7 +6912,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-375
+    id: 1621278575809-385
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6755,7 +6927,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-376
+    id: 1621278575809-386
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6770,7 +6942,7 @@ databaseChangeLog:
         referencedTableName: refdata_vendor
         validate: true
 - changeSet:
-    id: 1621268567056-377
+    id: 1621278575809-387
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6785,7 +6957,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-378
+    id: 1621278575809-388
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6800,7 +6972,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-379
+    id: 1621278575809-389
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6815,7 +6987,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-380
+    id: 1621278575809-390
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6830,7 +7002,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-381
+    id: 1621278575809-391
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6845,7 +7017,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-382
+    id: 1621278575809-392
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6860,7 +7032,7 @@ databaseChangeLog:
         referencedTableName: refdata_codeset
         validate: true
 - changeSet:
-    id: 1621268567056-383
+    id: 1621278575809-393
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6875,7 +7047,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-384
+    id: 1621278575809-394
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6890,7 +7062,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-385
+    id: 1621278575809-395
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6905,7 +7077,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-386
+    id: 1621278575809-396
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6920,7 +7092,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-387
+    id: 1621278575809-397
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6935,7 +7107,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-388
+    id: 1621278575809-398
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6950,7 +7122,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-389
+    id: 1621278575809-399
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6965,7 +7137,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-390
+    id: 1621278575809-400
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6980,7 +7152,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-391
+    id: 1621278575809-401
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -6995,7 +7167,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-392
+    id: 1621278575809-402
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7010,7 +7182,7 @@ databaseChangeLog:
         referencedTableName: refdata_usstates
         validate: true
 - changeSet:
-    id: 1621268567056-393
+    id: 1621278575809-403
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7025,7 +7197,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-394
+    id: 1621278575809-404
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7040,7 +7212,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-395
+    id: 1621278575809-405
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7055,7 +7227,7 @@ databaseChangeLog:
         referencedTableName: refdata_legalentity
         validate: true
 - changeSet:
-    id: 1621268567056-396
+    id: 1621278575809-406
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7070,7 +7242,7 @@ databaseChangeLog:
         referencedTableName: refdata_usstates
         validate: true
 - changeSet:
-    id: 1621268567056-397
+    id: 1621278575809-407
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7085,7 +7257,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-398
+    id: 1621278575809-408
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7100,7 +7272,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-399
+    id: 1621278575809-409
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7115,7 +7287,7 @@ databaseChangeLog:
         referencedTableName: platform_dataattributes
         validate: true
 - changeSet:
-    id: 1621268567056-400
+    id: 1621278575809-410
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7130,7 +7302,7 @@ databaseChangeLog:
         referencedTableName: refdata_platformparams
         validate: true
 - changeSet:
-    id: 1621268567056-401
+    id: 1621278575809-411
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7145,7 +7317,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-402
+    id: 1621278575809-412
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7160,7 +7332,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-403
+    id: 1621278575809-413
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7175,7 +7347,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-404
+    id: 1621278575809-414
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7190,7 +7362,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-405
+    id: 1621278575809-415
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7205,7 +7377,7 @@ databaseChangeLog:
         referencedTableName: refdata_codeset
         validate: true
 - changeSet:
-    id: 1621268567056-406
+    id: 1621278575809-416
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7220,7 +7392,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-407
+    id: 1621278575809-417
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7235,7 +7407,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-408
+    id: 1621278575809-418
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7250,7 +7422,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-409
+    id: 1621278575809-419
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7265,7 +7437,7 @@ databaseChangeLog:
         referencedTableName: refdata_application
         validate: true
 - changeSet:
-    id: 1621268567056-410
+    id: 1621278575809-420
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7280,7 +7452,7 @@ databaseChangeLog:
         referencedTableName: refdata_organization
         validate: true
 - changeSet:
-    id: 1621268567056-411
+    id: 1621278575809-421
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7295,7 +7467,7 @@ databaseChangeLog:
         referencedTableName: refdata_vendor
         validate: true
 - changeSet:
-    id: 1621268567056-412
+    id: 1621278575809-422
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7310,7 +7482,7 @@ databaseChangeLog:
         referencedTableName: refdata_codeset
         validate: true
 - changeSet:
-    id: 1621268567056-413
+    id: 1621278575809-423
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7325,7 +7497,7 @@ databaseChangeLog:
         referencedTableName: refdata_industrystd
         validate: true
 - changeSet:
-    id: 1621268567056-414
+    id: 1621278575809-424
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7340,7 +7512,7 @@ databaseChangeLog:
         referencedTableName: refdata_sensitivityflag
         validate: true
 - changeSet:
-    id: 1621268567056-415
+    id: 1621278575809-425
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7355,7 +7527,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-416
+    id: 1621278575809-426
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7370,7 +7542,7 @@ databaseChangeLog:
         referencedTableName: refdata_codeset
         validate: true
 - changeSet:
-    id: 1621268567056-417
+    id: 1621278575809-427
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7385,7 +7557,7 @@ databaseChangeLog:
         referencedTableName: terms_codesetstoapplication
         validate: true
 - changeSet:
-    id: 1621268567056-418
+    id: 1621278575809-428
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7400,7 +7572,7 @@ databaseChangeLog:
         referencedTableName: refdata_status
         validate: true
 - changeSet:
-    id: 1621268567056-419
+    id: 1621278575809-429
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7415,7 +7587,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-420
+    id: 1621278575809-430
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7430,7 +7602,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-421
+    id: 1621278575809-431
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
@@ -7445,7 +7617,7 @@ databaseChangeLog:
         referencedTableName: refdata_datagentypes
         validate: true
 - changeSet:
-    id: 1621268567056-422
+    id: 1621278575809-432
     author: bzwei (generated)
     changes:
     - addForeignKeyConstraint:
