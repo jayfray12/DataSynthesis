@@ -107,7 +107,7 @@ public class DataGeneratedBankAccountEntity extends io.quarkus.hibernate.orm.pan
 
     @ManyToOne
     @JoinColumn(name = "DataGenTypeID", referencedColumnName = "DataGenTypeID")
-    public RefDataDataGenTypesEntity getDataGenTyp() {
+    public RefDataDataGenTypesEntity getDataGenType() {
         return dataGenType;
     }
 

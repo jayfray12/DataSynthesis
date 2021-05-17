@@ -130,7 +130,7 @@ public class DataGeneratedDriversLicensesEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "DataGenTypeID", referencedColumnName = "DataGenTypeID")
-    public RefDataDataGenTypesEntity getDataGenTyp() {
+    public RefDataDataGenTypesEntity getDataGenType() {
         return dataGenType;
     }
 
