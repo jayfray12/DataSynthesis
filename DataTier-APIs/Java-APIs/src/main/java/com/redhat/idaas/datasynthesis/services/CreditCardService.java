@@ -41,7 +41,7 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
 
     @Override
     protected CreditCard mapEntityToDTO(DataGeneratedCreditCardEntity e) {
-        return new CreditCard(e.getCreditCardNumber(), e.getCreditCardName());
+        return new CreditCard(e.getCreditCardNumber(), e.getDataGenType().getDataGenTypeDescription());
     }
 
     
@@ -50,7 +50,9 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
             return retrieveRandomData(count);
         } 
         
-        return retrieveRandomData(count, "CreditCardName", cardName);
+        PlatformDataAttributesEntity ccDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Credit Cards");
+        RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", ccDataAttribute, cardName).firstResult();
+        return retrieveRandomData(count, "DataGenTypeID", dataType);
     }
 
     @Transactional
@@ -85,7 +87,6 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
             entity.setCreatedDate(createdDate);
             entity.setStatus(defaultStatus);
             entity.setRegisteredApp(app);
-            entity.setCreditCardName(dataType.getDataGenTypeDescription());
             entity.setCreditCardNumber(rgxGen.generate(rand));
             entity.setDataGenType(dataType);
             if (entity.safePersist()) {

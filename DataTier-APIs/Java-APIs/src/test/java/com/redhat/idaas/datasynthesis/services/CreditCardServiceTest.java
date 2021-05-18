@@ -12,7 +12,6 @@ import com.redhat.idaas.datasynthesis.models.PlatformDataAttributesEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataDataGenTypesEntity;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.TestTransaction;
@@ -28,7 +27,7 @@ public class CreditCardServiceTest {
     private final static String MASTER_FORMAT = "^5[1-5][0-9]{14}$";
 
     private void initDB() {
-        Common.seed();
+        com.redhat.idaas.datasynthesis.services.Common.seed();
         PlatformDataAttributesEntity dataAttribute = new PlatformDataAttributesEntity();
         dataAttribute.setDataAttributeName("Credit Cards");
         dataAttribute.persist();
@@ -55,7 +54,7 @@ public class CreditCardServiceTest {
 
         List<CreditCard> cards = service.retrieveRandomCreditCards(8, null);
         for(CreditCard card : cards) {
-            Common.validatePattern(card.name.equals("Visa") ? VISA_FORMAT : MASTER_FORMAT, card.number);
+            com.redhat.idaas.datasynthesis.services.Common.validatePattern(card.name.equals("Visa") ? VISA_FORMAT : MASTER_FORMAT, card.number);
         }
     }
 
