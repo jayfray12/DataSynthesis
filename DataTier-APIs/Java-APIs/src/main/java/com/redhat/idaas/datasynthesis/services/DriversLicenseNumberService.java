@@ -98,30 +98,33 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         PlatformDataAttributesEntity dlnDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Drivers License Number");
         List<RefDataDataGenTypesEntity> dlnTypes = null;
         RefDataUsStatesEntity stateEntity = null;
-        RgxGen rgxGen = null;
         if (state != null) {
-            stateEntity = RefDataUsStatesEntity.findById(state);
             RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", dlnDataAttribute, state).firstResult();
-            rgxGen = new RgxGen(dataType.getDefinition());
+            dlnTypes = new ArrayList<RefDataDataGenTypesEntity>();
+            dlnTypes.add(dataType);
         } else {
             dlnTypes = RefDataDataGenTypesEntity.find("dataAttribute", dlnDataAttribute).list();
         }
-
+        RgxGen[] rgxGens = new RgxGen[dlnTypes.size()];
+        RefDataUsStatesEntity[] states = new RefDataUsStatesEntity[rgxGens.length];
         for (int i = 0; i < count;) {
+            int selected = rand.nextInt(dlnTypes.size());
+            RefDataDataGenTypesEntity dataType = dlnTypes.get(selected);
+            RgxGen rgxGen = rgxGens[selected];
+            if (rgxGen == null) {
+                rgxGen = new RgxGen(dataType.getDefinition());
+                rgxGens[selected] = rgxGen;
+                states[selected] = RefDataUsStatesEntity.findById(dataType.getDataGenTypeDescription());
+            }
+
             DataGeneratedDriversLicensesEntity entity = new DataGeneratedDriversLicensesEntity();
             entity.setCreatedDate(createdDate);
             entity.setStatus(defaultStatus);
             entity.setRegisteredApp(app);
-            if (state == null) {
-                // generate a random DLN for a random state
-                RefDataDataGenTypesEntity dataType = dlnTypes.get(rand.nextInt(dlnTypes.size()));
-                entity.setState(RefDataUsStatesEntity.findById(dataType.getDataGenTypeDescription()));
-                rgxGen = new RgxGen(dataType.getDefinition());
-                entity.setDln(rgxGen.generate(rand));
-            } else {
-                entity.setState(stateEntity);
-                entity.setDln(rgxGen.generate(rand));
-            }
+            entity.setState(states[selected]);
+            entity.setDln(rgxGen.generate(rand));
+            entity.setDataGenType(dataType);
+
             if (entity.safePersist()) {
                 results.add(entity);
                 i++;
