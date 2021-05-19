@@ -580,6 +580,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_creditcard` (
   `CreditCardID` BIGINT NOT NULL AUTO_INCREMENT,
   `CreditCardNumber` VARCHAR(20) NULL DEFAULT NULL,
+  "CreditCardName" VARCHAR(10) NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
@@ -590,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_creditcard` (
   INDEX `FK_datagenerated_creditcard_Status` (`StatusID` ASC) VISIBLE,
   INDEX `FK_datagenerated_creditcard_registeredapp` (`RegisteredApp` ASC) VISIBLE,
   INDEX `datagenerated_creditcard__datagentype` (`DataGenTypeID` ASC) VISIBLE,
-  INDEX `IDX_DataGenerated_CreditCard` (`CreditCardID` ASC, `CreditCardNumber` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
+  INDEX `IDX_DataGenerated_CreditCard` (`CreditCardID` ASC, `CreditCardNumber` ASC, `CreditCardName` ASC, `CreatedDate` ASC, `StatusID` ASC, `CreatedUser` ASC, `RegisteredApp` ASC, `DataGenTypeID` ASC) VISIBLE,
   CONSTRAINT `datagenerated_creditcard__datagentype`
     FOREIGN KEY (`DataGenTypeID`)
     REFERENCES `datasynthesis`.`refdata_datagentypes` (`DataGenTypeID`),
