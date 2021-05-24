@@ -27,7 +27,7 @@ public class CreditCardServiceTest {
     private final static String MASTER_FORMAT = "^5[1-5][0-9]{14}$";
 
     private void initDB() {
-        com.redhat.idaas.datasynthesis.services.Common.seed();
+        Common.seed();
         PlatformDataAttributesEntity dataAttribute = new PlatformDataAttributesEntity();
         dataAttribute.setDataAttributeName("Credit Cards");
         dataAttribute.persist();
@@ -54,7 +54,7 @@ public class CreditCardServiceTest {
 
         List<CreditCard> cards = service.retrieveRandomCreditCards(8, null);
         for(CreditCard card : cards) {
-            com.redhat.idaas.datasynthesis.services.Common.validatePattern(card.name.equals("Visa") ? VISA_FORMAT : MASTER_FORMAT, card.number);
+            Common.validatePattern(card.name.equals("Visa") ? VISA_FORMAT : MASTER_FORMAT, card.number);
         }
     }
 

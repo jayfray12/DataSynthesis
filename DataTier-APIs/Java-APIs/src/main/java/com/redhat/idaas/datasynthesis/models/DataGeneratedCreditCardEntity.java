@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class DataGeneratedCreditCardEntity extends BaseEntity {
     private long creditCardId;
     private String creditCardNumber;
+    private String creditCardName;
     private Timestamp createdDate;
     private String createdUser;
     private RefDataStatusEntity status;
@@ -43,6 +44,16 @@ public class DataGeneratedCreditCardEntity extends BaseEntity {
 
     public void setCreditCardNumber(String creditCardNumber) {
         this.creditCardNumber = creditCardNumber;
+    }
+
+    @Basic
+    @Column(name = "CreditCardName", nullable = true, length = 10)
+    public String getCreditCardName() {
+        return creditCardName;
+    }
+
+    public void setCreditCardName(String creditCardName) {
+        this.creditCardName = creditCardName;
     }
 
     @Basic
@@ -74,7 +85,7 @@ public class DataGeneratedCreditCardEntity extends BaseEntity {
 		if (getClass() != o.getClass())
 			return false;
 		DataGeneratedCreditCardEntity other = (DataGeneratedCreditCardEntity) o;
-		return java.util.Objects.equals(creditCardId, other.creditCardId) && java.util.Objects.equals(creditCardNumber, other.creditCardNumber) && 
+		return java.util.Objects.equals(creditCardId, other.creditCardId) && java.util.Objects.equals(creditCardNumber, other.creditCardNumber) && java.util.Objects.equals(creditCardName, other.creditCardName) && 
 			java.util.Objects.equals(createdDate, other.createdDate) && java.util.Objects.equals(createdUser, other.createdUser) && 
 			java.util.Objects.equals(status, other.status) && java.util.Objects.equals(registeredApp, other.registeredApp) &&
             java.util.Objects.equals(dataGenType, other.dataGenType);
@@ -82,7 +93,7 @@ public class DataGeneratedCreditCardEntity extends BaseEntity {
 
     @Override
     public int hashCode() {
-		return java.util.Objects.hash(creditCardId, creditCardNumber, createdDate, createdUser,
+		return java.util.Objects.hash(creditCardId, creditCardNumber, creditCardName, createdDate, createdUser,
 					status, registeredApp, dataGenType);
 	}
 

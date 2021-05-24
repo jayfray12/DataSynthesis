@@ -580,7 +580,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `datasynthesis`.`datagenerated_creditcard` (
   `CreditCardID` BIGINT NOT NULL AUTO_INCREMENT,
   `CreditCardNumber` VARCHAR(20) NULL DEFAULT NULL,
-  "CreditCardName" VARCHAR(10) NULL,
+  `CreditCardName` VARCHAR(10) NULL,
   `CreatedDate` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `StatusID` SMALLINT NULL DEFAULT '1',
   `CreatedUser` VARCHAR(20) NULL DEFAULT NULL,
