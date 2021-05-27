@@ -63,29 +63,32 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
 
         PlatformDataAttributesEntity ccDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Credit Cards");
         List<RefDataDataGenTypesEntity> creditCardTypes = null;
-        RgxGen rgxGen = null;
         if (cardName != null) {
             RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", ccDataAttribute, cardName).firstResult();
-            rgxGen = new RgxGen(dataType.getDefinition());
+            creditCardTypes = new ArrayList<RefDataDataGenTypesEntity>();
+            creditCardTypes.add(dataType);
         } else {
             creditCardTypes = RefDataDataGenTypesEntity.find("dataAttribute", ccDataAttribute).list();
         }
+        RgxGen[] rgxGens = new RgxGen[creditCardTypes.size()];
 
         for (int i = 0; i < count;) {
+            int selected = rand.nextInt(creditCardTypes.size());
+            RefDataDataGenTypesEntity dataType = creditCardTypes.get(selected);
+            RgxGen rgxGen = rgxGens[selected];
+            if (rgxGen == null) {
+                rgxGen = new RgxGen(dataType.getDefinition());
+                rgxGens[selected] = rgxGen;
+            }
+
             DataGeneratedCreditCardEntity entity = new DataGeneratedCreditCardEntity();
             entity.setCreatedDate(createdDate);
             entity.setStatus(defaultStatus);
             entity.setRegisteredApp(app);
-            if (cardName == null) {
-                // generate a random cc number for a random card
-                RefDataDataGenTypesEntity dataType = creditCardTypes.get(rand.nextInt(creditCardTypes.size()));
-                entity.setCreditCardName(dataType.getDataGenTypeDescription());
-                rgxGen = new RgxGen(dataType.getDefinition());
-                entity.setCreditCardNumber(rgxGen.generate(rand));
-            } else {
-                entity.setCreditCardName(cardName);
-                entity.setCreditCardNumber(rgxGen.generate(rand));
-            }
+            entity.setCreditCardNumber(rgxGen.generate(rand));
+            entity.setCreditCardName(dataType.getDataGenTypeDescription());
+            entity.setDataGenType(dataType);
+
             if (entity.safePersist()) {
                 ccnList.add(entity);
                 i++;

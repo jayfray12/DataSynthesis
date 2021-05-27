@@ -66,13 +66,13 @@ source ./ReferenceData/6-refdata_application.sql
 source ./ReferenceData/7-refdata_industrystd.sql
 source ./ReferenceData/8-refdata_sensitivityflag.sql
 source ./ReferenceData/9-refdata_codeset.sql
-source ./ReferenceData/10-refdata_datagentypes.sql
 source ./ReferenceData/refdata_countries.sql
 source ./ReferenceData/refdata_operationtype.sql
 source ./ReferenceData/refdata_sensitivityflag.sql
 source ./ReferenceData/refdata_datagentype.sql
 source ./Other/datamodel_datatables.sql
 source ./Platform/1-platform_dataattributes.sql
+source ./ReferenceData/10-refdata_datagentypes.sql
 source ./Platform/2-platform_datastructures.sql
 source ./Platform/3-platform_datastructurestodataattributes.sql
 source ./Platform/platform_appsettings_dataattributes.sql

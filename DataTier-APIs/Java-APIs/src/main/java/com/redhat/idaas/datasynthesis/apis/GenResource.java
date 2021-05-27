@@ -155,4 +155,12 @@ public class GenResource {
         creditCardService.generateCreditCards(count, cardName);
         return Response.status(Status.CREATED).build();       
     }
+
+    @POST
+    @Path("accountnumber/{count}")
+    public Response generateAccountNumbers(@PathParam int count, @QueryParam("type") String typeName)
+            throws DataSynthesisException {
+        accountNumberService.generateAccountNumbers(count, typeName);
+        return Response.status(Status.CREATED).build();
+    }
 }
