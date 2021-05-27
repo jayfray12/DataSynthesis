@@ -71,6 +71,7 @@ source ReferenceData\refdata_countries.sql
 source ReferenceData\refdata_operationtype.sql
 source Other\datamodel_datatables.sql
 source Platform\1-platform_dataattributes.sql
+source ReferenceData\10-refdata_datagentypes.sql
 source Platform\2-platform_datastructures.sql
 source Platform\3-platform_datastructurestodataattributes.sql
 source Platform\platform_appsettings_dataattributes.sql
