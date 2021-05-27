@@ -172,4 +172,10 @@ public class DataResource {
     public List<CreditCard> getCreditCards(@PathParam int count, @QueryParam("name") String cardName) {
         return this.creditCardService.retrieveRandomCreditCards(count, cardName);
     }
+
+    @GET
+    @Path("accountnumber/{count}")
+    public List<AccountNumber> getAccountNumbers(@PathParam int count, @QueryParam("type") String typeName) {
+        return this.accountNumberService.retrieveRandomAccountNumbers(count, typeName);
+    }
 }
