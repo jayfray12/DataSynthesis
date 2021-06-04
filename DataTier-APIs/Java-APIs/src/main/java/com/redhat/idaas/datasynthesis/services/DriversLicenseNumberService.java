@@ -88,21 +88,20 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
     }
 
     @Transactional
-    public List<DataGeneratedDriversLicensesEntity> generatedDriverLicenses(int count, String state)
+    public List<DataGeneratedDriversLicensesEntity> generatedDriverLicenses(int count, Short typeId)
             throws DataSynthesisException {
         List<DataGeneratedDriversLicensesEntity> results = new ArrayList<DataGeneratedDriversLicensesEntity>();
         RefDataApplicationEntity app = getRegisteredApp();
         RefDataStatusEntity defaultStatus = getDefaultStatus();
         Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
-        PlatformDataAttributesEntity dlnDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Drivers License Number");
         List<RefDataDataGenTypesEntity> dlnTypes = null;
-        RefDataUsStatesEntity stateEntity = null;
-        if (state != null) {
-            RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", dlnDataAttribute, state).firstResult();
+        if (typeId != null) {
+            RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.findById(typeId);
             dlnTypes = new ArrayList<RefDataDataGenTypesEntity>();
             dlnTypes.add(dataType);
         } else {
+            PlatformDataAttributesEntity dlnDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Drivers License Number");
             dlnTypes = RefDataDataGenTypesEntity.find("dataAttribute", dlnDataAttribute).list();
         }
         RgxGen[] rgxGens = new RgxGen[dlnTypes.size()];
@@ -134,11 +133,12 @@ public class DriversLicenseNumberService extends RandomizerService<DataGenerated
         return results;
     }
 
-    public List<DLN> retrieveRandomDriverLicenses(int count, String state) {
-        if (state == null) {
+    public List<DLN> retrieveRandomDriverLicenses(int count, Short typeId) {
+        if (typeId == null) {
             return retrieveRandomData(count);
         } 
         
-        return retrieveRandomData(count, "StateCode", state);
+        RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.findById(typeId);
+        return retrieveRandomData(count, "DataGenTypeID", dataType);
     }
 }
