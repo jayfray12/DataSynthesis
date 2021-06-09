@@ -9,9 +9,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
 import com.github.curiousoddman.rgxgen.RgxGen;
-import com.redhat.idaas.datasynthesis.dtos.AccountNumber;
+import com.redhat.idaas.datasynthesis.dtos.BankAccount;
 import com.redhat.idaas.datasynthesis.exception.DataSynthesisException;
-import com.redhat.idaas.datasynthesis.models.DataGeneratedAccountNumbersEntity;
+import com.redhat.idaas.datasynthesis.models.DataGeneratedBankAccountEntity;
 import com.redhat.idaas.datasynthesis.models.PlatformDataAttributesEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataApplicationEntity;
 import com.redhat.idaas.datasynthesis.models.RefDataDataGenTypesEntity;
@@ -20,30 +20,30 @@ import com.redhat.idaas.datasynthesis.models.RefDataStatusEntity;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @ApplicationScoped
-public class AccountNumberService extends RandomizerService<DataGeneratedAccountNumbersEntity, AccountNumber> {
+public class BankAccountService extends RandomizerService<DataGeneratedBankAccountEntity, BankAccount> {
 
     @Override
     protected long count(Object... queryOpts) {
         if (queryOpts.length <= 1) {
-            return DataGeneratedAccountNumbersEntity.count();
+            return DataGeneratedBankAccountEntity.count();
         }
-        return DataGeneratedAccountNumbersEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedBankAccountEntity.count((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected PanacheQuery<DataGeneratedAccountNumbersEntity> findAll(Object... queryOpts) {
+    protected PanacheQuery<DataGeneratedBankAccountEntity> findAll(Object... queryOpts) {
         if (queryOpts.length <= 1) {
-            return DataGeneratedAccountNumbersEntity.findAll();
+            return DataGeneratedBankAccountEntity.findAll();
         }
-        return DataGeneratedAccountNumbersEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
+        return DataGeneratedBankAccountEntity.find((String)queryOpts[0], Arrays.copyOfRange(queryOpts, 1, queryOpts.length));
     }
 
     @Override
-    protected AccountNumber mapEntityToDTO(DataGeneratedAccountNumbersEntity e) {
-        return new AccountNumber(e.getAccountNumberValue());
+    protected BankAccount mapEntityToDTO(DataGeneratedBankAccountEntity e) {
+        return new BankAccount(e.getBankAccountValue());
     }
  
-    public List<AccountNumber> retrieveRandomAccountNumbers(int count, Short typeId) {
+    public List<BankAccount> retrieveRandomBankAccounts(int count, Short typeId) {
         if (typeId == null) {
             return retrieveRandomData(count);
         }
@@ -53,8 +53,8 @@ public class AccountNumberService extends RandomizerService<DataGeneratedAccount
     }
 
     @Transactional
-    public List<DataGeneratedAccountNumbersEntity> generateAccountNumbers(int count, Short typeId) throws DataSynthesisException {
-        List<DataGeneratedAccountNumbersEntity> results = new ArrayList<DataGeneratedAccountNumbersEntity>(count);
+    public List<DataGeneratedBankAccountEntity> generateBankAccounts(int count, Short typeId) throws DataSynthesisException {
+        List<DataGeneratedBankAccountEntity> results = new ArrayList<DataGeneratedBankAccountEntity>(count);
         RefDataApplicationEntity app = getRegisteredApp();
         RefDataStatusEntity defaultStatus = getDefaultStatus();
         Timestamp createdDate = new Timestamp(System.currentTimeMillis());
@@ -79,11 +79,11 @@ public class AccountNumberService extends RandomizerService<DataGeneratedAccount
                 rgxGens[selected] = rgxGen;
             }
 
-            DataGeneratedAccountNumbersEntity entity = new DataGeneratedAccountNumbersEntity();
+            DataGeneratedBankAccountEntity entity = new DataGeneratedBankAccountEntity();
             entity.setCreatedDate(createdDate);
             entity.setStatus(defaultStatus);
             entity.setRegisteredApp(app);
-            entity.setAccountNumberValue(rgxGen.generate(rand));
+            entity.setBankAccountValue(rgxGen.generate(rand));
             entity.setDataGenType(dataType);
 
             if (entity.safePersist()) {

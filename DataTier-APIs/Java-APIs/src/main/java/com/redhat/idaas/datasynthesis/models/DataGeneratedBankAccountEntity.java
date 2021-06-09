@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "datagenerated_bankaccount", schema = "datasynthesis", catalog = "")
-public class DataGeneratedBankAccountEntity extends io.quarkus.hibernate.orm.panache.PanacheEntityBase {
+public class DataGeneratedBankAccountEntity extends BaseEntity {
     private long bankAccountsId;
     private String bankAccountValue;
     private Timestamp createdDate;

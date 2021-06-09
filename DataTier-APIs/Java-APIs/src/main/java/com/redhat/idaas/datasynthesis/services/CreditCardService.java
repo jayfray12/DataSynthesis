@@ -45,29 +45,30 @@ public class CreditCardService extends RandomizerService<DataGeneratedCreditCard
     }
 
     
-    public List<CreditCard> retrieveRandomCreditCards(int count, String cardName) {
-        if (cardName == null) {
+    public List<CreditCard> retrieveRandomCreditCards(int count, Short typeId) {
+        if (typeId == null) {
             return retrieveRandomData(count);
-        } 
+        }
         
-        return retrieveRandomData(count, "CreditCardName", cardName);
+        RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.findById(typeId);
+        return retrieveRandomData(count, "DataGenTypeID", dataType);
     }
 
     @Transactional
-    public List<DataGeneratedCreditCardEntity> generateCreditCards(int count, String cardName)
+    public List<DataGeneratedCreditCardEntity> generateCreditCards(int count, Short genTypeId)
             throws DataSynthesisException {
         List<DataGeneratedCreditCardEntity> ccnList = new ArrayList<DataGeneratedCreditCardEntity>(count);
         RefDataApplicationEntity app = getRegisteredApp();
         RefDataStatusEntity defaultStatus = getDefaultStatus();
         Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
-        PlatformDataAttributesEntity ccDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Credit Cards");
         List<RefDataDataGenTypesEntity> creditCardTypes = null;
-        if (cardName != null) {
-            RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.find("dataAttribute = ?1 and dataGenTypeDescription = ?2", ccDataAttribute, cardName).firstResult();
+        if (genTypeId != null) {
+            RefDataDataGenTypesEntity dataType = RefDataDataGenTypesEntity.findById(genTypeId);
             creditCardTypes = new ArrayList<RefDataDataGenTypesEntity>();
             creditCardTypes.add(dataType);
         } else {
+            PlatformDataAttributesEntity ccDataAttribute = PlatformDataAttributesEntity.findByDataAttributeName("Credit Cards");
             creditCardTypes = RefDataDataGenTypesEntity.find("dataAttribute", ccDataAttribute).list();
         }
         RgxGen[] rgxGens = new RgxGen[creditCardTypes.size()];
