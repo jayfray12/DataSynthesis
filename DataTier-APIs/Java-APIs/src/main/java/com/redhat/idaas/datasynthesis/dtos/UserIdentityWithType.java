@@ -8,10 +8,15 @@ public class UserIdentityWithType {
     public int count;
     public short dataGenTypeId;
     public String domainValue;
+    @Schema(required = false, description = "optional", nullable = true)
     public String additionalDetail;
 
     public UserIdentityWithType() {
 
+    }
+
+    public UserIdentityWithType(int count, short typeId, String domainValue) {
+        this(count, typeId, domainValue, null);
     }
 
     public UserIdentityWithType(int count, short typeId, String domainValue, String additionalDetail) {
