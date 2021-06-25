@@ -137,4 +137,8 @@ public class PlatformDataAttributesEntity extends io.quarkus.hibernate.orm.panac
         return find("select a from PlatformDataAttributesEntity a, PlatformDataStructuresEntity s, PlatformDataStructuresToDataAttributesEntity t where s.dataStructureName = :name and t.platformDataStructures = s and t.platformDataAttributes = a", 
         Parameters.with("name", platformDataStructureName).map()).list();
     }
+
+    public static PlatformDataAttributesEntity findByDataAttributeName(String name) {
+        return find("DataAttributeName", name).firstResult();
+    }
 }

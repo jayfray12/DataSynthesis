@@ -1,6 +1,6 @@
 name: Maven Build
 
-on: [ pull_request_target ]
+on: [ pull_request ]
 
 jobs:
   build:
@@ -26,10 +26,3 @@ jobs:
         restore-keys: ${{ runner.os }}-sonar
     - name: Build and Verify
       run: cd DataTier-APIs/Java-APIs && ./mvnw -B clean verify --fae --file pom.xml
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v1.4
-      with:
-        projectBaseDir: DataTier-APIs/Java-APIs
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
